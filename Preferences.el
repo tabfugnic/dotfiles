@@ -18,6 +18,10 @@
 (folding-mode-add-find-file-hook)
 ;; (folding-add-to-marks-list 'scss-mode "//{"."//}" nil t)
 
+;; autopair minor mode
+(require 'autopair)
+(autopair-global-mode) ;; enable in all buffers
+
 ;; php mode
 (autoload 'php-mode "php-mode" "Php editing mode." t)
 (setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
@@ -65,17 +69,6 @@
 (require 'coffee-mode)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 (add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
-
-;; flymake php
-(defun flymake-php-init ()
-  "Use php to check the syntax of the current file."
-  (let* ((temp (flymake-init-create-temp-buffer-copy 'flymake-create-temp-inplace))
-         (local (file-relative-name temp (file-name-directory buffer-file-name))))
-    (list "php" (list "-f" local "-l"))))
-
-(add-to-list 'flymake-err-line-patterns '("\\(Parse\\|Fatal\\) error: +\\(.*?\\) in \\(.*?\\) on line \\([0-9]+\\)$" 3 4 nil 2))
-
-(add-to-list 'flymake-allowed-file-name-masks '("\\.php$" flymake-php-init))
 
 ;; Drupal-type extensions
 (add-to-list 'flymake-allowed-file-name-masks '("\\.module$" flymake-php-init))
