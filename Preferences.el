@@ -126,6 +126,9 @@ argument is given, you can choose which register to jump to."
 (global-set-key "\C-ch" 'th-save-frame-configuration)
 (global-set-key "\C-cj" 'th-jump-to-register)
 
+;; bind hippie-expand
+(global-set-key "\M- " 'hippie-expand)
+
 
 ;; settings
 (one-buffer-one-frame-mode 0)           ; turn off one buffer per frame
