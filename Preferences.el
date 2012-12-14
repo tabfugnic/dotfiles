@@ -22,6 +22,10 @@
 (require 'autopair)
 (autopair-global-mode) ;; enable in all buffers
 
+;; Wrap Region minor mode
+(require 'wrap-region)
+(wrap-region-mode t)
+
 ;; php mode
 (autoload 'php-mode "php-mode" "Php editing mode." t)
 (setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
