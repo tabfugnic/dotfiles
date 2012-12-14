@@ -43,6 +43,7 @@
 (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))
 (setq interpreter-mode-alist (append '(("ruby" . ruby-mode)) interpreter-mode-alist))
+(require 'ruby-end)
 
 ;; scss mode
 (autoload 'scss-mode "scss-mode" "Scss editing mode." t)
