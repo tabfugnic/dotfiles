@@ -1,9 +1,3 @@
-;; This is the Aquamacs Preferences file.
-;; Add Emacs-Lisp code here that should be executed whenever
-;; you start Aquamacs Emacs. If errors occur, Aquamacs will stop
-;; evaluating this file and print errors in the *Messags* buffer.
-;; Use this file in place of ~/.emacs (which is loaded as well.)
-
 ;; start server for fast startups
 (server-start)
 
@@ -75,6 +69,10 @@
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 (add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
 
+;; feature mode - aka cucumber
+(require 'feature-mode)
+(add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
+
 ;; Drupal-type extensions
 (add-to-list 'flymake-allowed-file-name-masks '("\\.module$" flymake-php-init))
 (add-to-list 'flymake-allowed-file-name-masks '("\\.install$" flymake-php-init))
@@ -134,9 +132,13 @@ argument is given, you can choose which register to jump to."
 ;; bind hippie-expand
 (global-set-key "\M- " 'hippie-expand)
 
+(unless (boundp 'aquamac-version)
+  (setq custom-file "~/.emacs.d/custom.el")
+  (load custom-file)
+)
 
 ;; settings
-(one-buffer-one-frame-mode 0)           ; turn off one buffer per frame
+;;(one-buffer-one-frame-mode 0)           ; turn off one buffer per frame
 (scroll-bar-mode -1)                    ; turn off scroll bars
 (menu-bar-mode 1)                       ; turn on menubar
 (tool-bar-mode -1)                      ; turn on toolbar
