@@ -72,6 +72,7 @@
 
 ;; coffee mode
 (require 'coffee-mode)
+(setq coffee-tab-width 2)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 (add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
 
@@ -133,6 +134,9 @@ argument is given, you can choose which register to jump to."
 
 ;; bind hippie-expand
 (global-set-key "\M- " 'hippie-expand)
+
+;;remove trailing whitespace
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 
 ;; settings
