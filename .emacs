@@ -163,3 +163,5 @@ argument is given, you can choose which register to jump to."
 (setq require-final-newline t)          ; last lines should end in a
                                         ; carriage return
 (ido-mode nil)
+(cua-mode nil)
+(setq ido-max-directory-size 100000)
