@@ -31,10 +31,18 @@
 (setq auto-mode-alist (cons '("\\.phtml$" . php-mode) auto-mode-alist))
 (setq interpreter-mode-alist (cons '("phtml" . php-mode) interpreter-mode-alist))
 
+;; html mode
+(setq auto-mode-alist (cons '("\\.html.erb$" . html-mode) auto-mode-alist))
+
 ;; javascript mode
 (autoload 'javascript-mode "javascript-mode" "Javascript editing mode." t)
 (setq auto-mode-alist (cons '("\\.js$" . javascript-mode) auto-mode-alist))
 (setq js-indent-level 2)
+
+;; rspec mode
+(require 'rspec-mode)
+(setq auto-mode-alist (cons '("\\.erb$" . rspec-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.haml$" . rspec-mode) auto-mode-alist))
 
 ;; ruby mode
 (autoload 'ruby-mode "ruby-mode" "Major mode for editing ruby scripts." t)
@@ -46,7 +54,9 @@
 ;; scss mode
 (autoload 'scss-mode "scss-mode" "Scss editing mode." t)
 (setq auto-mode-alist (cons '("\\.scss$" . scss-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.scss.erb$" . scss-mode) auto-mode-alist))
 (setq interpreter-mode-alist (cons '("scss" . scss-mode) interpreter-mode-alist))
+(setq interpreter-mode-alist (cons '("scss.erb" . scss-mode) interpreter-mode-alist))
 
 ;; sass mode
 (autoload 'sass-mode "sass-mode" "Sass editing mode." t)
@@ -165,3 +175,4 @@ argument is given, you can choose which register to jump to."
 (ido-mode nil)
 (cua-mode nil)
 (setq ido-max-directory-size 100000)
+(put 'erase-buffer 'disabled nil)
