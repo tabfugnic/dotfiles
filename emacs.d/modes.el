@@ -2,7 +2,8 @@
 
 ;; autopair minor mode
 (require 'autopair)
-(autopair-global-mode) ;; enable in all buffers
+(autopair-global-mode) ;;; enable in all buffers
+
 
 ;; Wrap Region minor mode
 (require 'wrap-region)
@@ -66,6 +67,7 @@
 (setq interpreter-mode-alist (cons '("scss" . scss-mode) interpreter-mode-alist))
 (setq interpreter-mode-alist (cons '("scss.erb" . scss-mode) interpreter-mode-alist))
 (setq scss-compile-at-save nil)
+(setq css-indent-offset 2)
 ;; sass mode
 (autoload 'sass-mode "sass-mode" "Sass editing mode." t)
 (setq auto-mode-alist (cons '("\\.sass$" . sass-mode) auto-mode-alist))
@@ -92,4 +94,12 @@
 (require 'feature-mode)
 (add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
 
-(setq debug-on-error nil)               ; turn off debugger because of recursive edit annoyance
+(setq debug-on-error nil) ; turn off debugger because of recursive edit annoyance
+
+(require 'emmet-mode)
+(add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
+
+(require 'move-text)
+(move-text-default-bindings)
+
+(setq efire-host "thoughtbot.campfirenow.com")

@@ -8,7 +8,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/" )
 
-(add-to-list 'load-path "~/.emacs.d/snippets")
+             (add-to-list 'load-path "~/.emacs.d/snippets")
 (require 'yasnippet)
 (yas-global-mode 1)
 

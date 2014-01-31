@@ -37,3 +37,7 @@
 
 ;; RVM
 (rvm-use-default)
+
+(setq require-final-newline t)
+
+;;(add-to-list 'erc-modules 'notifications)
