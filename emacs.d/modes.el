@@ -96,10 +96,14 @@
 
 (setq debug-on-error nil) ; turn off debugger because of recursive edit annoyance
 
-(require 'emmet-mode)
 (add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
 
-(require 'move-text)
 (move-text-default-bindings)
 
 (setq efire-host "thoughtbot.campfirenow.com")
+
+;; Yasnippets
+(setq yas-snippet-dirs
+      "~/.emacs.d/snippets" )
+
+(yas-global-mode 1)
