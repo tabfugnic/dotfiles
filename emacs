@@ -14,9 +14,9 @@
 (load "interface.el")
 (load "settings.el")
 (load "key-bindings.el")
-
 (load "modes.el")
-
+(load "org-settings.el")
+(load "erc-settings.el")
 
 ;; opens the development folder
 (defun gitrep()
