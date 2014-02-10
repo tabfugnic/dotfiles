@@ -1,3 +1,18 @@
+(setq org-directory "~/Dropbox/org/")
+
+(defun org-file (file)
+  (concat org-directory file))
+
+(setq org-capture-templates
+      '(("t" "TODO"
+        entry
+        (file (org-file "index.org"))
+        "* TODO %?\n %u\n")
+        ("i" "Idea"
+         entry
+         (file (org-file "ideas.org"))
+         "* %?\n %u\n")))
+
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
