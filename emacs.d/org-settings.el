@@ -3,6 +3,8 @@
 (defun org-file (file)
   (concat org-directory file))
 
+(setq org-agenda-files (list (org-file "index.org")))
+
 (setq org-capture-templates
       '(("t" "TODO"
         entry

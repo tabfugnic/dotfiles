@@ -6,6 +6,9 @@
 (erc-services-mode 1)
 
 (erc-autojoin-enable)
+(erc-autojoin-mode t)
+
+(setq erc-prompt-for-nickserv-password nil)
 (setq erc-autojoin-timing :ident)
 
 (setq erc-autojoin-channels-alist
