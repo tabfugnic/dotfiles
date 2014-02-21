@@ -13,7 +13,11 @@
         ("i" "Idea"
          entry
          (file (org-file "ideas.org"))
-         "* %?\n %u\n")))
+         "* %?\n %u\n")
+        ("c" "Configurations"
+         entry
+         (file (org-file "config.org"))
+         "* %?\n")))
 
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)

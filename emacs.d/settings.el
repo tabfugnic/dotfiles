@@ -1,3 +1,5 @@
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 ;; indents
 (setq-default indent-tabs-mode nil)
 (setq-default standard-indent 2)
@@ -14,6 +16,7 @@
 (ido-mode t)
 (setq ido-enable-flex-matching t) ; fuzzy matching is a must have
 (setq ido-max-directory-size 100000)
+(setq ido-everywhere t)
 
 ;; buffer stuff
 (put 'erase-buffer 'disabled nil)
@@ -39,3 +42,5 @@
 (rvm-use-default)
 
 (setq require-final-newline t)
+
+(setq-default dired-listing-switches "-alhv")
