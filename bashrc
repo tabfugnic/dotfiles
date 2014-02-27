@@ -20,3 +20,5 @@ export PATH="/usr/local/heroku/bin:$PATH"
 set_term_title(){
    echo -en "\033]0;$1\a"
 }
+
+. "$HOME/git-completion.bash"
