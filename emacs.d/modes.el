@@ -58,6 +58,9 @@
 (setq auto-mode-alist (cons '("Guardfile" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
 (setq interpreter-mode-alist (append '(("ruby" . ruby-mode)) interpreter-mode-alist))
+;; RVM
+(rvm-use-default)
+(add-hook 'ruby-mode-hook (lambda () (rvm-activate-corresponding-ruby)))
 (require 'ruby-end)
 
 ;; scss mode
@@ -100,10 +103,10 @@
 
 (move-text-default-bindings)
 
-(setq efire-host "thoughtbot.campfirenow.com")
-
 ;; Yasnippets
 (setq yas-snippet-dirs
       "~/.emacs.d/snippets" )
 
 (yas-global-mode 1)
+
+(projectile-global-mode)

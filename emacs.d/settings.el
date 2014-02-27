@@ -38,9 +38,6 @@
 ;;remove trailing whitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; RVM
-(rvm-use-default)
-
 (setq require-final-newline t)
 
 (setq-default dired-listing-switches "-alhv")
