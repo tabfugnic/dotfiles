@@ -41,3 +41,15 @@
 (setq require-final-newline t)
 
 (setq-default dired-listing-switches "-alhv")
+
+;; auto move cursor after split
+(global-set-key "\C-x2"
+                (lambda ()
+                  (interactive)
+                  (split-window-below)
+                  (other-window 1)))
+(global-set-key "\C-x3"
+                (lambda ()
+                  (interactive)
+                  (split-window-right)
+                  (other-window 1)))
