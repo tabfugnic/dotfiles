@@ -14,10 +14,15 @@
          entry
          (file (org-file "ideas.org"))
          "* %?\n %u\n")
+        ("e" "Ember"
+         entry
+         (file (org-file "ember.org"))
+         "* %?\n %u\n")
         ("c" "Configurations"
          entry
          (file (org-file "config.org"))
          "* %?\n")))
+
 
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
