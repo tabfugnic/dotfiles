@@ -19,3 +19,25 @@
 
 (erc :server "thoughtbot" :port 6668 :nick "eric_collins" :password campfire-thoughtbot)
 (erc :server "schoolkeepinc" :port 6668 :nick "eric" :password campfire-schoolkeepinc)
+
+(require 'erc-image)
+(add-to-list 'erc-modules 'image)
+
+(erc-update-modules)
+
+(setq erc-pals '("\\.*\\b"))
+
+(setq erc-keywords '("\\NYC\\b"
+                     "\\:statue_of_liberty:\\b"
+                     "\\corgi\\b"))
+
+(setq ercn-notify-rules
+      '((current-nick . all)
+        (keyword . all)
+        (pal . ("#thought_bot_school_keep" "#code"))))
+
+(defun do-notify (nickname message)
+  (with-temp-buffer
+    (shell-command (format "notify-send '%s: %s' -t 5000" nickname message) t)))
+
+(add-hook 'ercn-notify 'do-notify)
