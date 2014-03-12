@@ -10,6 +10,8 @@
 
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-autojoin-timing :ident)
+(setq erc-fill-function 'erc-fill-static)
+(setq erc-fill-static-center 22)
 
 (setq erc-autojoin-channels-alist
       '(("thoughtbot" "#everyone" "#code")
