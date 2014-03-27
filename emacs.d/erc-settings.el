@@ -9,16 +9,16 @@
 (erc-autojoin-mode t)
 
 (setq erc-prompt-for-nickserv-password nil)
-(setq erc-autojoin-timing :ident)
+
 (setq erc-fill-function 'erc-fill-static)
 (setq erc-fill-static-center 22)
 
 (setq erc-autojoin-channels-alist
-      '(("thoughtbot" "#everyone" "#code")
-        ("schoolkeepinc" "#thought_bot_school_keep")))
+      '(("thoughtbot.net" "#everyone" "#code", "#learn")
+        ("freenode.net" "#thoughtbot" "#emacs")))
 
-(erc :server "thoughtbot" :port 6668 :nick "eric_collins" :password campfire-thoughtbot)
-(erc :server "schoolkeepinc" :port 6668 :nick "eric" :password campfire-schoolkeepinc)
+(erc :server "irc.thoughtbot.net" :port 6668 :nick "eric_collins" :password campfire-thoughtbot)
+(erc :server "irc.freenode.net" :port 6667 :nick "tabfugnic" :password freenode-password)
 
 (require 'erc-image)
 (add-to-list 'erc-modules 'image)
