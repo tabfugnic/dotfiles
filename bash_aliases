@@ -2,7 +2,7 @@
 export resugen="$HOME/dev/resugen"
 export dev="$HOME/dev"
 export levo="$dev/airwolf"
-export emacs="$dev/emacs-prefs"
+export dotfiles="$dev/dotfiles"
 export comfort="$dev/comfort"
 export rakemkv="$dev/rakemkv"
 export transcode="$dev/transcode"
@@ -12,13 +12,16 @@ export octopress="$dev/octopress"
 export blackjack="$dev/blackjack"
 export ga="$HOME/ga"
 export schoolkeep="$dev/schoolkeep"
+export learn="$dev/learn"
+export whetstone="$dev/whetstone"
+export sag="sudo apt-get"
 
 # Directory Aliases
 alias dev='cd $dev'
 alias rsg='cd $resugen'
 alias levo='cd $levo'
 alias cmft='cd $comfort'
-alias emacsprefs='cd $emacs'
+alias dot='cd $dotfiles'
 alias rkv='cd $rakemkv'
 alias trans='cd $transcode'
 alias bclss='cd $bewdnyc'
@@ -27,9 +30,8 @@ alias octo='cd $octopress'
 alias bjck='cd $blackjack'
 alias ga='cd $ga'
 alias sk='cd $schoolkeep'
-
-# Zeus Aliases
-alias zuke="zeus cucumber"
+alias lrn='cd $learn'
+alias whet='cd $whetstone'
 
 # Command Line Programs
 alias txg='tar xvzf'
@@ -37,7 +39,11 @@ alias txb='tar xvjf'
 alias txt='tar xvf'
 
 # Apt
-alias sag='sudo apt-get'
+alias sag='$sag'
+alias sai='$sag install'
+alias saud='$sag update'
+alias saug='$sag upgrade'
+alias sadu='$sag dist-upgrade'
 
 # Git aliases
 alias gwin="git shortlog -n -s"
