@@ -8,6 +8,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/opt/android/tools # Android to this business
 PATH=$PATH:$HOME/opt/android/platform-tools # Android to this business
 PATH="$PATH:$HOME/.cask/bin"
+MONO_PATH="/usr/lib/keepass2${MONO_PATH:+:$MONO_PATH}"
+export MONO_PATH
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
