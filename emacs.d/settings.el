@@ -43,13 +43,19 @@
 (setq-default dired-listing-switches "-alhv")
 
 ;; auto move cursor after split
-(global-set-key "\C-x2"
-                (lambda ()
-                  (interactive)
-                  (split-window-below)
-                  (other-window 1)))
-(global-set-key "\C-x3"
-                (lambda ()
-                  (interactive)
-                  (split-window-right)
-                  (other-window 1)))
+(defun split-window-below-and-move()
+  (interactive)
+  (split-window-below)
+  (other-window 1))
+
+;; auto move cursor after split
+(defun split-window-right-and-move()
+  (interactive)
+  (split-window-right)
+  (other-window 1))
+
+(global-set-key "\C-x2" 'split-window-below-and-move)
+
+(global-set-key "\C-x3" 'split-window-right-and-move)
+
+(global-subword-mode t)
