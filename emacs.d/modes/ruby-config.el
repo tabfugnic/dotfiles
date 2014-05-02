@@ -16,3 +16,12 @@
 ;; RVM
 (rvm-use-default)
 (add-hook 'ruby-mode-hook (lambda () (rvm-activate-corresponding-ruby)))
+
+;; Ruby end
+(require 'ruby-end)
+
+
+(defun rspec-toggle-spec-target-in-new-buffer
+  (interactive)
+  (split-window-right-and-move)
+  (rspec-toggle-spec-and-target))
