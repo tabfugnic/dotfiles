@@ -173,6 +173,10 @@ bindsym XF86AudioMute exec /usr/bin/amixer set Master toggle
 bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
 
+# Display
+bindsym XF86Display exec xrandr --auto
+bindsym f7 exec xrandr --output eDP1 --off
+
 # Launch software
 exec redshift
 exec dropbox start
