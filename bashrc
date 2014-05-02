@@ -9,6 +9,7 @@ PATH=$PATH:$HOME/opt/android/tools # Android to this business
 PATH=$PATH:$HOME/opt/android/platform-tools # Android to this business
 PATH="$PATH:$HOME/.cask/bin"
 PATH="$PATH:$HOME/bin"
+PATH="$PATH:$HOME/elixir/bin"
 MONO_PATH="/usr/lib/keepass2${MONO_PATH:+:$MONO_PATH}"
 export MONO_PATH
 
