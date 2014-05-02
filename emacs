@@ -18,6 +18,7 @@
 (load "org-settings.el")
 
 ;; mode-specific configuration
+
 (mapcar (lambda (mode-file-name) (load mode-file-name))
         (directory-files "~/.emacs.d/modes/" nil ".el"))
 
@@ -29,6 +30,3 @@
 (defun gitrep()
   (interactive "*")
   (find-file "~/dev"))
-
-;; Start twitter client
-(twit)
