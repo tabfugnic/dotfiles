@@ -14,6 +14,7 @@
 
 ;; ido mode!
 (ido-mode t)
+(ido-vertical-mode t)
 (setq ido-enable-flex-matching t) ; fuzzy matching is a must have
 (setq ido-max-directory-size 100000)
 (setq ido-everywhere t)
