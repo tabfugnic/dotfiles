@@ -17,3 +17,4 @@
 
 (erc :server "irc.thoughtbot.net" :port 6668 :nick "eric_collins" :password campfire-thoughtbot )
 (erc :server "irc.freenode.net" :port 6667 :nick "tabfugnic" )
+(erc-ssl :server "skilledup.irc.slack.com" :port 6667 :nick "eric" :password slack-skilledup)
