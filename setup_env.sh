@@ -9,6 +9,6 @@ ln -s `pwd`/emacs $HOME/.emacs
 ln -s `pwd`/emacs.d/ $HOME/.emacs.d
 ln -s `pwd`/i3/ $HOME/.i3
 ln -s `pwd`/i3status.conf $HOME/.i3status.conf
-curl -o ~/git-completion.bash https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
+curl -o ~/git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 
 echo "All done!"
