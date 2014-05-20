@@ -14,6 +14,7 @@ export ga="$HOME/ga"
 export schoolkeep="$dev/schoolkeep"
 export learn="$dev/learn"
 export whetstone="$dev/whetstone"
+export skilledup="$dev/skilledup-academy"
 export sag="sudo apt-get"
 
 # Directory Aliases
@@ -32,6 +33,7 @@ alias ga='cd $ga'
 alias sk='cd $schoolkeep'
 alias lrn='cd $learn'
 alias whet='cd $whetstone'
+alias skl='cd $skilledup'
 
 # Command Line Programs
 alias txg='tar xvzf'
