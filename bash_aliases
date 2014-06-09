@@ -46,6 +46,9 @@ alias sai='$sag install'
 alias saud='$sag update'
 alias saug='$sag upgrade'
 alias sadu='$sag dist-upgrade'
+alias saar='$sag autoremove'
+alias update='saud && saug -y && saar -y'
+alias full-update='saud && sadu -y && saar -y'
 
 # Git aliases
 alias gwin="git shortlog -n -s"
