@@ -40,6 +40,11 @@ alias txg='tar xvzf'
 alias txb='tar xvjf'
 alias txt='tar xvf'
 
+# Display
+alias adsp='xrandr --auto'
+alias edspoff='xrandr --output eDP1 --off'
+alias ldspoff='xrandr --output LVD1 -off'
+
 # Apt
 alias sag='$sag'
 alias sai='$sag install'
