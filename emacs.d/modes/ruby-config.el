@@ -1,4 +1,5 @@
 ;; rspec mode
+(require 'rspec-mode)
 (add-hook 'haml-mode-hook (lambda() (rspec-mode 1)))
 (add-hook 'html-mode-hook (lambda() (rspec-mode 1)))
 (setq auto-mode-alist (cons '("\\.erb$" . rspec-mode) auto-mode-alist))
