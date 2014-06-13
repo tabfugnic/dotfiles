@@ -27,3 +27,4 @@ set_term_title(){
 . "$HOME/git-completion.bash"
 
 . /usr/local/share/chruby/chruby.sh
+. /usr/local/share/chruby/auto.sh
