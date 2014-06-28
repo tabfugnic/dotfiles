@@ -9,13 +9,14 @@ status_backend = sqlite
 [Repository main-local]
 # Currently, offlineimap only supports maildir and IMAP for local repositories.
 type = Maildir
-# Where should the mail be placed?
 localfolders = ~/mail
 
 [Repository main-remote]
 type = Gmail
-remoteuser = tabfugnic@gmail.com
-realdelete = no
+holdconnectionopen = yes
+keepalive = 60
 maxconnections = 3
+realdelete = no
+remoteuser = tabfugnic@gmail.com
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail', '[Gmail]/Spam']
