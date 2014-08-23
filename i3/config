@@ -180,9 +180,18 @@ bindsym XF86Display exec xrandr --auto
 # bindsym f7 exec xrandr --output eDP1 --off
 bindsym F7 exec xrandr --output LVDS1 --off
 
+# Assign apps to workspaces
+assign [class="emacs"] → 1
+assign [class="terminal"] → 2
+assign [class="Firefox"] → 3
+assign [class="Iceweasel"] → 3
+
 # Launch software
-exec redshift
-exec dropbox start
+exec --no-startup-id redshift
+exec --no-startup-id dropbox start
+exec --no-startup-id emacs
+exec --no-startup-id i3-sensible-terminal
+exec --no-startup-id firefox
 
 # Remap control key
 exec setxkbmap -option ctrl:nocaps
