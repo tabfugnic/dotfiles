@@ -1,6 +1,6 @@
 #!/bin/sh
 lock() {
-    i3lock -c 141414
+    i3lock -c 171717
 }
 
 case "$1" in
@@ -11,16 +11,16 @@ case "$1" in
         i3-msg exit
         ;;
     suspend)
-        lock && dbus-send --print-reply --system --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+        lock && dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true
         ;;
     hibernate)
-        lock &&  dbus-send --print-reply --system --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Hibernate
+        lock && dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Hibernate" boolean:true
         ;;
     reboot)
-        reboot
+        dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Reboot" boolean:true
         ;;
     shutdown)
-        shutdown -t 0 -P
+        dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.PowerOff" boolean:true
         ;;
     *)
         echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
