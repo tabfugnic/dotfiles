@@ -1,9 +1,9 @@
 ;; rspec mode
 (require 'rspec-mode)
 (add-hook 'haml-mode-hook (lambda() (rspec-mode 1)))
-(add-hook 'html-mode-hook (lambda() (rspec-mode 1)))
+(add-hook 'html-mode-hook (lambda() (rspec-mode )))
+(add-hook 'slim-mode-hook (lambda() (rspec-mode )))
 (setq auto-mode-alist (cons '("\\.erb$" . rspec-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.haml$" . rspec-mode) auto-mode-alist))
 
 ;; ruby mode
 (autoload 'ruby-mode "ruby-mode" "Major mode for editing ruby scripts." t)
