@@ -1,3 +1,4 @@
+(require 'org-agenda)
 (setq org-directory "~/Dropbox/org/")
 
 (defun org-file (file)
