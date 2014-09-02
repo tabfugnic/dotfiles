@@ -182,7 +182,7 @@ bindsym F7 exec xrandr --output LVDS1 --off
 
 # Assign apps to workspaces
 assign [class="emacs"] → 1
-assign [class="terminal"] → 2
+assign [class="term"] → 2
 assign [class="Firefox"] → 3
 assign [class="Iceweasel"] → 3
 
