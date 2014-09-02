@@ -1,27 +1,29 @@
 # Hold onto aliases
-export resugen="$HOME/dev/resugen"
 export dev="$HOME/dev"
-export dotfiles="$dev/dotfiles"
-export comfort="$dev/comfort"
-export rakemkv="$dev/rakemkv"
-export transcode="$dev/transcode"
 export bewdnyc="$dev/BEWD_NYC_6"
+export blog="$dev/personal-blog"
+export comfort="$dev/comfort"
+export dotfiles="$dev/dotfiles"
 export learn="$dev/learn"
-export whetstone="$dev/whetstone"
-export skilledup="$dev/skilledup-academy"
+export rakemkv="$dev/rakemkv"
+export resugen="$HOME/dev/resugen"
 export sag="sudo apt-get"
+export skilledup="$dev/skilledup-academy"
+export transcode="$dev/transcode"
+export whetstone="$dev/whetstone"
 
 # Directory Aliases
-alias dev='cd $dev'
-alias rsg='cd $resugen'
-alias levo='cd $levo'
+alias blog='cd $blog'
 alias cmft='cd $comfort'
+alias dev='cd $dev'
 alias dot='cd $dotfiles'
-alias rkv='cd $rakemkv'
-alias trans='cd $transcode'
+alias levo='cd $levo'
 alias lrn='cd $learn'
-alias whet='cd $whetstone'
+alias rkv='cd $rakemkv'
+alias rsg='cd $resugen'
 alias skl='cd $skilledup'
+alias trans='cd $transcode'
+alias whet='cd $whetstone'
 
 # Command Line Programs
 alias txg='tar xvzf'
