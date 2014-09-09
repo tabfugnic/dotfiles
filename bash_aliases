@@ -3,6 +3,7 @@ export dev="$HOME/dev"
 export bewdnyc="$dev/BEWD_NYC_6"
 export blog="$dev/personal-blog"
 export comfort="$dev/comfort"
+export dive="$dev/diveblog"
 export dotfiles="$dev/dotfiles"
 export learn="$dev/learn"
 export rakemkv="$dev/rakemkv"
@@ -16,6 +17,7 @@ export whetstone="$dev/whetstone"
 alias blog='cd $blog'
 alias cmft='cd $comfort'
 alias dev='cd $dev'
+alias dive='cd $dive'
 alias dot='cd $dotfiles'
 alias levo='cd $levo'
 alias lrn='cd $learn'
@@ -26,8 +28,8 @@ alias trans='cd $transcode'
 alias whet='cd $whetstone'
 
 # Command Line Programs
-alias txg='tar xvzf'
 alias txb='tar xvjf'
+alias txg='tar xvzf'
 alias txt='tar xvf'
 
 # Display
@@ -53,6 +55,9 @@ alias rmorig='find . -type f -name *.orig -exec rm -f {} \;'
 # Bundler
 alias bx='bundle exec'
 alias bspec='bundle exec rspec'
+
+# Chruby
+alias chsudo='sudo chruby-exec `ruby --version | grep "ruby [^ ]"` --'
 
 # Misc Aliases
 alias resp=". ~/.bash_profile"
