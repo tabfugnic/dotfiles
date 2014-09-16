@@ -2,12 +2,11 @@
 (require 'erc-join)
 (require 'erc-image)
 
-(load "~/.ercpass")
-
 (defun do-notify (nickname message)
   (with-temp-buffer
     (shell-command (format "notify-send '%s: %s' -t 5000" nickname message) t)))
 
+(setq erc-prompt-for-nickserv-password nil)
 (setq erc-fill-function 'erc-fill-static)
 (setq erc-fill-static-center 22)
 (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "MODE"))
@@ -42,7 +41,6 @@
     ((get-buffer "irc.freenode.net:6667")
      (erc-track-switch-buffer 1))
     (t
-     (erc-ssl :server "irc.freenode.net" :port 6667 :nick "tabfugnic" :password freenode-password)
-     (erc-ssl :server "thoughtbot.irc.slack.com" :port 6667 :nick "eric" :password slack-thoughtbot)
-     (erc-ssl :server "skilledup.irc.slack.com" :port 6667 :nick "eric" :password slack-skilledup)
+     (erc :server "irc.freenode.net" :port 6667 :nick "tabfugnic")
+     (erc-ssl :server "thoughtbot.irc.slack.com" :port 6667 :nick "eric")
      )))
