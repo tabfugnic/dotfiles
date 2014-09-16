@@ -2,12 +2,17 @@
 ;; Automatically generated file!!! DO NOT EDIT!!!
 
 (setq url-cookie-storage
- '(("marmalade-repo.org"
-  [url-cookie "httpOnly" nil "Tue, 04 Feb 2014 01:20:33 GMT" "/" "marmalade-repo.org" nil]
-  [url-cookie "connect.sid" "MoBnXBOcS8PGqMWCHd2pSUfQ.nuPzaHTjcmOKPSPAl8QieGZHn4bIRtm%2BrurtayA1fy4" "Tue, 04 Feb 2014 01:20:33 GMT" "/" "marmalade-repo.org" nil]))
+ '(("www.dropbox.com"
+  [url-cookie "httponly" nil "Wed, 28 Aug 2019 19:04:30 GMT" "/" "www.dropbox.com" nil]
+  [url-cookie "gvc" "MTEzODUxMTUyODc3ODg1MTUyMjMxMDAxMjQ3MTkyNzYxNDE3OTE2" "Wed, 28 Aug 2019 19:04:30 GMT" "/" "www.dropbox.com" nil])
+ ("dropbox.com"
+  [url-cookie "locale" "en" "Wed, 28 Aug 2019 19:04:30 GMT" "/" "dropbox.com" nil]))
 )
 (setq url-cookie-secure-storage
- 'nil)
+ '(("dropbox.com"
+  [url-cookie "httponly" nil "Sun, 28 Sep 2014 19:04:30 GMT" "/" "dropbox.com" t]
+  [url-cookie "t" "kgLTkHMP3BtTPv6tIWVwBF6M" "Sun, 28 Sep 2014 19:04:30 GMT" "/" "dropbox.com" t]))
+)
 
 ;; Local Variables:
 ;; version-control: never
