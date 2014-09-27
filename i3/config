@@ -182,7 +182,7 @@ bindsym F7 exec xrandr --auto && xrandr --output eDP1 --off
 
 # Assign apps to workspaces
 assign [class="emacs"] → 1
-assign [class="term"] → 2
+assign [class="(?i)term"] → 2
 assign [class="Firefox"] → 3
 assign [class="Iceweasel"] → 3
 
