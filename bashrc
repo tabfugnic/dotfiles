@@ -20,8 +20,12 @@ export MONO_PATH
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-set_term_title(){
+set_term_title() {
    echo -en "\033]0;$1\a"
+}
+
+mkcd() {
+  mkdir $1 && cd $1
 }
 
 . "$HOME/git-completion.bash"
