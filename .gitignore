@@ -2,4 +2,5 @@
 session*
 .*
 projectile-bookmarks.eld
-xkcd
+xkcd/
+bookmarks
