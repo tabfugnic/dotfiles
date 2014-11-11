@@ -44,6 +44,7 @@ alias saud='$sag update'
 alias saug='$sag upgrade'
 alias sadu='$sag dist-upgrade'
 alias saar='$sag autoremove'
+alias sar='$sag remove'
 alias update='saud && saug -y && saar -y'
 alias full-update='saud && sadu -y && saar -y'
 
