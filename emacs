@@ -7,16 +7,15 @@
 
 (require 'dired-x)
 
-(add-to-list 'load-path "~/.emacs.d/" )
+(add-to-list 'load-path "~/.emacs.d/lisp" )
 (add-to-list 'load-path "~/.emacs.d/configs/")
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-(load "interface.el")
-(load "settings.el")
-(load "key-bindings.el")
-
 ;; mode-specific configuration
+
+(mapcar (lambda (mode-file-name) (load mode-file-name))
+        (directory-files "~/.emacs.d/lisp/" nil ".el"))
 
 (mapcar (lambda (mode-file-name) (load mode-file-name))
         (directory-files "~/.emacs.d/configs/" nil ".el"))
@@ -25,3 +24,4 @@
 (defun gitrep()
   (interactive "*")
   (find-file "~/dev"))
+(put 'downcase-region 'disabled nil)
