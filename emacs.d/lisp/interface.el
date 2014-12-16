@@ -6,10 +6,7 @@
 ;; Color theme
 (setq color-theme-is-global t)
 (color-theme-initialize)
-(color-theme-solarized-light)
+(color-theme-solarized-dark)
 
 ;; Lines
 (global-hl-line-mode t)
-(global-linum-mode t)
-;; (set-face-foreground 'highlight nil)
-;; (set-face-background 'hl-line "#4682b4" )
