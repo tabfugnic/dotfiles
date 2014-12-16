@@ -8,6 +8,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH="$PATH:$HOME/.cask/bin"
 PATH="$PATH:$HOME/bin"
 PATH="$PATH:$HOME/elixir/bin"
+GOPATH="$HOME/golang"
+PATH="$PATH:$GOPATH/bin"
 MONO_PATH="/usr/lib/keepass2${MONO_PATH:+:$MONO_PATH}"
 export MONO_PATH
 
