@@ -4,10 +4,9 @@ export EDITOR='emacsclient -c'
 export GIT_EDITOR='emacsclient -c'
 export rvmsudo_secure_path=1
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 PATH="$PATH:$HOME/.cask/bin"
 PATH="$PATH:$HOME/bin"
-PATH="$PATH:$HOME/elixir/bin"
 GOPATH="$HOME/golang"
 PATH="$PATH:$GOPATH/bin"
 MONO_PATH="/usr/lib/keepass2${MONO_PATH:+:$MONO_PATH}"
