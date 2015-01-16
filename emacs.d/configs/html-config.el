@@ -1,2 +1,3 @@
 ;; html mode
-(setq auto-mode-alist (cons '("\\.html.erb$" . html-mode) auto-mode-alist))
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.html\\.erb$" . web-mode))
