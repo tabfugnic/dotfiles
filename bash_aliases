@@ -1,10 +1,12 @@
+asdf
 # Hold onto aliases
-export dev="$HOME/dev"
 export bewdnyc="$dev/BEWD_NYC_6"
 export blog="$dev/personal-blog"
 export comfort="$dev/comfort"
+export dev="$HOME/dev"
 export dive="$dev/diveblog"
 export dotfiles="$dev/dotfiles"
+export hokeypokey="$dev/hokeypokey"
 export learn="$dev/learn"
 export rakemkv="$dev/rakemkv"
 export resugen="$HOME/dev/resugen"
@@ -19,6 +21,7 @@ alias cmft='cd $comfort'
 alias dev='cd $dev'
 alias dive='cd $dive'
 alias dot='cd $dotfiles'
+alias hkp='cd $hokeypokey'
 alias levo='cd $levo'
 alias lrn='cd $learn'
 alias rkv='cd $rakemkv'
@@ -63,3 +66,5 @@ alias chsudo='sudo chruby-exec `ruby --version | grep "ruby [^ ]"` --'
 # Misc Aliases
 alias resp=". ~/.bash_profile"
 alias ls="ls --color"
+
+alias gpg="gpg2"
