@@ -1,4 +1,4 @@
-# Mod uses alt
+# Mod uses super
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -158,7 +158,7 @@ bindsym XF86AudioMute exec /usr/bin/amixer set Master toggle
 # Brightness
 bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
-bindsym F8 exec /usr/bin/xbacklight -set 1
+bindsym F8 exec /usr/bin/xbacklight -set 2
 bindsym F9 exec /usr/bin/xbacklight -set 100
 
 # Display
