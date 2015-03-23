@@ -1,1 +1,2 @@
-(autopair-global-mode) ;;; enable in all buffers
+(electric-pair-mode 1)
+(show-paren-mode 1)
