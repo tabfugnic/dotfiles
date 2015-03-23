@@ -2,7 +2,7 @@
 (require 'erc-join)
 (require 'erc-image)
 
-(defun do-notify (nickname message)
+(defun tabfugnic/do-notify (nickname message)
   (with-temp-buffer
     (shell-command (format "notify-send '%s: %s' -t 5000" nickname message) t)))
 
@@ -32,7 +32,7 @@
       '((current-nick . all)
         (keyword . all)))
 
-(add-hook 'ercn-notify 'do-notify)
+(add-hook 'ercn-notify 'tabfugnic/do-notify)
 
 (defun tabfugnic/erc-start-or-switch ()
   "Connect to ERC, or switch to last active buffer"
@@ -44,3 +44,10 @@
      (erc :server "irc.freenode.net" :port 6667 :nick "tabfugnic")
      (erc-ssl :server "thoughtbot.irc.slack.com" :port 6667 :nick "eric")
      )))
+
+(defun tabfugnic/reset-erc-track-mode ()
+  (interactive)
+  (setq erc-modified-channels-alist nil)
+  (erc-modified-channels-display))
+
+(global-set-key (kbd "C-c r") 'tabfugnic/reset-erc-track-mode)
