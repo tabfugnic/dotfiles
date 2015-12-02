@@ -8,12 +8,14 @@ export KEY_ID=771AB877
 . /usr/local/share/chruby/auto.sh
 chruby 2.2.3
 
+export GOPATH="$HOME/golang"
+export ARDUINO_DIR="/usr/share/arduino"
+export ARDMK_DIR="/usr"
+export AVR_TOOLS_DIR="/usr"
 PATH="$PATH:$HOME/.cask/bin"
 PATH="$PATH:$HOME/bin"
-GOPATH="$HOME/golang"
 PATH="$PATH:$GOPATH/bin"
-MONO_PATH="/usr/lib/keepass2${MONO_PATH:+:$MONO_PATH}"
-export MONO_PATH
+PATH="$PATH:$HOME/parity/bin"
 
 [[ -z $DISPLAY ]] && exec startx
 . /usr/share/bash-completion/completions/pass
