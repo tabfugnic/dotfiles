@@ -44,7 +44,6 @@
 (depends-on "ghc")
 (depends-on "ghci-completion")
 (depends-on "git-commit-mode")
-(depends-on "git-commit-training-wheels-mode")
 (depends-on "git-rebase-mode")
 (depends-on "github-browse-file")
 (depends-on "gntp")
