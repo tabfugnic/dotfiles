@@ -3,6 +3,8 @@ export PS1="\[\e[1;30m\][\[\e[1;30m\]\[\e[1;31m\] \`gcb\` \[\e[1;32m\]\w\[\e[0m\
 export EDITOR='emacsclient -c'
 export GIT_EDITOR='emacsclient -c'
 export rvmsudo_secure_path=1
+export KEY_ID=771AB877
+
 
 PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 PATH="$PATH:$HOME/.cask/bin"
