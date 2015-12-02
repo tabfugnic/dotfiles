@@ -16,6 +16,7 @@ MONO_PATH="/usr/lib/keepass2${MONO_PATH:+:$MONO_PATH}"
 export MONO_PATH
 
 [[ -z $DISPLAY ]] && exec startx
+. /usr/share/bash-completion/completions/pass
 
 . "$HOME/.bash_aliases"
 
