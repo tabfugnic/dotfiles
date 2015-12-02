@@ -1,4 +1,3 @@
-asdf
 # Hold onto aliases
 export bewdnyc="$dev/BEWD_NYC_6"
 export blog="$dev/personal-blog"
@@ -48,8 +47,11 @@ alias saug='$sag upgrade'
 alias sadu='$sag dist-upgrade'
 alias saar='$sag autoremove'
 alias sar='$sag remove'
-alias update='saud && saug -y && saar -y'
-alias full-update='saud && sadu -y && saar -y'
+alias sac='$sag clean'
+alias saac='$sag autoclean'
+alias cleanup='saar -y && saac && sac'
+alias update='saud && saug -y && cleanup'
+alias full-update='saud && sadu -y && cleanup'
 
 # Git aliases
 alias gwin="git shortlog -n -s"
