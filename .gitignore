@@ -5,3 +5,6 @@ projectile-bookmarks.eld
 xkcd/
 bookmarks
 /emacs.d/tramp
+emacs.d/games
+emacs.d/url
+/emacs.d/projectile.cache
