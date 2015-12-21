@@ -12,8 +12,10 @@ export GOPATH="$HOME/golang"
 export ARDUINO_DIR="/usr/share/arduino"
 export ARDMK_DIR="/usr"
 export AVR_TOOLS_DIR="/usr"
+export ANDROID_HOME="$HOME/opt/android"
 PATH="$PATH:$HOME/.cask/bin"
 PATH="$PATH:$HOME/bin"
+PATH=$PATH:$HOME/opt/android/tools
 PATH="$PATH:$GOPATH/bin"
 PATH="$PATH:$HOME/parity/bin"
 
