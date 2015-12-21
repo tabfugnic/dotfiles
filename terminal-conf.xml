@@ -397,7 +397,7 @@
       <key>profiles/Default/font</key>
       <schema_key>/schemas/apps/gnome-terminal/profiles/Default/font</schema_key>
       <value>
-        <string>Monospace 12</string>
+        <string>Monospace 20</string>
       </value>
     </entry>
     <entry>
