@@ -1,4 +1,4 @@
--*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp -*-
 
 ;; start server for fast startups
 (server-start)
