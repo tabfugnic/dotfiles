@@ -1,22 +1,49 @@
 [general]
-accounts = main
+accounts = personal, thoughtbot
+pythonfile = ~/.offlineimap/config.py
 
-[Account main]
-localrepository = main-local
-remoterepository = main-remote
+[Account personal]
+localrepository = personal-local
+remoterepository = personal-remote
 status_backend = sqlite
 
-[Repository main-local]
-# Currently, offlineimap only supports maildir and IMAP for local repositories.
+[Repository personal-local]
 type = Maildir
-localfolders = ~/mail
+localfolders = ~/mail/personal
+nametrans = local_folder_to_gmail_folder
 
-[Repository main-remote]
+[Repository personal-remote]
 type = Gmail
 holdconnectionopen = yes
 keepalive = 60
 maxconnections = 3
 realdelete = no
 remoteuser = tabfugnic@gmail.com
+remotepasseval = find_password("mail/personal")
+auth_mechanisms = PLAIN
+folderfilter = should_include_folder
+nametrans = gmail_folder_to_local_folder
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail', '[Gmail]/Spam']
+
+[Account thoughtbot]
+localrepository = thoughtbot-local
+remoterepository = thoughtbot-remote
+status_backend = sqlite
+
+[Repository thoughtbot-local]
+type = Maildir
+localfolders = ~/mail/thoughtbot
+nametrans = local_folder_to_gmail_folder
+
+[Repository thoughtbot-remote]
+type = Gmail
+holdconnectionopen = yes
+keepalive = 60
+maxconnections = 3
+realdelete = no
+remoteuser = eric@thoughtbot.com
+remotepasseval = find_password("thoughtbot/gmail")
+folderfilter = should_include_folder
+nametrans = gmail_folder_to_local_folder
+auth_mechanisms = PLAIN
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
