@@ -11,13 +11,13 @@
         entry
         (file (org-file "index.org"))
         "* TODO %?\n %u\n")
+        ("v" "Travel"
+         plain
+         (file (org-file "travel.org"))
+         "* %a\n %^G\n")
         ("i" "Idea"
          entry
          (file (org-file "ideas.org"))
-         "* %?\n %u\n")
-        ("e" "Ember"
-         entry
-         (file (org-file "ember.org"))
          "* %?\n %u\n")
         ("c" "Configurations"
          entry
