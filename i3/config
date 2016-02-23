@@ -148,6 +148,9 @@ mode "$mode_system" {
 }
 bindsym $mod+Delete mode "$mode_system"
 
+# Capture
+bindsym --release $mod+c exec scrot -se 'mv $f ~/Pictures/captures/.'
+
 # Volume
 bindsym XF86AudioLowerVolume exec /usr/bin/amixer set Master 5%- && /usr/bin/amixer set Master unmute
 bindsym XF86AudioRaiseVolume exec /usr/bin/amixer set Master 5%+ && /usr/bin/amixer set Master unmute
