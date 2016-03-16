@@ -13,6 +13,7 @@ export sag="sudo apt-get"
 export skilledup="$dev/skilledup-academy"
 export transcode="$dev/transcode"
 export whetstone="$dev/whetstone"
+export easel="$dev/shutterstock/easel"
 
 # Directory Aliases
 alias blog='cd $blog'
@@ -28,11 +29,13 @@ alias rsg='cd $resugen'
 alias skl='cd $skilledup'
 alias trans='cd $transcode'
 alias whet='cd $whetstone'
+alias easel='cd $easel'
 
 # Command Line Programs
 alias txb='tar xvjf'
 alias txg='tar xvzf'
 alias txt='tar xvf'
+alias headless='xvfb-run --server-args="-screen 0, 1920x1080x24"'
 
 # Display
 alias adsp='xrandr --auto'
