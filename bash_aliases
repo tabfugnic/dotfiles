@@ -42,7 +42,7 @@ alias adsp='xrandr --auto'
 alias edspoff='xrandr --output eDP1 --off'
 alias ldspoff='xrandr --output LVD1 -off'
 
-# Apt
+# Update
 alias sag='$sag'
 alias sai='$sag install'
 alias saud='$sag update'
@@ -55,6 +55,7 @@ alias saac='$sag autoclean'
 alias cleanup='saar -y && saac && sac'
 alias update='saud && saug -y && cleanup'
 alias full-update='saud && sadu -y && cleanup'
+alias update-flash='sudo update-flashplugin-nonfree --install'
 
 # Git aliases
 alias gwin="git shortlog -n -s"
