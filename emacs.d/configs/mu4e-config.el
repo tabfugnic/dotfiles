@@ -5,22 +5,38 @@
 (setq mu4e-contexts
       `(,(make-mu4e-context
           :name "personal"
-          :match-func (lambda (_) (string-equal "personal" (mu4e-context-name mu4e~context-current)))
+          :match-func (lambda (msg)
+			(when msg
+			  (mu4e-message-contact-field-matches msg
+			    :to "tabfugnic@gmail.com")))
           :enter-func '()
           :leave-func (lambda () (mu4e-clear-caches))
           :vars '((mu4e-maildir . "~/mail/personal")
                   (mu4e-mu-home . "~/.mu/personal")
                   (mu4e-get-mail-command . "offlineimap -a personal")
-                  ))
+                  (user-mail-address . "tabfugnic@gmail.com")
+                  (mu4e-compose-signature . (concat
+                                             "Eric J. Collins\n"
+                                             "Software Developer\n"
+                                             "thoughtbot\n")
+                                          )))
         ,(make-mu4e-context
           :name "thoughtbot"
-          :match-func (lambda (_) (string-equal "thoughtbot" (mu4e-context-name mu4e~context-current)))
+          :match-func (lambda (msg)
+			(when msg
+			  (mu4e-message-contact-field-matches msg
+			    :to "eric@thoughtbot.com")))
           :enter-func '()
           :leave-func (lambda () (mu4e-clear-caches))
           :vars '((mu4e-maildir . "~/mail/thoughtbot")
                   (mu4e-mu-home . "~/.mu/thoughtbot")
                   (mu4e-get-mail-command . "offlineimap -a thoughtbot")
-                  ))))
+                  (user-mail-address . "eric@thoughtbot.com")
+                  (mu4e-compose-signature . (concat
+                                             "Eric J. Collins\n"
+                                             "Software Developer\n"
+                                             "thoughtbot\n")
+                                          )))))
 
 (setq mu4e-drafts-folder "/drafts")
 (setq mu4e-sent-folder   "/sent")
@@ -37,16 +53,7 @@
 (setq mu4e-html2text-command 'tabfugnic/html-message)
 
 ;; something about ourselves
-(setq
-   user-mail-address "tabfugnic@gmail.com"
-   user-full-name  "Eric J Collins"
-   mu4e-compose-signature
-    (concat
-      "Eric J. Collins\n"
-      "Software Developer\n"
-      "thoughtbot\n")
-    )
-
+(setq user-full-name  "Eric J Collins")
 (setq mu4e-update-interval 180)
 
 (setq message-send-mail-function 'message-send-mail-with-sendmail)
@@ -66,8 +73,6 @@
        " AND NOT flag:trashed"
        " AND maildir:"
        "\"/INBOX\""))
-
-(mu4e-context-switch nil "personal")
 
 (setq org-mu4e-link-query-in-headers-mode nil)
 
