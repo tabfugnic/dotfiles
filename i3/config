@@ -183,6 +183,9 @@ exec --no-startup-id emacs
 exec --no-startup-id i3-sensible-terminal
 exec --no-startup-id firefox
 
+# Auto lock screen
+exec --no-startup-id xautolock -locker "i3lock -c 171717" -notify 10 -notifier "notify-send 'LOCKING screen in 10 seconds'"
+
 # Remap control key
 exec setxkbmap -option ctrl:nocaps
 exec xmodmap ~/.i3/xmodmap
