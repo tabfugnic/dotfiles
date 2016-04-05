@@ -168,6 +168,7 @@ bindsym F7 exec xrandr --auto && xrandr --output eDP1 --off
 #bindsym F7 exec xrandr --output LVDS1 --off
 
 # Assign apps to workspaces
+assign [class="Emacs"] → 1: emacs
 assign [class="emacs"] → 1: emacs
 assign [class="(?i)term"] → 2: terminal
 assign [class="Firefox"] → 3: browser
