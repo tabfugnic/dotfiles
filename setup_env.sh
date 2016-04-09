@@ -11,6 +11,7 @@ ln -s `pwd`/i3/ $HOME/.i3
 ln -s `pwd`/i3status.conf $HOME/.i3status.conf
 ln -s `pwd`/offlineimaprc $HOME/.offlineimaprc
 ln -s `pwd`/offlineimap_config.py $HOME/.offlineimap/config.py
+ln -s `pwd`/bin/stop_rsi $HOME/stop_rsi
 curl -o ~/git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 
 echo "All done!"

@@ -182,6 +182,7 @@ exec --no-startup-id dropbox start
 exec --no-startup-id emacs
 exec --no-startup-id i3-sensible-terminal
 exec --no-startup-id firefox
+exec --no-startuo-id ~/bin/stop_rsi
 
 # Auto lock screen
 exec --no-startup-id xautolock -locker "i3lock -c 171717" -notify 10 -notifier "notify-send 'LOCKING screen in 10 seconds'"
@@ -192,3 +193,6 @@ exec xmodmap ~/.i3/xmodmap
 
 # Set background
 exec feh --bg-center ~/wallpaper/gnu_not_unix.jpg
+
+# Window configs
+for_window [instance="StopRSI"] sticky enable
