@@ -1,2 +1,2 @@
-;; feature mode - aka cucumber
-(add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
+(use-package feature-mode
+  :mode ("\\.feature$"))
