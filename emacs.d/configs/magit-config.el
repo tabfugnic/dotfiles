@@ -1,4 +1,2 @@
-;; (eval-after-load 'magit
-;;   '(progn
-;;      (when (not window-system)
-;;        (set-face-background 'magit-item-highlight "black"))))
+(use-package magit
+  :bind ("C-x g" . magit-status))

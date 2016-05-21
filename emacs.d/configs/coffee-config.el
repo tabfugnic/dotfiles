@@ -1,4 +1,5 @@
 ;; coffee mode
-(setq coffee-tab-width 2)
-(add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
-(add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
+(use-package coffee-mode
+  :mode ("\\.coffee$" "Cakefile")
+  :init
+  (setq coffee-tab-width 2))
