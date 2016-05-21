@@ -5,7 +5,8 @@ short_break_in_seconds=14
 long_break_in_seconds=$((8*60))
 short_interval_in_seconds=$((4*60))
 long_interval_in_seconds=$((50*60))
-log_file=~/tmp/event.log
+log_file="$HOME/tmp/event.log"
+config_directory="$HOME/.config/stop_rsi"
 
 break_timer() {
     local i=0
@@ -69,7 +70,6 @@ alert_box() {
         --auto-close \
         --auto-kill \
         --no-cancel \
-        --ok-label='Postpone' \
         --class='StopRSI' \
         --name='StopRSI' \
         --width=200
@@ -104,6 +104,51 @@ log_key_input() {
     echo "$!"
 }
 
+running_pid() {
+    echo "$(tail -1 "$config_directory/pid" | head -1)"
+}
+
+check_for_running_process() {
+    pid=""
+    if [ -s "$config_directory/pid" ]; then
+        pid=`ps -o pid= -p $(running_pid)`
+    fi
+    if [ -n "$pid" ]; then
+        echo "Process is already running!"
+        exit 1
+    fi
+}
+
+mkdir -p "$config_directory"
+
 trap "cleanup" 2
 
-main
+while getopts ":dk" opt; do
+    case $opt in
+        d)
+            check_for_running_process
+            main &
+            pid="$!"
+            echo "$pid" > "$config_directory/pid"
+            echo "Set pid $pid in $config_directory/pid" >&2
+            ;;
+        k)
+            if [ -s "$config_directory/pid" ]; then
+                echo "Stopping stop_rsi"
+                kill -9 $(tail -1 "$config_directory/pid" | head -1)
+                cp /dev/null "$config_directory/pid"
+            else
+                echo "No process is currently running"
+                exit 1
+            fi
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            ;;
+    esac
+done
+
+if [[ $# = 0 ]]; then
+    echo "Running"
+    main
+fi
