@@ -1,5 +1,6 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
 ;; indents
 (setq-default indent-tabs-mode nil)
 (setq-default standard-indent 2)
@@ -14,7 +15,9 @@
 
 ;; ido mode!
 (ido-mode t)
-(ido-vertical-mode t)
+(use-package ido-vertical-mode
+  :config
+  (ido-vertical-mode t))
 (setq ido-enable-flex-matching t) ; fuzzy matching is a must have
 (setq ido-max-directory-size 100000)
 (setq ido-everywhere t)
