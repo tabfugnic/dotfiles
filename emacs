@@ -34,11 +34,12 @@
   (evil-mode 1))
 
 (use-package helm
+  :bind ("M-x" . helm-M-x)
   :init
   (progn
     (require 'helm-config)
-    ;; (setq helm-M-x-fuzzy-match t)
-    ;; (setq helm-ag-fuzzy-match t)
+    (setq helm-M-x-fuzzy-match t)
+    (setq helm-ag-fuzzy-match t)
     (helm-mode)))
 
 (require 'dired-x)
