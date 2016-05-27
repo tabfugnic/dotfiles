@@ -1,0 +1,183 @@
+* Start Emacs Server
+Use emacs server so that loading any subsequent emacs instances will
+boot immediately. In practice I use that for the occasion I use git on
+the command line
+
+#+BEGIN_SRC emacs-lisp
+(server-start)
+#+END_SRC
+
+* Package Management(use-package)
+use-package will manage our all of our packages. It requires no
+external dependencies and takes advantage of emacs' package library
+
+Manage packages and sources
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+#+END_SRC
+
+bootstrap use-package, so I can use it to manage everything else
+#+BEGIN_SRC emacs-lisp
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(setq use-package-verbose t)
+(setq use-package-always-ensure t)
+#+END_SRC
+
+Finally require use-package
+#+BEGIN_SRC emacs-lisp
+(eval-when-compile (require 'use-package))
+#+END_SRC
+* Interface
+Build interface to look how I want it to look
+
+Remove all that excess crap I don't need, remove the menu bar the
+scroll bar and the toolbar
+
+#+BEGIN_SRC emacs-lisp
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+#+END_SRC
+
+I like my lines highlighted and numbered
+
+#+BEGIN_SRC emacs-lisp
+(global-hl-line-mode t)
+(global-linum-mode t)
+#+END_SRC
+
+Set font that is bit easier to read and nice and big
+
+#+BEGIN_SRC emacs-lisp
+(set-default-font "-*-DejaVu Sans Mono-normal-normal-normal-*-18-*-*-*-m-0-iso10646-1")
+#+END_SRC
+
+Visual cue for when lines are too long
+
+#+BEGIN_SRC emacs-lisp
+(use-package whitespace
+  :init
+  (setq whitespace-line-column 80)
+  (setq whitespace-style '(face lines-tail))
+  (add-hook 'prog-mode-hook 'whitespace-mode))
+#+END_SRC
+
+Give more descriptive names to buffers that have the same name. In
+this case it uses the folder it's in
+
+#+BEGIN_SRC emacs-lisp
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+#+END_SRC
+
+Never use tabs and by default lets use two spaces. We can change it
+depending on the language
+
+#+BEGIN_SRC emacs-lisp
+(setq-default indent-tabs-mode nil)
+(setq-default standard-indent 2)
+#+END_SRC
+
+When searching make to highlight things I search for
+
+#+BEGIN_SRC emacs-lisp
+(setq query-replace-highlight    t)
+#+END_SRC
+
+Backups are more trouble than they are worth. That's why God (Linus
+Torvald) create git
+
+#+BEGIN_SRC emacs-lisp
+(setq make-backup-files nil)
+(setq auto-save-list-file-name  nil)
+(setq auto-save-default nil)
+#+END_SRC
+
+Use ido mode for poking through files and take advantage of ido vertical
+
+#+BEGIN_SRC emacs-lisp
+(ido-mode t)
+(use-package ido-vertical-mode
+  :config
+  (ido-vertical-mode t))
+(setq ido-enable-flex-matching t) ; fuzzy matching is a must have
+(setq ido-max-directory-size 100000)
+(setq ido-everywhere t)
+#+END_SRC
+
+Automatically revert buffers to new content if unchanged
+
+#+BEGIN_SRC emacs-lisp
+;; buffer stuff
+(put 'erase-buffer 'disabled nil)
+(global-auto-revert-mode t)
+#+END_SRC
+
+Remove the whole start up screen and show a visible bell
+
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)        ; turn off startup screen
+(setq visible-bell t)                   ; turn off the bell
+#+END_SRC
+
+Use CUA for block editing
+
+#+BEGIN_SRC emacs-lisp
+(setq cua-enable-cua-keys nil)
+(cua-mode t)
+#+END_SRC
+
+Why write out yes or no every single time when y and n will suffice
+
+#+BEGIN_SRC emacs-lisp
+(fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+Always require a new line
+
+#+BEGIN_SRC emacs-lisp
+(setq require-final-newline t)
+#+END_SRC
+
+Make dired more verbose
+
+#+BEGIN_SRC emacs-lisp
+(setq-default dired-listing-switches "-alhv")
+#+END_SRC
+
+When splitting buffers move to that new buffer immediately
+
+#+BEGIN_SRC emacs-lisp
+(defun split-window-below-and-move()
+  (interactive)
+  (split-window-below)
+  (other-window 1))
+
+;; auto move cursor after split
+(defun split-window-right-and-move()
+  (interactive)
+  (split-window-right)
+  (other-window 1))
+
+(global-set-key "\C-x2" 'split-window-below-and-move)
+
+(global-set-key "\C-x3" 'split-window-right-and-move)
+#+END_SRC
+
+Move by subwords ie treat underscore as space
+
+#+BEGIN_SRC emacs-lisp
+(global-subword-mode t)
+#+END_SRC
+
+Use Hippie Expand to expand things
+
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-SPC") 'hippie-expand)
+#+END_SRC
