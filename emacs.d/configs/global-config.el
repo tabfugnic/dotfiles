@@ -88,8 +88,20 @@
   :load-path "/usr/local/share/emacs/site-lisp/mu4e"
   :ensure f
   :bind ("C-x e" . mu4e)
+  :init
+  (use-package mu4e-alert
+    :init
+    (setq mu4e-maildir-shortcuts
+          '( ("/INBOX"               . ?i)
+             ("/sent"                . ?s)
+             ("/trash"               . ?t)
+             ("/archive"             . ?a)))
+
+    (mu4e-alert-set-default-style 'libnotify)
+    (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
+    (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display))
+
   :config
-  (use-package org-mu4e)
   (require 'org-mu4e)
   (setq mu4e-contexts
         `(,(make-mu4e-context
@@ -133,12 +145,6 @@
   (setq mu4e-refile-folder "/archive")
   (setq mu4e-sent-messages-behavior 'delete)
 
-  (setq mu4e-maildir-shortcuts
-        '( ("/INBOX"               . ?i)
-           ("/sent"                . ?s)
-           ("/trash"               . ?t)
-           ("/archive"             . ?a)))
-
   (setq mu4e-html2text-command 'tabfugnic/html-message)
 
   ;; something about ourselves
@@ -149,10 +155,6 @@
   (setq sendmail-program "/usr/bin/msmtp")
   (setq message-sendmail-extra-arguments '("--read-envelope-from"))
   (setq message-sendmail-f-is-evil 't)
-
-  (mu4e-alert-set-default-style 'libnotify)
-  (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
-  (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
 
   (add-hook 'message-send-hook 'mml-secure-message-sign-pgpmime)
 
@@ -181,6 +183,9 @@
 
 (use-package org
   :init
+  (use-package mu4e-alert
+    :init
+    )
   (require 'org-agenda)
   (setq org-directory "~/Dropbox/org/")
 
