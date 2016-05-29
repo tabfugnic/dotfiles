@@ -45,17 +45,43 @@ scroll bar and the toolbar
 (tool-bar-mode -1)
 #+END_SRC
 
+Set font that is bit easier to read and nice and big
+
+#+BEGIN_SRC emacs-lisp
+(set-default-font "-*-DejaVu Sans Mono-normal-normal-normal-*-18-*-*-*-m-0-iso10646-1")
+#+END_SRC
+
+Give more descriptive names to buffers that have the same name. In
+this case it uses the folder it's in
+
+#+BEGIN_SRC emacs-lisp
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+#+END_SRC
+
+Why write out yes or no every single time when y and n will suffice
+
+#+BEGIN_SRC emacs-lisp
+(fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+No need to have trailing whitespace
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+END_SRC
+
+Always require a new line
+
+#+BEGIN_SRC emacs-lisp
+(setq require-final-newline t)
+#+END_SRC
+
 I like my lines highlighted and numbered
 
 #+BEGIN_SRC emacs-lisp
 (global-hl-line-mode t)
 (global-linum-mode t)
-#+END_SRC
-
-Set font that is bit easier to read and nice and big
-
-#+BEGIN_SRC emacs-lisp
-(set-default-font "-*-DejaVu Sans Mono-normal-normal-normal-*-18-*-*-*-m-0-iso10646-1")
 #+END_SRC
 
 Visual cue for when lines are too long
@@ -66,14 +92,6 @@ Visual cue for when lines are too long
   (setq whitespace-line-column 80)
   (setq whitespace-style '(face lines-tail))
   (add-hook 'prog-mode-hook 'whitespace-mode))
-#+END_SRC
-
-Give more descriptive names to buffers that have the same name. In
-this case it uses the folder it's in
-
-#+BEGIN_SRC emacs-lisp
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 #+END_SRC
 
 Never use tabs and by default lets use two spaces. We can change it
@@ -87,11 +105,11 @@ depending on the language
 When searching make to highlight things I search for
 
 #+BEGIN_SRC emacs-lisp
-(setq query-replace-highlight    t)
+(setq query-replace-highlight t)
 #+END_SRC
 
 Backups are more trouble than they are worth. That's why God (Linus
-Torvald) create git
+Torvald) created git
 
 #+BEGIN_SRC emacs-lisp
 (setq make-backup-files nil)
@@ -115,7 +133,6 @@ Use ido mode for poking through files and take advantage of ido vertical
     (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
     (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
   (add-hook 'ido-setup-hook 'tabfugnic/ido-define-keys))
-
 #+END_SRC
 
 Automatically revert buffers to new content if unchanged
@@ -129,8 +146,8 @@ Automatically revert buffers to new content if unchanged
 Remove the whole start up screen and show a visible bell
 
 #+BEGIN_SRC emacs-lisp
-(setq inhibit-startup-message t)        ; turn off startup screen
-(setq visible-bell t)                   ; turn off the bell
+(setq inhibit-startup-message t)
+(setq visible-bell t)
 #+END_SRC
 
 Use CUA for block editing
@@ -138,18 +155,6 @@ Use CUA for block editing
 #+BEGIN_SRC emacs-lisp
 (setq cua-enable-cua-keys nil)
 (cua-mode t)
-#+END_SRC
-
-Why write out yes or no every single time when y and n will suffice
-
-#+BEGIN_SRC emacs-lisp
-(fset 'yes-or-no-p 'y-or-n-p)
-#+END_SRC
-
-Always require a new line
-
-#+BEGIN_SRC emacs-lisp
-(setq require-final-newline t)
 #+END_SRC
 
 Make dired more verbose
