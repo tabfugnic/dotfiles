@@ -71,6 +71,6 @@ alias chsudo='sudo chruby-exec `ruby --version | grep "ruby [^ ]"` --'
 
 # Misc Aliases
 alias resp=". ~/.bash_profile"
-alias ls="ls --color"
+alias ls="ls -c"
 
 alias gpg="gpg2"
