@@ -1,5 +1,7 @@
 #!/bin/bash
 
+stty -ctlecho
+
 # Time in seconds
 short_break_in_seconds=14
 long_break_in_seconds=$((8*60))
@@ -92,10 +94,10 @@ main() {
 }
 
 cleanup() {
-    echo ""
+    echo "" &> /dev/null
     echo "Closing"
     echo "..."
-    killall hexdump --quiet
+    killall hexdump &> /dev/null
     exit $?
 }
 
