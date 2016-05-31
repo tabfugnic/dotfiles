@@ -6,9 +6,11 @@ export EDITOR='emacsclient -c'
 export GIT_EDITOR='emacsclient -c'
 export KEY_ID=771AB877
 
-. /usr/local/share/chruby/chruby.sh
-. /usr/local/share/chruby/auto.sh
-chruby 2.2.3
+if command -v chruby ; then
+  . /usr/local/share/chruby/chruby.sh
+  . /usr/local/share/chruby/auto.sh
+  chruby 2.2.3
+fi
 
 export GOPATH="$HOME/golang"
 export ARDUINO_DIR="/usr/share/arduino"
