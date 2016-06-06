@@ -295,8 +295,9 @@ Helm for most things involving input
 #+BEGIN_SRC emacs-lisp
 (use-package golden-ratio
   :init
-  (setq golden-ratio-mode t)
-  (setq golden-ratio-auto-scale t))
+  (setq golden-ratio-auto-scale t)
+  :config
+  (golden-ratio-mode 1))
 #+END_SRC
 
 * Haskell
