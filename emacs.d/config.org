@@ -366,11 +366,13 @@ Helm for most things involving input
 #+END_SRC
 
 * Email(mu4e)
+Use mu4e for all email. This takes advantage of offlineimap and msmtp
+
 #+BEGIN_SRC emacs-lisp
 (use-package mu4e
   :load-path "/usr/local/share/emacs/site-lisp/mu4e"
   :ensure f
-  :bind ("C-x e" . mu4e)
+  :bind ("C-x m" . mu4e)
   :init
   (use-package mu4e-alert
     :init
