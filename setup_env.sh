@@ -16,3 +16,4 @@ ln -s `pwd`/offlineimaprc $HOME/.offlineimaprc
 ln -s `pwd`/offlineimap_config.py $HOME/.offlineimap/config.py
 ln -s `pwd`/bin/stop_rsi $HOME/bin/stop_rsi
 ln -s `pwd`/bin/i3exit $HOME/bin/i3exit
+ln -s `pwd`/bin/setup_terminals $HOME/bin/setup_terminals
