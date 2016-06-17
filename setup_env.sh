@@ -1,8 +1,8 @@
 echo "Remove the old stuff"
 rm -rf $HOME/.bashrc $HOME/.bash_aliases $HOME/.bash_profile $HOME/.emacs $HOME/.emacs.d $HOME/.i3* $HOME/.offlineimaprc $HOME/.wl
 
-mkdir $HOME/bin 1&> /dev/null || true
-mkdir $HOME/.offlineimap 1&> /dev/null || true
+mkdir $HOME/bin &> /dev/null || true
+mkdir $HOME/.offlineimap >&1 /dev/null || true
 
 echo "Link up dotfiles"
 ln -s `pwd`/bashrc $HOME/.bashrc
