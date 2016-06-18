@@ -24,7 +24,7 @@ PATH="$PATH:$HOME/parity/bin"
 [[ -z $DISPLAY ]] && exec startx
 . /usr/share/bash-completion/completions/pass
 
-. "$HOME/.bash_aliases"
+. "$HOME/.aliases"
 
 
 ### Added by the Heroku Toolbelt

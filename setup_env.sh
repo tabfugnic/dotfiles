@@ -7,7 +7,7 @@ mkdir $HOME/.offlineimap >& /dev/null || true
 
 echo "Link up dotfiles"
 ln -fs `pwd`/bashrc $HOME/.bashrc
-ln -fs `pwd`/bash_aliases $HOME/.bash_aliases
+ln -fs `pwd`/bash_aliases $HOME/.aliases
 ln -fs `pwd`/bash_profile $HOME/.bash_profile
 ln -fs `pwd`/emacs $HOME/.emacs
 ln -fs `pwd`/emacs.d/ $HOME/.emacs.d
