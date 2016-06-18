@@ -1,19 +1,20 @@
-echo "Remove the old stuff"
-rm -rf $HOME/.bashrc $HOME/.bash_aliases $HOME/.bash_profile $HOME/.emacs $HOME/.emacs.d $HOME/.i3* $HOME/.offlineimaprc $HOME/.wl
+echo "Prepare dotfiles"
+rm -rf $HOME/.emacs.d
+rm -rf $HOME/.i3
 
 mkdir $HOME/bin &> /dev/null || true
-mkdir $HOME/.offlineimap >&1 /dev/null || true
+mkdir $HOME/.offlineimap >& /dev/null || true
 
 echo "Link up dotfiles"
-ln -s `pwd`/bashrc $HOME/.bashrc
-ln -s `pwd`/bash_aliases $HOME/.bash_aliases
-ln -s `pwd`/bash_profile $HOME/.bash_profile
-ln -s `pwd`/emacs $HOME/.emacs
-ln -s `pwd`/emacs.d/ $HOME/.emacs.d
-ln -s `pwd`/i3/ $HOME/.i3
-ln -s `pwd`/i3status.conf $HOME/.i3status.conf
-ln -s `pwd`/offlineimaprc $HOME/.offlineimaprc
-ln -s `pwd`/offlineimap_config.py $HOME/.offlineimap/config.py
-ln -s `pwd`/bin/stop_rsi $HOME/bin/stop_rsi
-ln -s `pwd`/bin/i3exit $HOME/bin/i3exit
-ln -s `pwd`/bin/setup_terminals $HOME/bin/setup_terminals
+ln -fs `pwd`/bashrc $HOME/.bashrc
+ln -fs `pwd`/bash_aliases $HOME/.bash_aliases
+ln -fs `pwd`/bash_profile $HOME/.bash_profile
+ln -fs `pwd`/emacs $HOME/.emacs
+ln -fs `pwd`/emacs.d/ $HOME/.emacs.d
+ln -fs `pwd`/i3/ $HOME/.i3
+ln -fs `pwd`/i3status.conf $HOME/.i3status.conf
+ln -fs `pwd`/offlineimaprc $HOME/.offlineimaprc
+ln -fs `pwd`/offlineimap/config.py $HOME/.offlineimap/config.py
+ln -fs `pwd`/bin/stop_rsi $HOME/bin/stop_rsi
+ln -fs `pwd`/bin/i3exit $HOME/bin/i3exit
+ln -fs `pwd`/bin/setup_terminals $HOME/bin/setup_terminals
