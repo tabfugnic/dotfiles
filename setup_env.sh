@@ -1,14 +1,16 @@
 echo "Prepare dotfiles"
-rm -rf $HOME/.emacs.d
-rm -rf $HOME/.i3
+rm -rf $HOME/.emacs.d &> /dev/null || true
+rm -rf $HOME/.i3 &> /dev/null || true
+rm -rf $HOME/.bash &> /dev/null || true
 
 mkdir $HOME/bin &> /dev/null || true
 mkdir $HOME/.offlineimap >& /dev/null || true
 
 echo "Link up dotfiles"
 ln -fs `pwd`/bashrc $HOME/.bashrc
-ln -fs `pwd`/bash_aliases $HOME/.aliases
+ln -fs `pwd`/aliases $HOME/.aliases
 ln -fs `pwd`/bash_profile $HOME/.bash_profile
+ln -fs `pwd`/bash $HOME/.bash
 ln -fs `pwd`/emacs $HOME/.emacs
 ln -fs `pwd`/emacs.d/ $HOME/.emacs.d
 ln -fs `pwd`/i3/ $HOME/.i3
