@@ -1,3 +1,7 @@
+if [[ `uname` == 'Linux' ]]; then
+   export LS_OPTS='--color=auto'
+fi
+
 # Hold onto aliases
 export blog="$dev/personal-blog"
 export dev="$HOME/dev"
@@ -51,6 +55,6 @@ alias chsudo='sudo chruby-exec `ruby --version | grep "ruby [^ ]"` --'
 
 # Misc Aliases
 alias resp=". ~/.bash_profile"
-alias ls="ls -c"
+alias ls="ls ${LS_OPTS}"
 
 alias gpg="gpg2"
