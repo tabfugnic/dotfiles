@@ -1,2 +1,2 @@
 # Start i3
-[[ -z $DISPLAY ]] && exec startx
+command -v startx && [[ -z $DISPLAY ]] && exec startx
