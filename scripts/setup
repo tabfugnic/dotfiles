@@ -7,6 +7,7 @@ rm -rf $HOME/.emacs.d &> /dev/null || true
 rm -rf $HOME/.i3 &> /dev/null || true
 rm -rf $HOME/.bash &> /dev/null || true
 rm -rf $HOME/.config/i3status &> /dev/null || true
+rm -rf $HOME/.config/dunst &> /dev/null || true
 
 mkdir $HOME/bin &> /dev/null || true
 mkdir $HOME/.offlineimap >& /dev/null || true
@@ -20,6 +21,7 @@ ln -fs $dotfiles/emacs $HOME/.emacs
 ln -fs $dotfiles/emacs.d/ $HOME/.emacs.d
 ln -fs $dotfiles/i3/ $HOME/.i3
 ln -fs $dotfiles/config/i3status $HOME/.config/i3status
+ln -fs $dotfiles/config/i3status $HOME/.config/dunst
 ln -fs $dotfiles/offlineimaprc $HOME/.offlineimaprc
 ln -fs $dotfiles/offlineimap/config.py $HOME/.offlineimap/config.py
 ln -fs $dotfiles/bin/stop_rsi $HOME/bin/stop_rsi
