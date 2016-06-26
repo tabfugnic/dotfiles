@@ -10,7 +10,8 @@ rm -rf $HOME/.config/i3status &> /dev/null || true
 rm -rf $HOME/.config/dunst &> /dev/null || true
 
 mkdir $HOME/bin &> /dev/null || true
-mkdir $HOME/.offlineimap >& /dev/null || true
+mkdir $HOME/.offlineimap &> /dev/null || true
+mkdir $HOME/.config &> /dev/null || true
 
 echo "Link up dotfiles"
 ln -fs $dotfiles/bashrc $HOME/.bashrc
