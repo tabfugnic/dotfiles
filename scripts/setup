@@ -1,6 +1,6 @@
 #! /bin/bash
 
-dotfiles=dirname `pwd`/.. &> /dev/null
+dotfiles="$(dirname `pwd`)" &> /dev/null
 
 echo "Prepare dotfiles"
 rm -rf $HOME/.emacs.d &> /dev/null || true
