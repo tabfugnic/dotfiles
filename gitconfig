@@ -1,0 +1,19 @@
+[alias]
+  co = checkout
+  st = status
+[branch]
+  autosetuprebase = always
+[color]
+  ui = auto
+[commit]
+  gpgsign = true
+[merge]
+  ff = only
+[push]
+  default = current
+[rebase]
+  autosquash = true
+[user]
+  name = Eric Collins
+  email = eric@tabfugni.cc
+  signingkey = 771AB877

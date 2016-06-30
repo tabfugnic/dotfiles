@@ -22,7 +22,8 @@ ln -fs $dotfiles/emacs $HOME/.emacs
 ln -fs $dotfiles/emacs.d/ $HOME/.emacs.d
 ln -fs $dotfiles/i3/ $HOME/.i3
 ln -fs $dotfiles/config/i3status $HOME/.config/i3status
-ln -fs $dotfiles/config/i3status $HOME/.config/dunst
+ln -fs $dotfiles/config/dunst $HOME/.config/dunst
+ln -fs $dotfiles/gitconfig $HOME/.gitconfig
 ln -fs $dotfiles/offlineimaprc $HOME/.offlineimaprc
 ln -fs $dotfiles/offlineimap/config.py $HOME/.offlineimap/config.py
 ln -fs $dotfiles/bin/stop_rsi $HOME/bin/stop_rsi
