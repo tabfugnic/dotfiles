@@ -1,0 +1,3 @@
+EXCLUDES="scripts"
+SYMLINK_DIRS="emacs.d bash"
+DOTFILES_DIRS="$HOME/dev/dotfiles"
