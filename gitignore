@@ -1,0 +1,9 @@
+.bundle
+.env
+db/*.sqlite3
+*.log
+tmp/**/*
+*.pyc
+GPATH
+GRTAGS
+GTAGS
