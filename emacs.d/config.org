@@ -4,7 +4,7 @@ boot immediately. In practice I use that for the occasion I use git on
 the command line
 
 #+BEGIN_SRC emacs-lisp
-(server-start)
+  (server-start)
 #+END_SRC
 
 * Package Management(use-package)
@@ -13,26 +13,27 @@ external dependencies and takes advantage of emacs' package library
 
 Manage packages and sources
 #+BEGIN_SRC emacs-lisp
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
+  (require 'package)
+  (add-to-list 'package-archives
+               '("melpa" . "https://melpa.org/packages/") t)
+  (package-initialize)
 #+END_SRC
 
 bootstrap use-package, so I can use it to manage everything else
 #+BEGIN_SRC emacs-lisp
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
 
-(setq use-package-verbose t)
-(setq use-package-always-ensure t)
+  (setq use-package-verbose t)
+  (setq use-package-always-ensure t)
 #+END_SRC
 
 Finally require use-package
 #+BEGIN_SRC emacs-lisp
-(eval-when-compile (require 'use-package))
+  (eval-when-compile (require 'use-package))
 #+END_SRC
+
 * Interface
 Build interface to look how I want it to look
 
@@ -40,221 +41,248 @@ Remove all that excess crap I don't need, remove the menu bar the
 scroll bar and the toolbar
 
 #+BEGIN_SRC emacs-lisp
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
 #+END_SRC
 
 Set font that is bit easier to read and nice and big
 
 #+BEGIN_SRC emacs-lisp
-(set-default-font "-*-DejaVu Sans Mono-normal-normal-normal-*-18-*-*-*-m-0-iso10646-1")
+  (set-default-font "-*-DejaVu Sans Mono-normal-normal-normal-*-18-*-*-*-m-0-iso10646-1")
 #+END_SRC
 
 Give more descriptive names to buffers that have the same name. In
 this case it uses the folder it's in
 
 #+BEGIN_SRC emacs-lisp
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 #+END_SRC
 
 Why write out yes or no every single time when y and n will suffice
 
 #+BEGIN_SRC emacs-lisp
-(fset 'yes-or-no-p 'y-or-n-p)
-#+END_SRC
-
-No need to have trailing whitespace
-
-#+BEGIN_SRC emacs-lisp
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+  (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 
 Always require a new line
 
 #+BEGIN_SRC emacs-lisp
-(setq require-final-newline t)
+  (setq require-final-newline t)
 #+END_SRC
 
 I like my lines highlighted and numbered
 
 #+BEGIN_SRC emacs-lisp
-(global-hl-line-mode t)
-(global-linum-mode t)
+  (global-hl-line-mode t)
+  (global-linum-mode t)
 #+END_SRC
 
 Visual cue for when lines are too long
 
 #+BEGIN_SRC emacs-lisp
-(use-package whitespace
-  :init
-  (setq whitespace-line-column 80)
-  (setq whitespace-style '(face lines-tail))
-  (add-hook 'prog-mode-hook 'whitespace-mode))
+  (use-package whitespace
+    :init
+    (setq whitespace-line-column 80)
+    (setq whitespace-style '(face lines-tail))
+    (add-hook 'prog-mode-hook 'whitespace-mode))
 #+END_SRC
 
 Never use tabs and by default lets use two spaces. We can change it
 depending on the language
 
 #+BEGIN_SRC emacs-lisp
-(setq-default indent-tabs-mode nil)
-(setq-default standard-indent 2)
+  (setq-default indent-tabs-mode nil)
+  (setq-default standard-indent 2)
 #+END_SRC
 
 When searching make to highlight things I search for
 
 #+BEGIN_SRC emacs-lisp
-(setq query-replace-highlight t)
+  (setq query-replace-highlight t)
 #+END_SRC
 
 Backups are more trouble than they are worth. That's why God (Linus
 Torvald) created git
 
 #+BEGIN_SRC emacs-lisp
-(setq make-backup-files nil)
-(setq auto-save-list-file-name  nil)
-(setq auto-save-default nil)
-#+END_SRC
-
-Use ido mode for poking through files and take advantage of ido vertical
-
-#+BEGIN_SRC emacs-lisp
-(ido-mode t)
-(use-package ido-vertical-mode
-  :init
-  (setq ido-enable-flex-matching t) ; fuzzy matching is a must have
-  (setq ido-max-directory-size 100000)
-  (setq ido-everywhere t)
-  :config
-  (ido-vertical-mode t)
-
-  (defun tabfugnic/ido-define-keys () ;; C-n/p is more intuitive in vertical layout
-    (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-    (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
-  (add-hook 'ido-setup-hook 'tabfugnic/ido-define-keys))
+  (setq make-backup-files nil)
+  (setq auto-save-list-file-name  nil)
+  (setq auto-save-default nil)
 #+END_SRC
 
 Automatically revert buffers to new content if unchanged
 
 #+BEGIN_SRC emacs-lisp
-;; buffer stuff
-(put 'erase-buffer 'disabled nil)
-(global-auto-revert-mode t)
+  (put 'erase-buffer 'disabled nil)
+  (global-auto-revert-mode t)
 #+END_SRC
 
 Remove the whole start up screen and show a visible bell
 
 #+BEGIN_SRC emacs-lisp
-(setq inhibit-startup-message t)
-(setq visible-bell t)
+  (setq inhibit-startup-message t)
 #+END_SRC
 
-Use CUA for block editing
+Show visible bell, good for when the sound is muted
 
 #+BEGIN_SRC emacs-lisp
-(setq cua-enable-cua-keys nil)
-(cua-mode t)
+  (setq visible-bell t)
 #+END_SRC
 
 Make dired more verbose
 
 #+BEGIN_SRC emacs-lisp
-(setq-default dired-listing-switches "-alhv")
+  (setq-default dired-listing-switches "-alhv")
 #+END_SRC
 
 When splitting buffers move to that new buffer immediately
 
 #+BEGIN_SRC emacs-lisp
-(defun split-window-below-and-move()
-  (interactive)
-  (split-window-below)
-  (other-window 1))
+  (defun split-window-below-and-move()
+    (interactive)
+    (split-window-below)
+    (other-window 1))
 
-;; auto move cursor after split
-(defun split-window-right-and-move()
-  (interactive)
-  (split-window-right)
-  (other-window 1))
+  ;; auto move cursor after split
+  (defun split-window-right-and-move()
+    (interactive)
+    (split-window-right)
+    (other-window 1))
 
-(global-set-key "\C-x2" 'split-window-below-and-move)
+  (global-set-key "\C-x2" 'split-window-below-and-move)
 
-(global-set-key "\C-x3" 'split-window-right-and-move)
+  (global-set-key "\C-x3" 'split-window-right-and-move)
 #+END_SRC
 
 Move by subwords ie treat underscore as space
 
 #+BEGIN_SRC emacs-lisp
-(global-subword-mode t)
+  (global-subword-mode t)
+#+END_SRC
+
+* Evil Mode
+
+Use evil mode for most editing
+
+#+BEGIN_SRC emacs-lisp
+  (use-package evil
+    :init
+    (use-package linum-relative)
+    (use-package evil-surround
+      :config
+      (global-evil-surround-mode 1))
+    (setq evil-toggle-key "C-`")
+    :config
+    (evil-mode 1))
+#+END_SRC
+
+* Editing
+No need to have trailing whitespace
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+END_SRC
+
+Use CUA for block editing
+
+#+BEGIN_SRC emacs-lisp
+  (setq cua-enable-cua-keys nil)
+  (cua-mode t)
 #+END_SRC
 
 Use Hippie Expand to expand things
 
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-SPC") 'hippie-expand)
+  (global-set-key (kbd "M-SPC") 'hippie-expand)
 #+END_SRC
 
-* Auto compile things
-#+BEGIN_SRC emacs-lisp
-(use-package auto-compile
-  :config (auto-compile-on-load-mode))
+Move by subwords ie treat underscore as space
 
-(setq load-prefer-newer t)
+#+BEGIN_SRC emacs-lisp
+  (global-subword-mode t)
 #+END_SRC
 
-* Evil Mode
-Use evil mode for most editing
+* Ido
+
+Use ido mode for poking through files and take advantage of ido vertical
 
 #+BEGIN_SRC emacs-lisp
-(use-package evil
-  :init
-  (use-package linum-relative)
-  (use-package evil-surround
+  (ido-mode t)
+  (use-package ido-vertical-mode
+    :init
+    (setq ido-enable-flex-matching t) ; fuzzy matching is a must have
+    (setq ido-max-directory-size 100000)
+    (setq ido-everywhere t)
     :config
-    (global-evil-surround-mode 1))
-  (setq evil-toggle-key "C-`")
-  :config
-  (evil-mode 1))
+    (ido-vertical-mode t)
+
+    (defun tabfugnic/ido-define-keys () ;; C-n/p is more intuitive in vertical layout
+      (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+      (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
+    (add-hook 'ido-setup-hook 'tabfugnic/ido-define-keys))
 #+END_SRC
 
 * Helm
+
 Helm for most things involving input
 
 #+BEGIN_SRC emacs-lisp
-(use-package helm
-  :bind ("M-x" . helm-M-x)
-  :init
-  (use-package helm-ag
+  (use-package helm
+    :bind ("M-x" . helm-M-x)
     :init
-    (setq helm-M-x-fuzzy-match t))
-  (progn
-    (require 'helm-config)
-    (helm-mode)))
+    (use-package helm-ag
+      :init
+      (setq helm-M-x-fuzzy-match t))
+    (progn
+      (require 'helm-config)
+      (helm-mode)))
 #+END_SRC
 
 * Dired
+
+Use a better dired, now with extras
 
 #+BEGIN_SRC emacs-lisp
 (require 'dired-x)
 #+END_SRC
 
-* Android
+* Emacs Lisp
+
+Auto compile elisp files on load/save.
 
 #+BEGIN_SRC emacs-lisp
-(use-package android-mode
-  :config
-  (custom-set-variables '(android-mode-sdk-dir "~/opt/android")))
+  (use-package auto-compile
+    :config
+    (auto-compile-on-load-mode)
+    (auto-compile-on-save-mode))
+  (setq load-prefer-newer t)
+#+END_SRC
+
+* Android
+
+Use android major mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package android-mode
+    :config
+    (custom-set-variables '(android-mode-sdk-dir "~/opt/android")))
 #+END_SRC
 
 * Electric pair
+
+Use electric pair to automatically match surrounding characters
+
 #+BEGIN_SRC emacs-lisp
-(electric-pair-mode 1)
-(show-paren-mode 1)
+  (electric-pair-mode 1)
+  (show-paren-mode 1)
 #+END_SRC
 
-* C
+* C/C++
+
 #+BEGIN_SRC emacs-lisp
-(c-set-offset 'arglist-intro '+)
+  (c-set-offset 'arglist-intro '+)
 #+END_SRC
 
 * Company
