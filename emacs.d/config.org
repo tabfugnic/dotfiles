@@ -358,10 +358,18 @@ Use electric pair to automatically match surrounding characters
 #+END_SRC
 
 * Web dev
+Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
+
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
   :init
   (add-to-list 'auto-mode-alist '("\\.html\\.erb$" . web-mode)))
+#+END_SRC
+
+Definitely need Slim mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package slim-mode)
 #+END_SRC
 
 * Javascript/Coffee
