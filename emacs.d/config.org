@@ -280,6 +280,13 @@ Use a better dired, now with extras
 (require 'dired-x)
 #+END_SRC
 
+* Projectile
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+  :config
+  (projectile-global-mode))
+#+END_SRC
+
 * Emacs Lisp
 
 Auto compile elisp files on load/save.
@@ -599,14 +606,6 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
   (setq interpreter-mode-alist (cons '("php" . php-mode) interpreter-mode-alist))
   (setq auto-mode-alist (cons '("\\.phtml$" . php-mode) auto-mode-alist))
   (setq interpreter-mode-alist (cons '("phtml" . php-mode) interpreter-mode-alist)))
-#+END_SRC
-
-* Projectile
-#+BEGIN_SRC emacs-lisp
-(use-package projectile
-  :bind ("C-p" . projectile-find-file)
-  :config
-  (projectile-global-mode))
 #+END_SRC
 
 * Ruby
