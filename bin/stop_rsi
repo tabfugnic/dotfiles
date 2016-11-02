@@ -5,7 +5,7 @@ stty -ctlecho
 # Time in seconds
 short_break_in_seconds=14
 long_break_in_seconds=$((8*60))
-short_interval_in_seconds=$((4*60))
+short_interval_in_seconds=$((10*60))
 long_interval_in_seconds=$((50*60))
 log_file="$HOME/tmp/event.log"
 config_directory="$HOME/.config/stop_rsi"
