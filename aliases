@@ -1,30 +1,49 @@
+#! /bin/bash
+
+########################
+#######  System  #######
+########################
+
+##### Show Colors ls #####
+
 if [[ `uname` == 'Linux' ]]; then
    export LS_OPTS='--color=auto'
 fi
 
-# Hold onto aliases
-export blog="$dev/personal-blog"
+##### Baseline exports #####
+
 export dev="$HOME/dev"
+export blog="$personal_dev/personal-blog"
+export personal_dev="$dev/tabfugnic"
 export dotfiles="$dev/dotfiles"
 export sag="sudo apt-get"
 
-# Directory Aliases
+
+##### Directory Aliases #####
+
 alias blog='cd $blog'
 alias dev='cd $dev'
 alias dot='cd $dotfiles'
 
-# Command Line Programs
+##### tar Shortcuts #####
+
 alias txb='tar xvjf'
 alias txg='tar xvzf'
 alias txt='tar xvf'
+
+##### Headless Browser #####
+
 alias headless='xvfb-run --server-args="-screen 0, 1920x1080x24"'
 
-# Display
+##### Display Shortcuts #####
+
 alias adsp='xrandr --auto'
 alias edspoff='xrandr --output eDP1 --off'
 alias ldspoff='xrandr --output LVD1 -off'
 
-# Update
+
+##### Aptitude Shortcuts #####
+
 alias sag='$sag'
 alias sai='$sag install'
 alias saud='$sag update'
@@ -37,24 +56,34 @@ alias saac='$sag autoclean'
 alias cleanup='saar -y && saac && sac'
 alias update='saud && saug -y && cleanup'
 alias full-update='saud && sadu -y && cleanup'
+
+##### Flash Updating #####
+
 alias update-flash='sudo update-flashplugin-nonfree --install'
 
-# Git aliases
+##### Git aliases ######
+
 alias gwin="git shortlog -n -s"
 alias gcb="git symbolic-ref HEAD 2>/dev/null | cut -d'/' -f 3"
 
-# Remove
+##### Removal Script #####
+
 alias rmorig='find . -type f -name *.orig -exec rm -f {} \;'
-
-# Bundler
-alias bx='bundle exec'
-alias bspec='bundle exec rspec'
-
-# Chruby
-alias chsudo='sudo chruby-exec `ruby --version | grep "ruby [^ ]"` --'
 
 # Misc Aliases
 alias resp=". ~/.bash_profile"
 alias ls="ls ${LS_OPTS}"
-
 alias gpg="gpg2"
+
+######################
+#######  Ruby  #######
+######################
+
+##### Bundle Exec Stuff #####
+
+alias bx='bundle exec'
+alias bspec='bundle exec rspec'
+
+##### Chruby #####
+
+alias chsudo='sudo chruby-exec `ruby --version | grep "ruby [^ ]"` --'

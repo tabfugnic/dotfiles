@@ -299,6 +299,13 @@ Auto compile elisp files on load/save.
   (setq load-prefer-newer t)
 #+END_SRC
 
+* Java
+
+Add imports to java file quickly and easily
+#+BEGIN_SRC emacs-lisp
+  (use-package java-imports)
+#+END_SRC
+
 * Android
 
 Use android major mode
