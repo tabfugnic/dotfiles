@@ -70,6 +70,13 @@ alias gcb="git symbolic-ref HEAD 2>/dev/null | cut -d'/' -f 3"
 
 alias rmorig='find . -type f -name *.orig -exec rm -f {} \;'
 
+##### Elasticsearch / Kafka #####
+
+alias start_es='sudo -i service elasticsearch start'
+alias start_kafka='nohup ~/kafka/bin/kafka-server-start.sh ~/kafka/config/server.properties > ~/kafka/kafka.log 2>&1 &
+'
+alias restart_es='sudo -i service elasticsearch restart'
+
 # Misc Aliases
 alias resp=". ~/.bash_profile"
 alias ls="ls ${LS_OPTS}"
