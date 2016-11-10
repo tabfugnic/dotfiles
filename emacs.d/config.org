@@ -655,6 +655,12 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
   (rspec-toggle-spec-and-target))
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+  (use-package ruby-block
+    :config
+    (ruby-block-mode t))
+#+END_SRC
+
 * SCSS Mode
 #+BEGIN_SRC emacs-lisp
 (use-package scss-mode
