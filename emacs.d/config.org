@@ -263,6 +263,16 @@ Use ido mode for poking through files and take advantage of ido vertical
     (add-hook 'ido-setup-hook 'tabfugnic/ido-define-keys))
 #+END_SRC
 
+* Multiple Cursor
+#+BEGIN_SRC emacs-lisp
+  (use-package multiple-cursors
+    :bind
+    ("C-S-c C-S-c" . mc/edit-lines)
+    ("C->" . mc/mark-next-like-this)
+    ("C-<" . mc/mark-previous-like-this)
+    ("C-c C-<" . mc/mark-all-like-this))
+#+END_SRC
+
 * Helm
 
 Helm for most things involving input
