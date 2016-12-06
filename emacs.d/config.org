@@ -426,10 +426,7 @@ Definitely need Slim mode
 
 #+BEGIN_SRC emacs-lisp
 ;; JSX mode
-(use-package jsx-mode
-  :init
-  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
-  (setq jsx-indent-level 2))
+(use-package rjsx-mode)
 #+END_SRC
 
 * Magit
