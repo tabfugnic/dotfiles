@@ -236,6 +236,13 @@ Move by subwords ie treat underscore as space
   (global-subword-mode t)
 #+END_SRC
 
+Set default spacing for all documents
+#+BEGIN_SRC emacs-lisp
+  (setq default-tab-width 2)
+  (setq sh-basic-offset 2)
+  (setq sh-indentation 2)
+#+END_SRC
+
 * Ido
 
 Use ido mode for poking through files and take advantage of ido vertical
