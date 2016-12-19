@@ -638,24 +638,26 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(use-package rspec-mode
-  :init
-  (add-hook 'haml-mode-hook (lambda() (rspec-mode )))
-  (add-hook 'html-mode-hook (lambda() (rspec-mode )))
-  (add-hook 'slim-mode-hook (lambda() (rspec-mode )))
-  (add-hook 'web-mode-hook (lambda() (rspec-mode )))
-  (add-hook 'coffee-mode-hook (lambda() (rspec-mode ))))
+  (use-package rspec-mode
+    :init
+    (add-hook 'haml-mode-hook 'rspec-mode)
+    (add-hook 'html-mode-hook 'rspec-mode)
+    (add-hook 'slim-mode-hook 'rspec-mode)
+    (add-hook 'web-mode-hook 'rspec-mode)
+    (add-hook 'coffee-mode-hook 'rspec-mode)
+    (add-hook 'ruby-mode-hook 'chruby-use-corresponding))
+
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(use-package ruby-mode
-  :init
-  (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("Guardfile" . ruby-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
-  (setq interpreter-mode-alist (append '(("ruby" . ruby-mode)) interpreter-mode-alist)))
+  (use-package ruby-mode
+    :init
+    (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
+    (setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))
+    (setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
+    (setq auto-mode-alist (cons '("Guardfile" . ruby-mode) auto-mode-alist))
+    (setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
+    (setq interpreter-mode-alist (append '(("ruby" . ruby-mode)) interpreter-mode-alist)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
