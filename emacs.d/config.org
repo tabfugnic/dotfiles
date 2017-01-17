@@ -587,6 +587,10 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
            entry
            (file (org-file "movies.org"))
            "* TODO %?\n %u\n")
+          ("n" "Names"
+           entry
+           (file (org-file "names.org"))
+           "* %? :boy:\n")
           ("c" "Configurations"
            entry
            (file (org-file "config.org"))
