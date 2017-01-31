@@ -14,10 +14,8 @@ hostname="$light_yellow\h"
 git_branch="$light_red$current_branch"
 current_directory="$light_green\W"
 
-export PS1="$gray["
-
 if [ "$SSH_CONNECTION" ]; then
     PS1="$PS1 $hostname"
 fi
 
-export PS1="$PS1 $git_branch$current_directory $gray] > $white"
+export PS1=" $git_branch$current_directory $gray> $white"
