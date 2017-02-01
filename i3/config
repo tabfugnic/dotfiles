@@ -155,6 +155,7 @@ bindsym --release $mod+c exec scrot -se 'mv $f ~/Pictures/captures/.'
 bindsym XF86AudioLowerVolume exec /usr/bin/amixer set Master 5%- && /usr/bin/amixer set Master unmute
 bindsym XF86AudioRaiseVolume exec /usr/bin/amixer set Master 5%+ && /usr/bin/amixer set Master unmute
 bindsym XF86AudioMute exec /usr/bin/amixer set Master toggle
+bindsym XF86AudioMicMute exec /usr/bin/amixer set Capture toggle
 
 # Brightness
 bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
