@@ -158,12 +158,6 @@ When splitting buffers move to that new buffer immediately
   (global-set-key "\C-x3" 'split-window-right-and-move)
 #+END_SRC
 
-Move by subwords ie treat underscore as space
-
-#+BEGIN_SRC emacs-lisp
-  (global-subword-mode t)
-#+END_SRC
-
 Ask before closing Emacs
 
 #+BEGIN_SRC emacs-lisp
