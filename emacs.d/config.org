@@ -647,7 +647,12 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
     (add-hook 'web-mode-hook 'rspec-mode)
     (add-hook 'coffee-mode-hook 'rspec-mode)
     (add-hook 'ruby-mode-hook 'chruby-use-corresponding))
+#+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+  (use-package inf-ruby
+    :init
+    (add-hook 'after-init-hook 'inf-ruby-switch-setup))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
