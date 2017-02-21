@@ -653,6 +653,8 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 #+BEGIN_SRC emacs-lisp
   (use-package ruby-mode
     :init
+    (use-package ruby-hash-syntax
+      :bind ("C-c r h" . ruby-toggle-hash-syntax))
     (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
     (setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))
     (setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
@@ -718,7 +720,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 * ERC
 #+BEGIN_SRC emacs-lisp
 (use-package erc
-  :bind ("C-c r" . tabfugnic/reset-erc-track-mode)
+  :bind ("C-c e r" . tabfugnic/reset-erc-track-mode)
   :init
 
   (use-package erc-image
