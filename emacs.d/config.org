@@ -473,7 +473,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
     :bind ("C-x m" . mu4e)
     :init
     (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
-    (add-hook 'message-send-hook 'mml-secure-message-sign-pgpmime)
+    (add-hook 'mu4e-compose-mode-hook 'mml-secure-message-sign)
     (add-hook 'mu4e-compose-mode-hook
               (defun my-setup-epa-hook ()
                 (epa-mail-mode)))
