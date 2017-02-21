@@ -83,6 +83,7 @@ Visual cue for when lines are too long
 
 #+BEGIN_SRC emacs-lisp
   (use-package whitespace
+    :diminish whitespace-mode
     :init
     (setq whitespace-line-column 80)
     (setq whitespace-style '(face lines-tail))
@@ -117,6 +118,7 @@ Automatically revert buffers to new content if unchanged
 #+BEGIN_SRC emacs-lisp
   (put 'erase-buffer 'disabled nil)
   (global-auto-revert-mode t)
+  (diminish 'auto-revert-mode)
 #+END_SRC
 
 Remove the whole start up screen and show a visible bell
@@ -200,6 +202,7 @@ Use evil mode for most editing
 
 #+BEGIN_SRC emacs-lisp
   (use-package evil
+    :diminish undo-tree-mode
     :init
     (use-package linum-relative)
     (use-package evil-surround
@@ -234,6 +237,7 @@ Move by subwords ie treat underscore as space
 
 #+BEGIN_SRC emacs-lisp
   (global-subword-mode t)
+  (diminish 'subword-mode)
 #+END_SRC
 
 Set default spacing for all documents
@@ -279,6 +283,7 @@ Helm for most things involving input
 
 #+BEGIN_SRC emacs-lisp
   (use-package helm
+    :diminish helm-mode
     :bind ("M-x" . helm-M-x)
     :init
     (use-package helm-ag
@@ -299,9 +304,10 @@ Use a better dired, now with extras
 
 * Projectile
 #+BEGIN_SRC emacs-lisp
-(use-package projectile
-  :config
-  (projectile-global-mode))
+  (use-package projectile
+    :diminish projectile-mode
+    :config
+    (projectile-global-mode))
 #+END_SRC
 
 * Emacs Lisp
@@ -350,9 +356,10 @@ Use electric pair to automatically match surrounding characters
 
 * Company
 #+BEGIN_SRC emacs-lisp
-(use-package company
-  :init
-  (add-hook 'after-init-hook 'global-company-mode))
+  (use-package company
+    :diminish company-mode
+    :init
+    (add-hook 'after-init-hook 'global-company-mode))
 #+END_SRC
 
 * Cucumber
@@ -384,11 +391,12 @@ Use electric pair to automatically match surrounding characters
 
 * Golden ratio
 #+BEGIN_SRC emacs-lisp
-(use-package golden-ratio
-  :init
-  (setq golden-ratio-auto-scale t)
-  :config
-  (golden-ratio-mode 1))
+  (use-package golden-ratio
+    :diminish golden-ratio-mode
+    :init
+    (setq golden-ratio-auto-scale t)
+    :config
+    (golden-ratio-mode 1))
 #+END_SRC
 
 * Haskell
@@ -660,7 +668,8 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(use-package ruby-end)
+  (use-package ruby-end
+    :diminish ruby-end-mode)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -672,6 +681,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 
 #+BEGIN_SRC emacs-lisp
   (use-package ruby-block
+    :diminish ruby-block-mode
     :config
     (ruby-block-mode t))
 #+END_SRC
@@ -705,9 +715,10 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 
 * Yasnippet
 #+BEGIN_SRC emacs-lisp
-(use-package yasnippet
-  :config
-  (yas-global-mode 1))
+  (use-package yasnippet
+    :diminish yas-minor-mode
+    :config
+    (yas-global-mode 1))
 #+END_SRC
 
 * ERC
