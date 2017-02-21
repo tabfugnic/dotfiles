@@ -10,6 +10,8 @@
   gpgsign = true
 [core]
   excludesfile = ~/.gitignore
+[diff]
+  algorithm = patience
 [merge]
   ff = only
 [push]
