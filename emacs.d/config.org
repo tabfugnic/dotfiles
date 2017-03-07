@@ -241,6 +241,19 @@ Set default spacing for all documents
   (setq sh-indentation 2)
 #+END_SRC
 
+Break on commas
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-,") 'tabfugnic/break-on-comma)
+
+  (defun tabfugnic/break-on-comma()
+      (interactive)
+    (while (not (looking-at ","))
+      (forward-char))
+    (forward-char)
+    (if (not (looking-at "^J"))
+        (newline-and-indent)))
+
+#+END_SRC
 * Ido
 
 Use ido mode for poking through files and take advantage of ido vertical
