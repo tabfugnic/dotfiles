@@ -12,6 +12,8 @@
   excludesfile = ~/.gitignore
 [diff]
   algorithm = patience
+[fetch]
+  prune = true
 [merge]
   ff = only
 [push]
