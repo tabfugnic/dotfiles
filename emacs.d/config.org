@@ -434,6 +434,13 @@ Definitely need Slim mode
   (use-package slim-mode)
 #+END_SRC
 
+* JSON
+Basic json parsing
+
+#+BEGIN_SRC emacs-lisp
+  (use-package json-mode)
+#+END_SRC
+
 * Javascript/Coffee
 #+BEGIN_SRC emacs-lisp
 (use-package coffee-mode
