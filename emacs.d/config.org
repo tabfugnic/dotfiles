@@ -467,7 +467,6 @@ Basic json parsing
     :bind ("C-x g" . magit-status)
     :init
     (use-package magithub
-      :after magit
       :config (magithub-feature-autoinject t))
     :config
     (magit-define-popup-action 'magit-branch-popup
