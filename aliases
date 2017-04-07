@@ -16,6 +16,8 @@ export dev="$HOME/dev"
 export blog="$personal_dev/personal-blog"
 export personal_dev="$dev/tabfugnic"
 export dotfiles="$dev/dotfiles"
+export thoughtbot_dev="$dev/thoughtbot"
+export tabfugnic_dev="$dev/tabfugnic"
 export sag="sudo apt-get"
 
 
@@ -24,6 +26,8 @@ export sag="sudo apt-get"
 alias blog='cd $blog'
 alias dev='cd $dev'
 alias dot='cd $dotfiles'
+alias tbot='cd $thoughtbot_dev'
+alias tab='cd $tabfugnic_dev'
 
 ##### tar Shortcuts #####
 
