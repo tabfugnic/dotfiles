@@ -671,13 +671,20 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 
 #+BEGIN_SRC emacs-lisp
   (use-package rspec-mode
+    :bind (:map rspec-mode ("C-c , u" . tabfugnic/rspec-set-test-env))
     :init
     (add-hook 'haml-mode-hook 'rspec-mode)
     (add-hook 'html-mode-hook 'rspec-mode)
     (add-hook 'slim-mode-hook 'rspec-mode)
     (add-hook 'web-mode-hook 'rspec-mode)
     (add-hook 'coffee-mode-hook 'rspec-mode)
-    (add-hook 'ruby-mode-hook 'chruby-use-corresponding))
+    (add-hook 'ruby-mode-hook 'chruby-use-corresponding)
+    :config
+    (defun tabfugnic/rspec-set-test-env()
+        (interactive)
+        (let ((root (directory-file-name (rspec-project-root))))
+          (message "setting testing environment database")
+          (shell-command (format "%s/bin/rails db:environment:set RAILS_ENV=test" root)))))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
