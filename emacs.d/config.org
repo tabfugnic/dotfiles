@@ -244,14 +244,57 @@ Set default spacing for all documents
 Break on commas
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-,") 'tabfugnic/break-on-comma)
+  (global-set-key (kbd "C-;") 'tabfugnic/multiline-list)
+  (global-set-key (kbd "C-:") 'tabfugnic/singleline-list)
 
   (defun tabfugnic/break-on-comma()
-      (interactive)
+    (interactive)
     (while (not (looking-at ","))
       (forward-char))
     (forward-char)
     (if (not (looking-at "^J"))
         (newline-and-indent)))
+
+  (defun tabfugnic/multiline-list()
+    (interactive)
+    (let ((beg (point)))
+      (forward-char)
+      (newline-and-indent)
+      (end-of-line)
+      (backward-char)
+      (if (not (looking-at ","))
+          (insert ","))
+      (while (<= beg (point))
+        (backward-char)
+        (when (and (looking-at ",") (tabfugnic/in-parent-list beg))
+          (forward-char)
+          (newline-and-indent)
+          (previous-line)
+          (end-of-line)
+          (backward-char))
+        )))
+
+  (defun tabfugnic/singleline-list()
+    (interactive)
+    (let ((beg (line-number-at-pos)))
+      (forward-list)
+      (while (< beg (line-number-at-pos))
+        (message "current point: %s" (point))
+        (join-line))
+      (backward-char)
+      (forward-list)
+      (backward-char)
+      (backward-char)
+      (if (looking-at ",")
+          (delete-forward-char 1))
+      ))
+
+  (defun tabfugnic/in-parent-list-p(parent-beg)
+    (let ((start (point)))
+      (backwards-up-list)
+      (when (eq parent-beg (point))
+        (goto-char start)
+        t)))
 
 #+END_SRC
 * Ido
@@ -825,9 +868,26 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
   (add-hook 'after-init-hook #'global-flycheck-mode))
 #+END_SRC
 
+* Continuous Integration
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package build-status-mode
+  ;;   :defer t
+  ;;   :load-path "lisp/"
+  ;;   :config
+  ;;   (setq build-status-circle-ci-token "0c1f0ad9041a9d2df8eee81bde93e18a01cf42c7"))
+
+#+END_SRC
 * Utils
 #+BEGIN_SRC emacs-lisp
 (defun gitrep()
   (interactive "*")
   (find-file "~/dev"))
+#+END_SRC
+
+Sort lines with out case
+#+BEGIN_SRC emacs-lisp
+  (defun sort-lines-nocase ()
+    (interactive)
+    (let ((sort-fold-case t))
+      (call-interactively 'sort-lines)))
 #+END_SRC
