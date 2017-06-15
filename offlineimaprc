@@ -1,11 +1,13 @@
 [general]
-accounts = personal, thoughtbot
+accounts = personal, thoughtbot, fastmail
 pythonfile = ~/.offlineimap/config.py
+maxsyncaccounts = 3
 
 [Account personal]
 localrepository = personal-local
 remoterepository = personal-remote
 status_backend = sqlite
+autorefresh = 0.5
 
 [Repository personal-local]
 type = Maildir
@@ -21,7 +23,7 @@ realdelete = no
 remoteuser = tabfugnic@gmail.com
 remotepasseval = find_password("mail/personal")
 auth_mechanisms = PLAIN
-folderfilter = should_include_folder
+folderfilter = should_include_gmail_folder
 nametrans = gmail_folder_to_local_folder
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
@@ -29,6 +31,7 @@ sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 localrepository = thoughtbot-local
 remoterepository = thoughtbot-remote
 status_backend = sqlite
+autorefresh = 0.5
 
 [Repository thoughtbot-local]
 type = Maildir
@@ -43,7 +46,32 @@ maxconnections = 3
 realdelete = no
 remoteuser = eric@thoughtbot.com
 remotepasseval = find_password("thoughtbot/gmail")
-folderfilter = should_include_folder
+folderfilter = should_include_gmail_folder
 nametrans = gmail_folder_to_local_folder
 auth_mechanisms = PLAIN
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Account fastmail]
+localrepository = fastmail-local
+remoterepository = fastmail-remote
+status_backend = sqlite
+autorefresh = 0.5
+
+[Repository fastmail-local]
+type = Maildir
+localfolders = ~/mail/fastmail
+nametrans = local_folder_to_fastmail_folder
+
+[Repository fastmail-remote]
+type = IMAP
+maxconnections = 3
+ssl = yes
+port = 99
+holdconnectionopen = yes
+keepalive = 60
+folderfilter = should_include_fastmail_folder
+nametrans = fastmail_folder_to_local_folder
+remotehost = mail.messagingengine.com
+remoteuser = me@ericj.co
+remotepasseval = find_password("mail/fastmail-laptop")
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt

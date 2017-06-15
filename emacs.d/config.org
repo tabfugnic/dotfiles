@@ -588,14 +588,33 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
               :name "personal"
               :match-func (lambda (msg)
                             (when msg
-                              (mu4e-message-contact-field-matches msg
-                                                                  :to "tabfugnic@gmail.com")))
+                              (mu4e-message-contact-field-matches
+                               msg
+                               :to "tabfugnic@gmail.com")))
               :enter-func '()
               :leave-func (lambda () (mu4e-clear-caches))
               :vars '((mu4e-maildir . "~/mail/personal")
                       (mu4e-mu-home . "~/.mu/personal")
-                      (mu4e-get-mail-command . "offlineimap -a personal")
+                      (mu4e-get-mail-command . "offlineimap -a personal -o")
                       (user-mail-address . "tabfugnic@gmail.com")
+                      (mu4e-compose-signature . (concat
+                                                 "Eric J. Collins\n"
+                                                 "Software Developer\n"
+                                                 "thoughtbot\n")
+                                              )))
+            ,(make-mu4e-context
+              :name "fastmail"
+              :match-func (lambda (msg)
+                            (when msg
+                              (mu4e-message-contact-field-matches
+                               msg
+                               :to "me@ericj.co")))
+              :enter-func '()
+              :leave-func (lambda () (mu4e-clear-caches))
+              :vars '((mu4e-maildir . "~/mail/fastmail")
+                      (mu4e-mu-home . "~/.mu/fastmail")
+                      (mu4e-get-mail-command . "offlineimap -a fastmail -o")
+                      (user-mail-address . "me@ericj.co")
                       (mu4e-compose-signature . (concat
                                                  "Eric J. Collins\n"
                                                  "Software Developer\n"
@@ -605,13 +624,14 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
               :name "thoughtbot"
               :match-func (lambda (msg)
                             (when msg
-                              (mu4e-message-contact-field-matches msg
-                                                                  :to "eric@thoughtbot.com")))
+                              (mu4e-message-contact-field-matches
+                               msg
+                               :to "eric@thoughtbot.com")))
               :enter-func '()
               :leave-func (lambda () (mu4e-clear-caches))
               :vars '((mu4e-maildir . "~/mail/thoughtbot")
                       (mu4e-mu-home . "~/.mu/thoughtbot")
-                      (mu4e-get-mail-command . "offlineimap -a thoughtbot")
+                      (mu4e-get-mail-command . "offlineimap -a thoughtbot -o")
                       (user-mail-address . "eric@thoughtbot.com")
                       (mu4e-compose-signature . (concat
                                                  "Eric J. Collins\n"
