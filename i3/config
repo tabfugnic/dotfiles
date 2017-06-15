@@ -184,6 +184,7 @@ exec --no-startup-id emacs
 exec --no-startup-id firefox
 exec --no-startup-id setup_terminals
 exec --no-startup-id stop_rsi -d
+exec --no-startup-id offlineimap
 
 # Auto lock screen
 exec --no-startup-id xautolock -locker "i3lock -c 171717" -notify 10 -notifier "notify-send 'LOCKING screen in 10 seconds'"
