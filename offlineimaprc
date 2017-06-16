@@ -69,6 +69,7 @@ ssl = yes
 port = 99
 holdconnectionopen = yes
 keepalive = 60
+realdelete = no
 folderfilter = should_include_fastmail_folder
 nametrans = fastmail_folder_to_local_folder
 remotehost = mail.messagingengine.com
