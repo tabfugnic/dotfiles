@@ -1,4 +1,3 @@
-// vim:ts=4:sw=4:et
 {
   // splitv split container with 2 children
   "border": "normal",
@@ -22,11 +21,6 @@
       "swallows": [
         {
           "class": "(?i)term"
-          // "class": "^Gnome\\-terminal$",
-          // "instance": "^gnome\\-terminal\\-server$",
-          // "title": "^Terminal$",
-          // "transient_for": "^$",
-          // "window_role": "^gnome\\-terminal\\-window\\-f8020042\\-8b24\\-4d8b\\-8d4b\\-89cadf4a8c24$"
         }
       ],
       "type": "con"
@@ -54,10 +48,6 @@
           "swallows": [
             {
               "class": "(?i)term"
-              // "instance": "^gnome\\-terminal\\-server$",
-              // "title": "^Terminal$",
-              // "transient_for": "^$",
-              // "window_role": "^gnome\\-terminal\\-window\\-48d88741\\-b5ca\\-4985\\-8c0d\\-27d462121afc$"
             }
           ],
           "type": "con"
@@ -90,11 +80,6 @@
       "swallows": [
         {
           "class": "(?i)term"
-          // "class": "^Gnome\\-terminal$",
-          // "instance": "^gnome\\-terminal\\-server$",
-          // "title": "^Terminal$",
-          // "transient_for": "^$",
-          // "window_role": "^gnome\\-terminal\\-window\\-c57dfc58\\-a130\\-4a13\\-80e6\\-2d9aded2ac7e$"
         }
       ],
       "type": "con"
