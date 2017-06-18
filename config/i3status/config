@@ -5,7 +5,7 @@ general {
 
 order += "disk /home"
 order += "disk /"
-order += "wireless wlan0"
+order += "wireless _first_"
 order += "ethernet eth0"
 order += "path_exists VPN"
 order += "battery 0"
@@ -15,7 +15,7 @@ order += "load"
 order += "cpu_temperature 0"
 order += "time"
 
-wireless wlan0 {
+wireless _first_ {
   format_up = "W: (%quality at %essid) %ip"
   format_down = ""
 }
@@ -28,6 +28,7 @@ ethernet eth0 {
 
 battery 0 {
   format = "%status %percentage %remaining"
+  format_down = ""
   low_threshold = 10
   threshold_type = "percentage"
   last_full_capacity = true
@@ -36,6 +37,7 @@ battery 0 {
 
 battery 1 {
   format = "%status %percentage %remaining"
+  format_down = ""
   low_threshold = 10
   threshold_type = "percentage"
   last_full_capacity = true
