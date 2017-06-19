@@ -740,7 +740,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 ;; chruby
 (use-package chruby
   :config
-  (chruby "2.2.3"))
+  (chruby "2.4.1"))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
