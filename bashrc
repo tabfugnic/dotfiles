@@ -4,4 +4,7 @@
 for file in ~/.bash/*; do source $file; done
 
 # Get aliases
-. "$HOME/.aliases"
+source "$HOME/.aliases"
+
+# Take in machine local config
+source "$HOME/.bashrc.local"

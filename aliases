@@ -28,6 +28,7 @@ alias dev='cd $dev'
 alias dot='cd $dotfiles'
 alias tbot='cd $thoughtbot_dev'
 alias tab='cd $tabfugnic_dev'
+alias cur='cd $CURRENT_PROJECT_DIR'
 
 ##### tar Shortcuts #####
 
