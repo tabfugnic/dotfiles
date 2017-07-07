@@ -7,4 +7,4 @@ for file in ~/.bash/*; do source $file; done
 source "$HOME/.aliases"
 
 # Take in machine local config
-source "$HOME/.bashrc.local"
+[ -s "$HOME/.bashrc.local" ] && source "$HOME/.bashrc.local"
