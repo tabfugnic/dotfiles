@@ -46,7 +46,6 @@ alias adsp='xrandr --auto'
 alias edspoff='xrandr --output eDP1 --off'
 alias ldspoff='xrandr --output LVD1 -off'
 
-
 ##### Aptitude Shortcuts #####
 
 alias sag='$sag'
