@@ -12,3 +12,5 @@ emacs.d/elpa
 /emacs.d/config.el
 /emacs.d/eshell
 /emacs.d/var/pcache/cache
+/emacs.d/magithub
+/emacs.d/ido.last
