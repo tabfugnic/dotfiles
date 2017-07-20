@@ -6,11 +6,12 @@ maxsyncaccounts = 3
 [Account personal]
 localrepository = personal-local
 remoterepository = personal-remote
-status_backend = sqlite
+synclabels = yes
+labelsheader = X-Keywords
 autorefresh = 0.5
 
 [Repository personal-local]
-type = Maildir
+type = GmailMaildir
 localfolders = ~/mail/personal
 nametrans = local_folder_to_gmail_folder
 
@@ -30,11 +31,12 @@ sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 [Account thoughtbot]
 localrepository = thoughtbot-local
 remoterepository = thoughtbot-remote
-status_backend = sqlite
+synclabels = yes
+labelsheader = X-Keywords
 autorefresh = 0.5
 
 [Repository thoughtbot-local]
-type = Maildir
+type = GmailMaildir
 localfolders = ~/mail/thoughtbot
 nametrans = local_folder_to_gmail_folder
 
@@ -54,7 +56,6 @@ sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 [Account fastmail]
 localrepository = fastmail-local
 remoterepository = fastmail-remote
-status_backend = sqlite
 autorefresh = 0.5
 
 [Repository fastmail-local]
