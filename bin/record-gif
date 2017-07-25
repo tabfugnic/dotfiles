@@ -1,0 +1,24 @@
+#! /bin/bash
+
+get_duration() {
+  zenity \
+    --entry \
+    --title="Duration" \
+    --entry-text=5 \
+    --text="Enter duration in seconds"
+}
+
+grab_screen_region() {
+  slop --format "-x %X -y %Y -w %W -h %H"
+}
+
+get_filename() {
+  local timestamp=$(date +%s)
+  echo "capture-$timestamp.gif"
+}
+
+main() {
+  byzanz-record -c --duration=$(get_duration) $(grab_screen_region) ~/Pictures/captures/$(get_filename)
+}
+
+main
