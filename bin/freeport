@@ -1,0 +1,19 @@
+#!/bin/bash
+
+main() {
+  port=$1
+
+  if [ "$port" -eq "$port" ] 2> /dev/null
+  then
+    kill `lsof -t -i:$port` 2> /dev/null
+  else
+    echo "Must be a valid port number"
+  fi
+
+  if [ "$?" -ne 0 ]
+  then
+    echo "No processes are bound to that port"
+  fi
+}
+
+main $1
