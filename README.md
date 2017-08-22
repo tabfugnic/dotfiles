@@ -11,7 +11,7 @@ These are my dotfiles
 - Install dotfiles
 
 ```
-env RCRC=$HOME/dotfiles/rcrc rcup
+env RCRC=$HOME/dev/dotfiles/rcrc rcup
 ```
 
 Any updates to dotfiles can be done by simply running
