@@ -178,16 +178,16 @@ Ask before closing Emacs
 Use solarized light for theme
 
 #+BEGIN_SRC emacs-lisp
-  (use-package solarized-theme
+  (use-package color-theme
+    :bind
+    ("C-|" . tabfugnic/cycle-theme)
     :init
-    (setq solarized-high-contrast-mode-line t)
-    (setq solarized-use-variable-pitch nil)
-    (setq solarized-height-plus-1 1.0)
-    (setq solarized-height-plus-2 1.0)
-    (setq solarized-height-plus-3 1.0)
-    (setq solarized-height-plus-4 1.0)
-    :config
-    (load-theme 'solarized-light t))
+    (defun circular (items) (setf (cdr (last items)) items) items)
+    (setq tabfugnic/theme-list (circular '(solarized-light solarized-dark)))
+    (defun tabfugnic/cycle-theme()
+      (interactive)
+      (load-theme (pop tabfugnic/theme-list) t))
+    (tabfugnic/cycle-theme))
 #+END_SRC
 
 * Evil Mode
