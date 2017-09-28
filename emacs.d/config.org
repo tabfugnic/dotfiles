@@ -505,6 +505,11 @@ Basic json parsing
   :init
   (setq coffee-tab-width 2))
 #+END_SRC
+Definitely need HAML mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package haml-mode)
+#+END_SRC
 
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
