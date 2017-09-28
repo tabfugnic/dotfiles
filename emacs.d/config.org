@@ -522,9 +522,10 @@ Basic json parsing
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :bind ("C-x g" . magit-status)
-    :init
-    (use-package magithub
-      :config (magithub-feature-autoinject t))
+    ;; :init
+    ;; (use-package magithub
+    ;;   :after magit
+    ;;   :config (magithub-feature-autoinject t))
     :config
     (magit-define-popup-action 'magit-branch-popup
       ?K "Delete local and remote" 'tabfugnic/magit-delete-branch)
