@@ -641,8 +641,8 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
     (setq mu4e-sent-folder   "/sent")
     (setq mu4e-trash-folder  "/trash")
     (setq mu4e-refile-folder "/archive")
-    (setq mu4e-sent-messages-behavior 'delete)
-
+    (setq mu4e-action-tags-header "X-Keywords")
+    (setq mu4e-attachment-dir  "~/Downloads")
     (setq mu4e-html2text-command 'mu4e-shr2text)
 
     (setq user-full-name  "Eric J Collins")
@@ -662,8 +662,26 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 
     (setq org-mu4e-link-query-in-headers-mode nil)
 
+    (add-to-list 'mu4e-headers-custom-markers
+                 '("Stale messages"
+                   (lambda (msg &optional n)
+                     (let ((email (cdar (mu4e-message-field msg :from))))
+                       (or (string-match "\\@nytimes.com" email)
+                           (string-match "\\@trello.com" email)
+                           (string-match "\\@github.com" email))))))
+
     (add-to-list 'mu4e-view-actions
-                 '("xViewXWidget" . mu4e-action-view-with-xwidget) t))
+                 '("xViewXWidget" . mu4e-action-view-with-xwidget) t)
+
+    (defun tabfugnic/mu4e-headers-mark-stale-for-delete()
+      (interactive)
+      (mu4e-headers-for-each
+       (lambda (msg)
+         (let ((tags (mu4e-message-field msg :tags))
+               (date (mu4e-message-field msg :date))
+               (one-day-ago (subtract-time (current-time) 86400)))
+           (when (and (member "temporary" tags) (time-less-p date one-day-ago))
+             (mu4e-mark-at-point 'trash msg)))))))
 #+END_SRC
 
 * Org mode
