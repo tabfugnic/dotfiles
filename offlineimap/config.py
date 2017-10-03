@@ -12,10 +12,10 @@ INVERSE_GMAIL_FOLDER_MAP = {v:k for k,v in GMAIL_FOLDER_MAP.items()}
 INCLUDED_GMAIL_FOLDERS = ["INBOX"] + GMAIL_FOLDER_MAP.values()
 
 FASTMAIL_FOLDER_MAP = {
-    "archive": "INBOX.Archive",
-    "drafts":  "INBOX.Drafts",
-    "sent":    "INBOX.Sent",
-    "trash":   "INBOX.Trash",
+    "archive": "Archive",
+    "drafts":  "Drafts",
+    "sent":    "Sent",
+    "trash":   "Trash",
 }
 
 INVERSE_FASTMAIL_FOLDER_MAP = {v:k for k,v in FASTMAIL_FOLDER_MAP.items()}
