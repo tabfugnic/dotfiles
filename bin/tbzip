@@ -1,0 +1,10 @@
+#! /bin/bash
+
+main() {
+  archive=$1
+  source=$2
+  total_size=`du -sk $source | cut -f 1`
+  tar cvf - $source | pv -bepr -s ${total_size}k | bzip2 -c > $archive
+}
+
+main $1 $2
