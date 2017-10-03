@@ -32,9 +32,10 @@ alias cur='cd $CURRENT_PROJECT_DIR'
 
 ##### tar Shortcuts #####
 
-alias txb='tar xvjf'
-alias txg='tar xvzf'
-alias txt='tar xvf'
+alias tbunzip='tar xvjf'
+alias tgunzip='tar xvzf'
+alias tun='tar xvf'
+alias tgzip='tar cvzf'
 
 ##### Headless Browser #####
 
