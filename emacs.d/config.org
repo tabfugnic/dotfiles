@@ -490,6 +490,11 @@ Definitely need Slim mode
 #+BEGIN_SRC emacs-lisp
   (use-package slim-mode)
 #+END_SRC
+Definitely need HAML mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package haml-mode)
+#+END_SRC
 
 * JSON
 Basic json parsing
@@ -504,11 +509,6 @@ Basic json parsing
   :mode ("\\.coffee$" "Cakefile")
   :init
   (setq coffee-tab-width 2))
-#+END_SRC
-Definitely need HAML mode
-
-#+BEGIN_SRC emacs-lisp
-  (use-package haml-mode)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
