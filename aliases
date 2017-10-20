@@ -20,7 +20,6 @@ export thoughtbot_dev="$dev/thoughtbot"
 export tabfugnic_dev="$dev/tabfugnic"
 export sag="sudo apt-get"
 
-
 ##### Directory Aliases #####
 
 alias blog='cd $blog'
@@ -29,6 +28,7 @@ alias dot='cd $dotfiles'
 alias tbot='cd $thoughtbot_dev'
 alias tab='cd $tabfugnic_dev'
 alias cur='cd $CURRENT_PROJECT_DIR'
+alias ft='cd $thoughtbot_dev/french_toast'
 
 ##### tar Shortcuts #####
 
