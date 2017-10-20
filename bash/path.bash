@@ -17,5 +17,8 @@ export PATH="$PATH:$HOME/parity/bin"
 # Home bin directory
 export PATH="$PATH:$HOME/bin"
 
+# Local bin path
+export PATH="$PATH:$HOME/.local/bin"
+
 # Heroku
 export PATH="/usr/local/heroku/bin:$PATH"
