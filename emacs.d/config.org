@@ -823,6 +823,10 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
     (ruby-block-mode t))
 #+END_SRC
 
+* Lua
+#+BEGIN_SRC emacs-lisp
+  (use-package lua-mode)
+#+END_SRC
 * SCSS Mode
 #+BEGIN_SRC emacs-lisp
 (use-package scss-mode
