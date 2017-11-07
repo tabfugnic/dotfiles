@@ -7,6 +7,15 @@ the command line
   (server-start)
 #+END_SRC
 
+* Local configs
+  Rather than having custom change configurations in my emacs file
+  point it to a local file that is not saved in version control.
+
+#+BEGIN_SRC emacs-lisp
+  (setq custom-file "~/.emacs.local")
+  (load custom-file :noerror)
+#+END_SRC
+
 * Package Management(use-package)
 use-package will manage our all of our packages. It requires no
 external dependencies and takes advantage of emacs' package library
