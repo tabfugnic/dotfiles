@@ -199,6 +199,13 @@ Use solarized light for theme
     (tabfugnic/cycle-theme))
 #+END_SRC
 
+* Date
+Use ISO date standard
+
+#+BEGIN_SRC emacs-lisp
+  (setq calendar-date-style 'iso)
+#+END_SRC
+
 * Evil Mode
 
 Use evil mode for most editing
@@ -704,7 +711,8 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
     :init
     (use-package org-journal
       :init
-      (setq org-journal-dir "~/cloud/journal"))
+      (setq org-journal-dir "~/cloud/journal")
+      (setq org-journal-date-format "%A %Y/%m/%d"))
     (require 'org-agenda)
     (setq org-directory "~/cloud/org/")
 
