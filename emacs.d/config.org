@@ -1,4 +1,8 @@
-* Start Emacs Server
+* Initialize
+Define the very basics of things needed to run this configuration and
+emacs
+
+** Start Emacs Server
 Use emacs server so that loading any subsequent emacs instances will
 boot immediately. In practice I use that for the occasion I use git on
 the command line
@@ -7,16 +11,16 @@ the command line
   (server-start)
 #+END_SRC
 
-* Local configs
-  Rather than having custom change configurations in my emacs file
-  point it to a local file that is not saved in version control.
+** Local configs
+Rather than having custom change configurations in my emacs file
+point it to a local file that is not saved in version control.
 
 #+BEGIN_SRC emacs-lisp
   (setq custom-file "~/.emacs.local")
   (load custom-file :noerror)
 #+END_SRC
 
-* Package Management(use-package)
+** Package Management(use-package)
 use-package will manage our all of our packages. It requires no
 external dependencies and takes advantage of emacs' package library
 
@@ -43,7 +47,8 @@ Finally require use-package
   (eval-when-compile (require 'use-package))
 #+END_SRC
 
-* Interface
+* Visuals
+** Interface
 Build interface to look how I want it to look
 
 Remove all that excess crap I don't need, remove the menu bar the
@@ -183,14 +188,15 @@ Ask before closing Emacs
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
 #+END_SRC
 
-* Theme
-Use solarized light for theme
+** Theme
+Use a color theme
 
 #+BEGIN_SRC emacs-lisp
   (use-package color-theme
     :bind
     ("C-|" . tabfugnic/cycle-theme)
     :init
+    (use-package solarized-theme)
     (defun circular (items) (setf (cdr (last items)) items) items)
     (setq tabfugnic/theme-list (circular '(solarized-light solarized-dark)))
     (defun tabfugnic/cycle-theme()
@@ -199,14 +205,32 @@ Use solarized light for theme
     (tabfugnic/cycle-theme))
 #+END_SRC
 
-* Date
+** Golden ratio
+#+BEGIN_SRC emacs-lisp
+  (use-package golden-ratio
+    :diminish golden-ratio-mode
+    :init
+    (setq golden-ratio-auto-scale t)
+    :config
+    (golden-ratio-mode 1))
+#+END_SRC
+
+** Wrap region
+#+BEGIN_SRC emacs-lisp
+(use-package wrap-region
+  :config
+  (wrap-region-mode t))
+#+END_SRC
+
+** Date
 Use ISO date standard
 
 #+BEGIN_SRC emacs-lisp
   (setq calendar-date-style 'iso)
 #+END_SRC
 
-* Evil Mode
+* Edit Text
+** Evil Mode
 
 Use evil mode for most editing
 
@@ -223,7 +247,7 @@ Use evil mode for most editing
     (evil-mode 1))
 #+END_SRC
 
-* Editing
+** Editing
 No need to have trailing whitespace
 
 #+BEGIN_SRC emacs-lisp
@@ -327,7 +351,58 @@ Break on commas
         t)))
 
 #+END_SRC
-* Ido
+
+** Multiple Cursor
+#+BEGIN_SRC emacs-lisp
+  (use-package multiple-cursors
+    :bind
+    ("C-S-c C-S-c" . mc/edit-lines)
+    ("C->" . mc/mark-next-like-this)
+    ("C-<" . mc/mark-previous-like-this)
+    ("C-c C-<" . mc/mark-all-like-this))
+#+END_SRC
+
+** Electric pair
+
+Use electric pair to automatically match surrounding characters
+
+#+BEGIN_SRC emacs-lisp
+  (electric-pair-mode 1)
+  (show-paren-mode 1)
+#+END_SRC
+
+** Move shit
+#+BEGIN_SRC emacs-lisp
+(use-package move-text
+  :config
+  (move-text-default-bindings))
+#+END_SRC
+* Support
+** Company
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :diminish company-mode
+    :init
+    (add-hook 'after-init-hook 'global-company-mode))
+#+END_SRC
+
+** Yasnippet
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :diminish yas-minor-mode
+    :config
+    (yas-global-mode 1))
+#+END_SRC
+
+** flycheck
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck
+  :init
+  (add-hook 'after-init-hook #'global-flycheck-mode))
+#+END_SRC
+
+* Navigation
+** Ido
 
 Use ido mode for poking through files and take advantage of ido vertical
 
@@ -347,17 +422,7 @@ Use ido mode for poking through files and take advantage of ido vertical
     (add-hook 'ido-setup-hook 'tabfugnic/ido-define-keys))
 #+END_SRC
 
-* Multiple Cursor
-#+BEGIN_SRC emacs-lisp
-  (use-package multiple-cursors
-    :bind
-    ("C-S-c C-S-c" . mc/edit-lines)
-    ("C->" . mc/mark-next-like-this)
-    ("C-<" . mc/mark-previous-like-this)
-    ("C-c C-<" . mc/mark-all-like-this))
-#+END_SRC
-
-* Helm
+** Helm
 
 Helm for most things involving input
 
@@ -374,7 +439,7 @@ Helm for most things involving input
       (helm-mode)))
 #+END_SRC
 
-* Dired
+** Dired
 
 Use a better dired, now with extras
 
@@ -382,7 +447,7 @@ Use a better dired, now with extras
 (require 'dired-x)
 #+END_SRC
 
-* Projectile
+** Projectile
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
     :diminish projectile-mode
@@ -390,7 +455,37 @@ Use a better dired, now with extras
     (projectile-global-mode))
 #+END_SRC
 
-* Emacs Lisp
+** Global and GGTags
+  #+BEGIN_SRC emacs-lisp
+(use-package ggtags
+  :config
+  (add-hook 'ruby-mode-hook ( lambda() ( ggtags-mode 1 ))))
+#+END_SRC
+
+* Language/Programming
+** Android
+
+Use android major mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package android-mode
+    :config
+    (custom-set-variables '(android-mode-sdk-dir "~/opt/android")))
+#+END_SRC
+
+** C/C++
+
+#+BEGIN_SRC emacs-lisp
+  (c-set-offset 'arglist-intro '+)
+#+END_SRC
+
+** Cucumber
+#+BEGIN_SRC emacs-lisp
+(use-package feature-mode
+  :mode "\\.feature$")
+#+END_SRC
+
+** Emacs Lisp
 
 Auto compile elisp files on load/save.
 
@@ -402,84 +497,7 @@ Auto compile elisp files on load/save.
   (setq load-prefer-newer t)
 #+END_SRC
 
-* Java
-
-Add imports to java file quickly and easily
-#+BEGIN_SRC emacs-lisp
-  (use-package java-imports)
-#+END_SRC
-
-* Android
-
-Use android major mode
-
-#+BEGIN_SRC emacs-lisp
-  (use-package android-mode
-    :config
-    (custom-set-variables '(android-mode-sdk-dir "~/opt/android")))
-#+END_SRC
-
-* Electric pair
-
-Use electric pair to automatically match surrounding characters
-
-#+BEGIN_SRC emacs-lisp
-  (electric-pair-mode 1)
-  (show-paren-mode 1)
-#+END_SRC
-
-* C/C++
-
-#+BEGIN_SRC emacs-lisp
-  (c-set-offset 'arglist-intro '+)
-#+END_SRC
-
-* Company
-#+BEGIN_SRC emacs-lisp
-  (use-package company
-    :diminish company-mode
-    :init
-    (add-hook 'after-init-hook 'global-company-mode))
-#+END_SRC
-
-* Cucumber
-#+BEGIN_SRC emacs-lisp
-(use-package feature-mode
-  :mode "\\.feature$")
-#+END_SRC
-
-* Eclim
-#+BEGIN_SRC emacs-lisp
-(use-package eclim
-  :config
-  (global-eclim-mode))
-#+END_SRC
-
-* Emmet
-#+BEGIN_SRC emacs-lisp
-(use-package emmet-mode
-  :init
-  (add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2))))
-#+END_SRC
-
-* Global and GGTags
-  #+BEGIN_SRC emacs-lisp
-(use-package ggtags
-  :config
-  (add-hook 'ruby-mode-hook ( lambda() ( ggtags-mode 1 ))))
-#+END_SRC
-
-* Golden ratio
-#+BEGIN_SRC emacs-lisp
-  (use-package golden-ratio
-    :diminish golden-ratio-mode
-    :init
-    (setq golden-ratio-auto-scale t)
-    :config
-    (golden-ratio-mode 1))
-#+END_SRC
-
-* Haskell
+** Haskell
 #+BEGIN_SRC emacs-lisp
 (use-package haskell-mode
   :init
@@ -492,34 +510,27 @@ Use electric pair to automatically match surrounding characters
         ("C-c C-c" . haskell-compile)))
 #+END_SRC
 
-* Web dev
-Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
-
+** HTML/CSS
 #+BEGIN_SRC emacs-lisp
-(use-package web-mode
+(use-package emmet-mode
   :init
-  (add-to-list 'auto-mode-alist '("\\.html\\.erb$" . web-mode)))
+  (add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2))))
 #+END_SRC
 
-Definitely need Slim mode
+** Java
+
+Add imports to java file quickly and easily
+#+BEGIN_SRC emacs-lisp
+  (use-package java-imports)
+#+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-  (use-package slim-mode)
-#+END_SRC
-Definitely need HAML mode
-
-#+BEGIN_SRC emacs-lisp
-  (use-package haml-mode)
+(use-package eclim
+  :config
+  (global-eclim-mode))
 #+END_SRC
 
-* JSON
-Basic json parsing
-
-#+BEGIN_SRC emacs-lisp
-  (use-package json-mode)
-#+END_SRC
-
-* Javascript/Coffee
+** Javascript/Coffee
 #+BEGIN_SRC emacs-lisp
 (use-package coffee-mode
   :mode ("\\.coffee$" "Cakefile")
@@ -539,6 +550,145 @@ Basic json parsing
 (use-package rjsx-mode)
 #+END_SRC
 
+** JSON
+Basic json parsing
+
+#+BEGIN_SRC emacs-lisp
+  (use-package json-mode)
+#+END_SRC
+
+** Lua
+#+BEGIN_SRC emacs-lisp
+  (use-package lua-mode)
+#+END_SRC
+** Markdown
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+#+END_SRC
+** PHP
+#+BEGIN_SRC emacs-lisp
+(use-package php-mode
+  :init
+  (setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.module$" . php-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.install$" . php-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.inc$" . php-mode) auto-mode-alist))
+
+  (setq interpreter-mode-alist (cons '("php" . php-mode) interpreter-mode-alist))
+  (setq auto-mode-alist (cons '("\\.phtml$" . php-mode) auto-mode-alist))
+  (setq interpreter-mode-alist (cons '("phtml" . php-mode) interpreter-mode-alist)))
+#+END_SRC
+
+** Ruby/Rails
+#+BEGIN_SRC emacs-lisp
+(use-package chruby
+  :config (chruby "2.4.1"))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ruby-mode
+    :init
+    (use-package inf-ruby
+      :init (add-hook 'after-init-hook 'inf-ruby-switch-setup))
+    (use-package ruby-end
+      :diminish ruby-end-mode)
+    (use-package ruby-block
+      :diminish ruby-block-mode
+      :config (ruby-block-mode t))
+    (use-package ruby-hash-syntax
+      :bind ("C-c r h" . ruby-toggle-hash-syntax))
+    (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
+    (setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))
+    (setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
+    (setq auto-mode-alist (cons '("Guardfile" . ruby-mode) auto-mode-alist))
+    (setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
+    (setq interpreter-mode-alist (append '(("ruby" . ruby-mode)) interpreter-mode-alist)))
+#+END_SRC
+
+Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package web-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.html\\.erb$" . web-mode)))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rspec-mode
+    :bind (:map rspec-mode ("C-c , u" . tabfugnic/rspec-set-test-env))
+    :init
+    (add-hook 'haml-mode-hook 'rspec-mode)
+    (add-hook 'html-mode-hook 'rspec-mode)
+    (add-hook 'slim-mode-hook 'rspec-mode)
+    (add-hook 'web-mode-hook 'rspec-mode)
+    (add-hook 'coffee-mode-hook 'rspec-mode)
+    (add-hook 'ruby-mode-hook 'chruby-use-corresponding)
+    :config
+    (defun tabfugnic/rspec-set-test-env()
+        (interactive)
+        (let ((root (directory-file-name (rspec-project-root))))
+          (message "setting testing environment database")
+          (shell-command (format "%s/bin/rails db:environment:set RAILS_ENV=test" root)))))
+#+END_SRC
+
+** SCSS Mode
+#+BEGIN_SRC emacs-lisp
+(use-package scss-mode
+  :init
+  (setq auto-mode-alist (cons '("\\.scss$" . scss-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.scss.erb$" . scss-mode) auto-mode-alist))
+  (setq interpreter-mode-alist (cons '("scss" . scss-mode) interpreter-mode-alist))
+  (setq interpreter-mode-alist (cons '("scss.erb" . scss-mode) interpreter-mode-alist))
+  (setq scss-compile-at-save nil)
+  (setq css-indent-offset 2))
+#+END_SRC
+
+** Slim/Haml
+Definitely need Slim and HAML mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package slim-mode)
+  (use-package haml-mode)
+#+END_SRC
+
+** Yaml
+#+BEGIN_SRC emacs-lisp
+(use-package yaml-mode
+  :init
+  (setq auto-mode-alist (cons '("\\.yml$" . yaml-mode) auto-mode-alist))
+  (setq interpreter-mode-alist (cons '("yaml" . yaml-mode) interpreter-mode-alist)))
+#+END_SRC
+
+* Blog
+
+Setup blog
+#+BEGIN_SRC emacs-lisp
+  (setq tabfugnic/blog-dir "~/blog")
+  (setq tabfugnic/blog-posts-dir (expand-file-name "_posts" tabfugnic/blog-dir))
+
+  (defun tabfugnic/blog-new-entry(title)
+    (interactive "MTitle: ")
+    (let ((slug (tabfugnic/sluggify title)))
+      (find-file (expand-file-name
+                       (concat (format-time-string "%F") "-" slug ".md")
+                       tabfugnic/blog-posts-dir))
+      (insert "---\n")
+      (insert "layout: post\n")
+      (insert (format "title: %s\n" title))
+      (insert (format "date: %s\n" (format-time-string "%F %R")))
+      (insert "tags: \n")
+      (insert "---\n")))
+
+  (defun tabfugnic/sluggify(string)
+    (replace-regexp-in-string
+     "[^a-z0-9-]" "" (replace-regexp-in-string
+                      "\\\s" "-" (downcase string))))
+#+END_SRC
+
 * Git(Magit)
 #+BEGIN_SRC emacs-lisp
   (use-package magit
@@ -555,22 +705,6 @@ Basic json parsing
       (interactive
        (magit-read-local-branch "Delete branch" (magit-get-previous-branch)))
       (magit-run-git "delete-branch" "" branch)))
-#+END_SRC
-
-* Markdown
-#+BEGIN_SRC emacs-lisp
-(use-package markdown-mode
-  :init
-  (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
-#+END_SRC
-
-* Move shit
-#+BEGIN_SRC emacs-lisp
-(use-package move-text
-  :config
-  (move-text-default-bindings))
 #+END_SRC
 
 * Email(mu4e)
@@ -707,179 +841,63 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 
 * Org mode
 #+BEGIN_SRC emacs-lisp
-  (use-package org
-    :init
-    (use-package org-journal
+    (use-package org
       :init
-      (setq org-journal-dir "~/cloud/journal")
-      (setq org-journal-date-format "%A %Y/%m/%d"))
-    (require 'org-agenda)
-    (setq org-directory "~/cloud/org/")
+      (use-package org-journal
+        :init
+        (setq org-journal-dir "~/cloud/journal")
+        (setq org-journal-date-format "%A %Y/%m/%d")
+        (add-hook 'org-journal-mode-hook 'auto-fill-mode))
+      (require 'org-agenda)
+      (setq org-directory "~/cloud/org/")
 
-    (defun org-file (file)
-      (concat org-directory file))
+      (defun org-file (file)
+        (concat org-directory file))
 
-    (setq org-agenda-files (list (org-file "index.org")))
+      (setq org-agenda-files (list (org-file "index.org")))
 
-    (setq org-capture-templates
-          '(("t" "TODO"
-             entry
-             (file (org-file "index.org"))
-             "* TODO %?\n")
-            ("v" "Travel"
-             plain
-             (file (org-file "travel.org"))
-             "* %a\n %^G\n")
-            ("i" "Idea"
-             entry
-             (file (org-file "ideas.org"))
-             "* %?\n %u\n")
-            ("m" "Movies"
-             entry
-             (file (org-file "movies.org"))
-             "* TODO %?\n %u\n")
-            ("n" "Names"
-             entry
-             (file (org-file "names.org"))
-             "* %? :boy:\n")
-            ("c" "Configurations"
-             entry
-             (file (org-file "config.org"))
-             "* %?\n")))
+      (setq org-capture-templates
+            '(("t" "TODO"
+               entry
+               (file (org-file "index.org"))
+               "* TODO %?\n")
+              ("v" "Travel"
+               plain
+               (file (org-file "travel.org"))
+               "* %a\n %^G\n")
+              ("i" "Idea"
+               entry
+               (file (org-file "ideas.org"))
+               "* %?\n %u\n")
+              ("m" "Movies"
+               entry
+               (file (org-file "movies.org"))
+               "* TODO %?\n %u\n")
+              ("n" "Names"
+               entry
+               (file (org-file "names.org"))
+               "* %? :boy:\n")
+              ("c" "Configurations"
+               entry
+               (file (org-file "config.org"))
+               "* %?\n")))
 
-    (defun org-agenda-complete-and-archive ()
-      (interactive)
-      (org-agenda-todo 'done)
-      (org-agenda-archive-default))
-
-    (defun org-complete-and-archive ()
-      (interactive)
-      (org-todo 'done)
-      (org-archive-default))
-
-    (global-set-key "\C-cl" 'org-store-link)
-    (global-set-key "\C-cc" 'org-capture)
-    (global-set-key "\C-ca" 'org-agenda)
-    (global-set-key "\C-cb" 'org-iswitchb)
-    (define-key org-agenda-mode-map (kbd "C-c f") 'org-agenda-complete-and-archive)
-    (define-key org-mode-map (kbd "C-c f") 'org-complete-and-archive))
-#+END_SRC
-
-* PHP
-#+BEGIN_SRC emacs-lisp
-(use-package php-mode
-  :init
-  (setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("\\.module$" . php-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("\\.install$" . php-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("\\.inc$" . php-mode) auto-mode-alist))
-
-  (setq interpreter-mode-alist (cons '("php" . php-mode) interpreter-mode-alist))
-  (setq auto-mode-alist (cons '("\\.phtml$" . php-mode) auto-mode-alist))
-  (setq interpreter-mode-alist (cons '("phtml" . php-mode) interpreter-mode-alist)))
-#+END_SRC
-
-* Ruby
-#+BEGIN_SRC emacs-lisp
-;; chruby
-(use-package chruby
-  :config
-  (chruby "2.4.1"))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-  (use-package rspec-mode
-    :bind (:map rspec-mode ("C-c , u" . tabfugnic/rspec-set-test-env))
-    :init
-    (add-hook 'haml-mode-hook 'rspec-mode)
-    (add-hook 'html-mode-hook 'rspec-mode)
-    (add-hook 'slim-mode-hook 'rspec-mode)
-    (add-hook 'web-mode-hook 'rspec-mode)
-    (add-hook 'coffee-mode-hook 'rspec-mode)
-    (add-hook 'ruby-mode-hook 'chruby-use-corresponding)
-    :config
-    (defun tabfugnic/rspec-set-test-env()
+      (defun org-agenda-complete-and-archive ()
         (interactive)
-        (let ((root (directory-file-name (rspec-project-root))))
-          (message "setting testing environment database")
-          (shell-command (format "%s/bin/rails db:environment:set RAILS_ENV=test" root)))))
-#+END_SRC
+        (org-agenda-todo 'done)
+        (org-agenda-archive-default))
 
-#+BEGIN_SRC emacs-lisp
-  (use-package inf-ruby
-    :init
-    (add-hook 'after-init-hook 'inf-ruby-switch-setup))
-#+END_SRC
+      (defun org-complete-and-archive ()
+        (interactive)
+        (org-todo 'done)
+        (org-archive-default))
 
-#+BEGIN_SRC emacs-lisp
-  (use-package ruby-mode
-    :init
-    (use-package ruby-hash-syntax
-      :bind ("C-c r h" . ruby-toggle-hash-syntax))
-    (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
-    (setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))
-    (setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
-    (setq auto-mode-alist (cons '("Guardfile" . ruby-mode) auto-mode-alist))
-    (setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
-    (setq interpreter-mode-alist (append '(("ruby" . ruby-mode)) interpreter-mode-alist)))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-  (use-package ruby-end
-    :diminish ruby-end-mode)
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(defun rspec-toggle-spec-target-in-new-buffer
-  (interactive)
-  (split-window-right-and-move)
-  (rspec-toggle-spec-and-target))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-  (use-package ruby-block
-    :diminish ruby-block-mode
-    :config
-    (ruby-block-mode t))
-#+END_SRC
-
-* Lua
-#+BEGIN_SRC emacs-lisp
-  (use-package lua-mode)
-#+END_SRC
-* SCSS Mode
-#+BEGIN_SRC emacs-lisp
-(use-package scss-mode
-  :init
-  (setq auto-mode-alist (cons '("\\.scss$" . scss-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("\\.scss.erb$" . scss-mode) auto-mode-alist))
-  (setq interpreter-mode-alist (cons '("scss" . scss-mode) interpreter-mode-alist))
-  (setq interpreter-mode-alist (cons '("scss.erb" . scss-mode) interpreter-mode-alist))
-  (setq scss-compile-at-save nil)
-  (setq css-indent-offset 2))
-#+END_SRC
-
-* Wrap region
-#+BEGIN_SRC emacs-lisp
-(use-package wrap-region
-  :config
-  (wrap-region-mode t))
-#+END_SRC
-
-* Yaml
-#+BEGIN_SRC emacs-lisp
-(use-package yaml-mode
-  :init
-  (setq auto-mode-alist (cons '("\\.yml$" . yaml-mode) auto-mode-alist))
-  (setq interpreter-mode-alist (cons '("yaml" . yaml-mode) interpreter-mode-alist)))
-#+END_SRC
-
-* Yasnippet
-#+BEGIN_SRC emacs-lisp
-  (use-package yasnippet
-    :diminish yas-minor-mode
-    :config
-    (yas-global-mode 1))
+      (global-set-key "\C-cl" 'org-store-link)
+      (global-set-key "\C-cc" 'org-capture)
+      (global-set-key "\C-ca" 'org-agenda)
+      (global-set-key "\C-cb" 'org-iswitchb)
+      (define-key org-agenda-mode-map (kbd "C-c f") 'org-agenda-complete-and-archive)
+      (define-key org-mode-map (kbd "C-c f") 'org-complete-and-archive))
 #+END_SRC
 
 * ERC
@@ -939,22 +957,6 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 (defun tabfugnic/do-notify (nickname message)
   (with-temp-buffer
     (shell-command (format "notify-send '%s: %s' -t 5000" nickname message) t)))
-#+END_SRC
-* flycheck
-#+BEGIN_SRC emacs-lisp
-(use-package flycheck
-  :init
-  (add-hook 'after-init-hook #'global-flycheck-mode))
-#+END_SRC
-
-* Continuous Integration
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package build-status-mode
-  ;;   :defer t
-  ;;   :load-path "lisp/"
-  ;;   :config
-  ;;   (setq build-status-circle-ci-token "0c1f0ad9041a9d2df8eee81bde93e18a01cf42c7"))
-
 #+END_SRC
 * Utils
 #+BEGIN_SRC emacs-lisp
