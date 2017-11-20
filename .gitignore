@@ -14,3 +14,5 @@ emacs.d/elpa
 /emacs.d/var/pcache/cache
 /emacs.d/magithub
 /emacs.d/ido.last
+/emacs.d/newsticker
+/emacs.d/quelpa
