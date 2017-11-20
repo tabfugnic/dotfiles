@@ -238,11 +238,11 @@ Use evil mode for most editing
   (use-package evil
     :diminish undo-tree-mode
     :init
+    (setq evil-toggle-key "C-`")
     (use-package linum-relative)
     (use-package evil-surround
       :config
       (global-evil-surround-mode 1))
-    (setq evil-toggle-key "C-`")
     :config
     (evil-mode 1))
 #+END_SRC
