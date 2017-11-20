@@ -663,7 +663,8 @@ Definitely need Slim and HAML mode
   (setq interpreter-mode-alist (cons '("yaml" . yaml-mode) interpreter-mode-alist)))
 #+END_SRC
 
-* RSS
+* Applications
+** RSS
 Newsticker for RSS feeds
 
 #+BEGIN_SRC emacs-lisp
@@ -677,7 +678,7 @@ Newsticker for RSS feeds
     (evil-set-initial-state 'elfeed-show-mode 'emacs))
 #+END_SRC
 
-* Blog
+** Blog
 
 Setup blog
 #+BEGIN_SRC emacs-lisp
@@ -703,25 +704,7 @@ Setup blog
                       "\\\s" "-" (downcase string))))
 #+END_SRC
 
-* Git(Magit)
-#+BEGIN_SRC emacs-lisp
-  (use-package magit
-    :bind ("C-x g" . magit-status)
-    ;; :init
-    ;; (use-package magithub
-    ;;   :after magit
-    ;;   :config (magithub-feature-autoinject t))
-    :config
-    (magit-define-popup-action 'magit-branch-popup
-      ?K "Delete local and remote" 'tabfugnic/magit-delete-branch)
-
-    (defun tabfugnic/magit-delete-branch (branch)
-      (interactive
-       (magit-read-local-branch "Delete branch" (magit-get-previous-branch)))
-      (magit-run-git "delete-branch" "" branch)))
-#+END_SRC
-
-* Email(mu4e)
+** Email(mu4e)
 Use mu4e for all email. This takes advantage of offlineimap and msmtp
 
 #+BEGIN_SRC emacs-lisp
@@ -853,6 +836,82 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
              (mu4e-mark-at-point 'trash msg)))))))
 #+END_SRC
 
+** ERC
+#+BEGIN_SRC emacs-lisp
+(use-package erc
+  :bind ("C-c e r" . tabfugnic/reset-erc-track-mode)
+  :init
+
+  (use-package erc-image
+    :config
+    (add-to-list 'erc-modules 'image))
+
+  (setq erc-prompt-for-nickserv-password nil)
+  (setq erc-fill-function 'erc-fill-static)
+  (setq erc-fill-static-center 22)
+  (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "MODE"))
+  (setq erc-hide-list '("JOIN" "PART" "QUIT" "MODE"))
+
+  (setq erc-keywords '("\\NYC\\b"
+                       "\\nyc\\b"
+                       "\\pr\\b"
+                       "\\PR\\b"
+                       "\\:statue_of_liberty:\\b"
+                       "\\corgi\\b"))
+
+  (setq ercn-notify-rules
+        '((current-nick . all)
+          (keyword . all)))
+
+  (add-hook 'ercn-notify 'tabfugnic/do-notify)
+
+  :config
+  (erc-update-modules)
+
+  (require 'erc-join)
+  (setq erc-autojoin-channels-alist
+        '(("thoughtbot" "#general")
+          ("freenode.net" "#thoughtbot" "#emacs")))
+  (erc-autojoin-enable))
+
+(defun tabfugnic/erc-start-or-switch ()
+  "Connect to ERC, or switch to last active buffer"
+  (interactive)
+  (cond
+    ((get-buffer "irc.freenode.net:6667")
+     (erc-track-switch-buffer 1))
+    (t
+     (erc :server "irc.freenode.net" :port 6667 :nick "tabfugnic")
+     (erc-ssl :server "thoughtbot.irc.slack.com" :port 6667 :nick "eric")
+     )))
+
+(defun tabfugnic/reset-erc-track-mode ()
+  (interactive)
+  (setq erc-modified-channels-alist nil)
+  (erc-modified-channels-display))
+
+(defun tabfugnic/do-notify (nickname message)
+  (with-temp-buffer
+    (shell-command (format "notify-send '%s: %s' -t 5000" nickname message) t)))
+#+END_SRC
+* Git(Magit)
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :bind ("C-x g" . magit-status)
+    ;; :init
+    ;; (use-package magithub
+    ;;   :after magit
+    ;;   :config (magithub-feature-autoinject t))
+    :config
+    (magit-define-popup-action 'magit-branch-popup
+      ?K "Delete local and remote" 'tabfugnic/magit-delete-branch)
+
+    (defun tabfugnic/magit-delete-branch (branch)
+      (interactive
+       (magit-read-local-branch "Delete branch" (magit-get-previous-branch)))
+      (magit-run-git "delete-branch" "" branch)))
+#+END_SRC
+
 * Org mode
 #+BEGIN_SRC emacs-lisp
   (use-package org
@@ -918,64 +977,6 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
     (define-key org-mode-map (kbd "C-c f") 'org-complete-and-archive))
 #+END_SRC
 
-* ERC
-#+BEGIN_SRC emacs-lisp
-(use-package erc
-  :bind ("C-c e r" . tabfugnic/reset-erc-track-mode)
-  :init
-
-  (use-package erc-image
-    :config
-    (add-to-list 'erc-modules 'image))
-
-  (setq erc-prompt-for-nickserv-password nil)
-  (setq erc-fill-function 'erc-fill-static)
-  (setq erc-fill-static-center 22)
-  (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "MODE"))
-  (setq erc-hide-list '("JOIN" "PART" "QUIT" "MODE"))
-
-  (setq erc-keywords '("\\NYC\\b"
-                       "\\nyc\\b"
-                       "\\pr\\b"
-                       "\\PR\\b"
-                       "\\:statue_of_liberty:\\b"
-                       "\\corgi\\b"))
-
-  (setq ercn-notify-rules
-        '((current-nick . all)
-          (keyword . all)))
-
-  (add-hook 'ercn-notify 'tabfugnic/do-notify)
-
-  :config
-  (erc-update-modules)
-
-  (require 'erc-join)
-  (setq erc-autojoin-channels-alist
-        '(("thoughtbot" "#general")
-          ("freenode.net" "#thoughtbot" "#emacs")))
-  (erc-autojoin-enable))
-
-(defun tabfugnic/erc-start-or-switch ()
-  "Connect to ERC, or switch to last active buffer"
-  (interactive)
-  (cond
-    ((get-buffer "irc.freenode.net:6667")
-     (erc-track-switch-buffer 1))
-    (t
-     (erc :server "irc.freenode.net" :port 6667 :nick "tabfugnic")
-     (erc-ssl :server "thoughtbot.irc.slack.com" :port 6667 :nick "eric")
-     )))
-
-(defun tabfugnic/reset-erc-track-mode ()
-  (interactive)
-  (setq erc-modified-channels-alist nil)
-  (erc-modified-channels-display))
-
-(defun tabfugnic/do-notify (nickname message)
-  (with-temp-buffer
-    (shell-command (format "notify-send '%s: %s' -t 5000" nickname message) t)))
-#+END_SRC
 * Utils
 #+BEGIN_SRC emacs-lisp
 (defun gitrep()
