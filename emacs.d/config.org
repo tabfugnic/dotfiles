@@ -671,7 +671,8 @@ Newsticker for RSS feeds
     :bind ("C-x w" . elfeed)
     :init
     (use-package elfeed-org
-      :init (setq rmh-elfeed-org-files (list "~/cloud/org/rss.org")))
+      :init (setq rmh-elfeed-org-files (list "~/cloud/org/rss.org"))
+      :config (elfeed-org))
     (evil-set-initial-state 'elfeed-search-mode 'emacs)
     (evil-set-initial-state 'elfeed-show-mode 'emacs))
 #+END_SRC
