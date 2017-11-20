@@ -13,7 +13,7 @@ fi
 ##### Baseline exports #####
 
 export dev="$HOME/dev"
-export blog="$personal_dev/personal-blog"
+export blog="$HOME/blog"
 export personal_dev="$dev/tabfugnic"
 export dotfiles="$dev/dotfiles"
 export thoughtbot_dev="$dev/thoughtbot"
