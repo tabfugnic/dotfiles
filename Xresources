@@ -5,3 +5,4 @@ UXTerm*rightScrollBar: true
 UXTerm*scrollBar: true
 UXTerm*scrollbar.width: 8
 UXTerm*selectToClipboard: true
+Xft.dpi: 133
