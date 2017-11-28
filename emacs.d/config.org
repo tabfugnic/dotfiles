@@ -928,39 +928,39 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
     (require 'org-agenda)
     (setq org-directory "~/cloud/org/")
 
-    (defun org-file (file)
+    (defun tabfugnic/org-file (file)
       (concat org-directory file))
 
-    (setq org-agenda-files (list (org-file "index.org")))
+    (setq org-agenda-files (list (tabfugnic/org-file "index.org")))
 
     (setq org-capture-templates
-          '(("t" "TODO"
+          `(("t" "TODO"
              entry
-             (file (org-file "index.org"))
+             (file ,(tabfugnic/org-file "index.org"))
             "* TODO %?\n")
             ("v" "Travel"
              plain
-             (file (org-file "travel.org"))
+             (file ,(tabfugnic/org-file "travel.org"))
              "* %a\n %^G\n")
             ("i" "Idea"
              entry
-             (file (org-file "ideas.org"))
+             (file ,(tabfugnic/org-file "ideas.org"))
              "* %?\n %u\n")
             ("m" "Movies"
              entry
-             (file (org-file "movies.org"))
+             (file ,(tabfugnic/org-file "movies.org"))
              "* TODO %?\n %u\n")
             ("n" "Names"
              entry
-             (file (org-file "names.org"))
+             (file ,(tabfugnic/org-file "names.org"))
              "* %? :boy:\n")
             ("c" "Configurations"
              entry
-             (file (org-file "config.org"))
+             (file ,(tabfugnic/org-file "config.org"))
              "* %?\n")
             ("r" "RSS Feeds"
              entry
-             (file (org-file "rss.org"))
+             (file ,(tabfugnic/org-file "rss.org"))
              "** [[%x][%?]]")))
 
     (defun org-agenda-complete-and-archive ()
