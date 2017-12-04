@@ -198,3 +198,4 @@ exec feh --bg-center ~/wallpaper/gnu_not_unix.jpg
 
 # Window configs
 for_window [instance="StopRSI"] sticky enable
+for_window [instance="Slack Call Minipanel"] floating enable, sticky enable
