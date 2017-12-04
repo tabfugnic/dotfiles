@@ -960,8 +960,8 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
              "* %?\n")
             ("r" "RSS Feeds"
              entry
-             (file ,(tabfugnic/org-file "rss.org"))
-             "** [[%x][%?]]")))
+             (file+headline ,(tabfugnic/org-file "rss.org") "Unsorted Feeds")
+             "*** [[%x][%?]]")))
 
     (defun org-agenda-complete-and-archive ()
       (interactive)
