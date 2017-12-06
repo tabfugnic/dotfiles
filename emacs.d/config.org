@@ -429,7 +429,9 @@ Helm for most things involving input
 #+BEGIN_SRC emacs-lisp
   (use-package helm
     :diminish helm-mode
-    :bind ("M-x" . helm-M-x)
+    :bind
+    ("M-x" . helm-M-x)
+    ("C-S-s" . helm-do-ag-project-root)
     :init
     (use-package helm-ag
       :init
