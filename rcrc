@@ -1,4 +1,4 @@
-EXCLUDES="scripts README.md"
+EXCLUDES="README.md"
 SYMLINK_DIRS="emacs.d bash"
 UNDOTTED="bin"
 DOTFILES_DIRS="$HOME/dev/dotfiles $HOME/dev/thoughtbot/dotfiles"
