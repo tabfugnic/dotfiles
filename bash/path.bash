@@ -22,3 +22,5 @@ export PATH="$PATH:$HOME/.local/bin"
 
 # Heroku
 export PATH="/usr/local/heroku/bin:$PATH"
+
+export PATH="$HOME/.cargo/bin:$PATH"
