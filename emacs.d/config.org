@@ -920,13 +920,26 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
     :bind (("C-c l" . org-store-link)
            ("C-c c" . org-capture)
            ("C-c a" . org-agenda)
-           ("C-c b" . org-iswitchb))
+           ("C-c b" . org-iswitchb)
+           :map org-agenda-mode-map
+           ("C-c f" . tabfugnic/org-agenda-complete-and-archive)
+           :map org-mode-map
+           ("C-c f" . tabfugnic/org-agenda-complete-and-archive))
     :init
     (use-package org-journal
       :init
       (setq org-journal-dir "~/cloud/journal")
       (setq org-journal-date-format "%A %Y/%m/%d")
       (add-hook 'org-journal-mode-hook 'auto-fill-mode))
+    (use-package org-caldav
+      :init
+      (setq org-caldav-url "https://cloud.ericj.co/remote.php/dav/addressbooks/users/tabfugnic")
+      (setq org-caldav-calendar-id "Contacts")
+      (setq org-caldev-inbox "~/contacts.org"))
+
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((shell . t)))
     (require 'org-agenda)
     (setq org-directory "~/cloud/org/")
 
@@ -965,18 +978,15 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
              (file+headline ,(tabfugnic/org-file "rss.org") "Unsorted Feeds")
              "*** [[%x][%?]]")))
 
-    (defun org-agenda-complete-and-archive ()
+    (defun tabfugnic/org-agenda-complete-and-archive ()
       (interactive)
       (org-agenda-todo 'done)
       (org-agenda-archive-default))
 
-    (defun org-complete-and-archive ()
+    (defun tabfugnic/org-complete-and-archive ()
       (interactive)
       (org-todo 'done)
-      (org-archive-default))
-
-    (define-key org-agenda-mode-map (kbd "C-c f") 'org-agenda-complete-and-archive)
-    (define-key org-mode-map (kbd "C-c f") 'org-complete-and-archive))
+      (org-archive-default)))
 #+END_SRC
 
 * Utils
