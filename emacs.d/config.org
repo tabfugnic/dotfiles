@@ -745,28 +745,11 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
                             (when msg
                               (mu4e-message-contact-field-matches
                                msg
-                               :to "tabfugnic@gmail.com")))
+                               :to "me@ericj.co")))
               :enter-func '()
               :leave-func (lambda () (mu4e-clear-caches))
               :vars '((mu4e-maildir . "~/mail/personal")
                       (mu4e-mu-home . "~/.mu/personal")
-                      (user-mail-address . "tabfugnic@gmail.com")
-                      (mu4e-compose-signature . (concat
-                                                 "Eric J. Collins\n"
-                                                 "Software Developer\n"
-                                                 "thoughtbot\n")
-                                              )))
-            ,(make-mu4e-context
-              :name "fastmail"
-              :match-func (lambda (msg)
-                            (when msg
-                              (mu4e-message-contact-field-matches
-                               msg
-                               :to "me@ericj.co")))
-              :enter-func '()
-              :leave-func (lambda () (mu4e-clear-caches))
-              :vars '((mu4e-maildir . "~/mail/fastmail")
-                      (mu4e-mu-home . "~/.mu/fastmail")
                       (user-mail-address . "me@ericj.co")
                       (mu4e-compose-signature . (concat
                                                  "Eric J. Collins\n"
@@ -789,7 +772,25 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
                                                  "Eric J. Collins\n"
                                                  "Software Developer\n"
                                                  "thoughtbot\n")
-                                              )))))
+                                              )))
+            ,(make-mu4e-context
+              :name "legacy"
+              :match-func (lambda (msg)
+                            (when msg
+                              (mu4e-message-contact-field-matches
+                               msg
+                               :to "tabfugnic@gmail.com")))
+              :enter-func '()
+              :leave-func (lambda () (mu4e-clear-caches))
+              :vars '((mu4e-maildir . "~/mail/legacy")
+                      (mu4e-mu-home . "~/.mu/legacy")
+                      (user-mail-address . "tabfugnic@gmail.com")
+                      (mu4e-compose-signature . (concat
+                                                 "Eric J. Collins\n"
+                                                 "Software Developer\n"
+                                                 "thoughtbot\n")
+                                              )))
+            ))
 
     (setq mu4e-drafts-folder "/drafts")
     (setq mu4e-sent-folder   "/sent")

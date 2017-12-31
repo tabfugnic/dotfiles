@@ -4,7 +4,6 @@ GMAIL_FOLDER_MAP = {
     "archive": "[Gmail]/All Mail",
     "drafts":  "[Gmail]/Drafts",
     "sent":    "[Gmail]/Sent Mail",
-    "trash":   "[Gmail]/Trash",
 }
 
 INVERSE_GMAIL_FOLDER_MAP = {v:k for k,v in GMAIL_FOLDER_MAP.items()}
@@ -15,7 +14,6 @@ FASTMAIL_FOLDER_MAP = {
     "archive": "Archive",
     "drafts":  "Drafts",
     "sent":    "Sent",
-    "trash":   "Trash",
 }
 
 INVERSE_FASTMAIL_FOLDER_MAP = {v:k for k,v in FASTMAIL_FOLDER_MAP.items()}
