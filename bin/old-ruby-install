@@ -1,0 +1,6 @@
+#! /bin/sh
+
+ruby-install --latest
+sudo apt-get install libssl1.0-dev -y
+ruby-install $1 $2 --no-install-deps
+sudo apt-get install libssl-dev -y
