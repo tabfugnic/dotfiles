@@ -772,25 +772,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
                                                  "Eric J. Collins\n"
                                                  "Software Developer\n"
                                                  "thoughtbot\n")
-                                              )))
-            ,(make-mu4e-context
-              :name "legacy"
-              :match-func (lambda (msg)
-                            (when msg
-                              (mu4e-message-contact-field-matches
-                               msg
-                               :to "tabfugnic@gmail.com")))
-              :enter-func '()
-              :leave-func (lambda () (mu4e-clear-caches))
-              :vars '((mu4e-maildir . "~/mail/legacy")
-                      (mu4e-mu-home . "~/.mu/legacy")
-                      (user-mail-address . "tabfugnic@gmail.com")
-                      (mu4e-compose-signature . (concat
-                                                 "Eric J. Collins\n"
-                                                 "Software Developer\n"
-                                                 "thoughtbot\n")
-                                              )))
-            ))
+                                              )))))
 
     (setq mu4e-drafts-folder "/drafts")
     (setq mu4e-sent-folder   "/sent")
@@ -802,8 +784,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
     (setq mu4e-compose-dont-reply-to-self t)
     (setq user-full-name  "Eric J Collins")
     (setq mu4e-update-interval 180)
-    (setq mu4e-user-mail-address-list
-          '("eric@thoughtbot.com" "me@ericj.co" "tabfugnic@gmail.com"))
+    (setq mu4e-user-mail-address-list '("eric@thoughtbot.com" "me@ericj.co"))
 
     (setq message-send-mail-function 'message-send-mail-with-sendmail)
     (setq sendmail-program "/usr/bin/msmtp")

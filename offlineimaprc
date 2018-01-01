@@ -1,32 +1,7 @@
 [general]
-accounts = legacy, thoughtbot, fastmail
+accounts = personal, thoughtbot
 pythonfile = ~/.offlineimap/config.py
 maxsyncaccounts = 3
-
-[Account legacy]
-localrepository = legacy-local
-remoterepository = legacy-remote
-synclabels = yes
-labelsheader = X-Keywords
-autorefresh = 0.5
-
-[Repository legacy-local]
-type = GmailMaildir
-localfolders = ~/mail/legacy
-nametrans = local_folder_to_gmail_folder
-
-[Repository legacy-remote]
-type = Gmail
-holdconnectionopen = yes
-keepalive = 60
-maxconnections = 3
-realdelete = no
-remoteuser = tabfugnic@gmail.com
-remotepasseval = find_password("mail/legacy-gmail")
-auth_mechanisms = PLAIN
-folderfilter = should_include_gmail_folder
-nametrans = gmail_folder_to_local_folder
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
 [Account thoughtbot]
 localrepository = thoughtbot-local
@@ -61,7 +36,7 @@ autorefresh = 0.5
 [Repository personal-local]
 type = Maildir
 localfolders = ~/mail/personal
-nametrans = local_folder_to_personal_folder
+nametrans = local_folder_to_fastmail_folder
 
 [Repository personal-remote]
 type = IMAP
@@ -70,9 +45,9 @@ ssl = yes
 holdconnectionopen = yes
 keepalive = 60
 realdelete = no
-folderfilter = should_include_personal_folder
-nametrans = personal_folder_to_local_folder
-remotehost = imap.personal.com
+folderfilter = should_include_fastmail_folder
+nametrans = fastmail_folder_to_local_folder
+remotehost = imap.fastmail.com
 remoteuser = me@ericj.co
 remotepasseval = find_password("mail/fastmail_laptop")
-slcacertfile = /etc/ssl/certs/ca-certificates.crt
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
