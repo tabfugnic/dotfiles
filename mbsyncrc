@@ -1,0 +1,81 @@
+Create Both
+Expunge Both
+SyncState *
+
+IMAPAccount personal
+Host imap.fastmail.com
+User me@ericj.co
+PassCmd "pass mail/fastmail_laptop"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore personal-remote
+Account personal
+
+MaildirStore personal-local
+Path ~/mail/personal/
+Inbox ~/mail/personal/inbox
+
+Channel personal-default
+Master :personal-remote:
+Slave :personal-local:
+Patterns "INBOX"
+
+Channel personal-archive
+Master :personal-remote:Archive
+Slave :personal-local:archive
+
+Channel personal-draft
+Master :personal-remote:Drafts
+Slave :personal-local:drafts
+
+Channel personal-sent
+Master :personal-remote:Sent
+Slave :personal-local:sent
+
+Group personal
+Channel personal-default
+Channel personal-draft
+Channel personal-archive
+Channel personal-sent
+
+IMAPAccount thoughtbot
+Host imap.gmail.com
+User eric@thoughtbot.com
+PassCmd "pass thoughtbot/gmail"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore thoughtbot-remote
+Account thoughtbot
+
+MaildirStore thoughtbot-local
+Path ~/mail/thoughtbot/
+Inbox ~/mail/thoughtbot/INBOX
+
+Channel thoughtbot
+Master :thoughtbot-remote:
+Slave :thoughtbot-local:
+
+Channel thoughtbot-default
+Master :thoughtbot-remote:
+Slave :thoughtbot-local:
+Patterns "INBOX"
+
+Channel thoughtbot-archive
+Master :thoughtbot-remote:"\[Gmail\]/All Mail"
+Slave :thoughtbot-local:archive
+
+Channel thoughtbot-draft
+Master :thoughtbot-remote:"\[Gmail\]/Drafts"
+Slave :thoughtbot-local:drafts
+
+Channel thoughtbot-sent
+Master :thoughtbot-remote:"\[Gmail\]/Sent Mail"
+Slave :thoughtbot-local:sent
+
+Group thoughtbot
+Channel thoughtbot-default
+Channel thoughtbot-draft
+Channel thoughtbot-archive
+Channel thoughtbot-sent

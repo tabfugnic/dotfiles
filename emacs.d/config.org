@@ -728,7 +728,6 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
       (setq mu4e-maildir-shortcuts
             '( ("/INBOX"               . ?i)
                ("/sent"                . ?s)
-               ("/trash"               . ?t)
                ("/archive"             . ?a)))
 
       (mu4e-alert-set-default-style 'libnotify)
