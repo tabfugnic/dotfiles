@@ -212,16 +212,15 @@ Use a color theme
     :init
     (setq golden-ratio-auto-scale nil)
     (setq golden-ratio-extra-commands
-          (append golden-ratio-extra-commands
-                  '(evil-window-left
-                    evil-window-right
-                    evil-window-up
-                    evil-window-down
-                    select-window-1
-                    select-window-2
-                    select-window-3
-                    select-window-4
-                    select-window-5)))
+          '(evil-window-left
+            evil-window-right
+            evil-window-up
+            evil-window-down
+            select-window-1
+            select-window-2
+            select-window-3
+            select-window-4
+            select-window-5))
     :config
     (golden-ratio-mode 1))
 #+END_SRC
