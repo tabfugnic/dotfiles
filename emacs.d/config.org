@@ -598,7 +598,7 @@ Basic json parsing
 ** Ruby/Rails
 #+BEGIN_SRC emacs-lisp
 (use-package chruby
-  :config (chruby "2.4.1"))
+  :config (chruby "2.5.0"))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -626,7 +626,8 @@ Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
   :init
-  (add-to-list 'auto-mode-alist '("\\.html\\.erb$" . web-mode)))
+  (add-to-list 'auto-mode-alist '("\\.html\\.erb$" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.liquid$" . web-mode)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
