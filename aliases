@@ -29,6 +29,7 @@ alias tbot='cd $thoughtbot_dev'
 alias tab='cd $tabfugnic_dev'
 alias cur='cd $CURRENT_PROJECT_DIR'
 alias ft='cd $thoughtbot_dev/french_toast'
+alias enyc='cd $dev/emacsnyc/emacsnyc.github.io'
 
 ##### tar Shortcuts #####
 
