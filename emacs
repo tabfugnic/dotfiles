@@ -10,6 +10,10 @@
 
 ;;; Code:
 
+; Use package.el
+(package-initialize)
+
+; Load configuration
 (org-babel-load-file (concat user-emacs-directory "config.org"))
 
 ;;; emacs ends here

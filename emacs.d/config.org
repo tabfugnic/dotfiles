@@ -26,10 +26,8 @@ external dependencies and takes advantage of emacs' package library
 
 Manage packages and sources
 #+BEGIN_SRC emacs-lisp
-  (require 'package)
   (add-to-list 'package-archives
                '("melpa" . "https://melpa.org/packages/") t)
-  (package-initialize)
 #+END_SRC
 
 bootstrap use-package, so I can use it to manage everything else
