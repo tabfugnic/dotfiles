@@ -17,7 +17,7 @@ order += "time"
 
 wireless _first_ {
   format_up = "W: (%quality at %essid) %ip"
-  format_down = ""
+  format_down = "W: Down"
 }
 
 ethernet eth0 {
