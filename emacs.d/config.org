@@ -638,6 +638,7 @@ Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
     (add-hook 'web-mode-hook 'rspec-mode)
     (add-hook 'coffee-mode-hook 'rspec-mode)
     (add-hook 'ruby-mode-hook 'chruby-use-corresponding)
+    (setq rspec-command-options "--format progress")
     :config
     (defun tabfugnic/rspec-set-test-env()
         (interactive)
