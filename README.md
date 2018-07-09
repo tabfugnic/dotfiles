@@ -14,7 +14,7 @@ These are my dotfiles
 env RCRC=$HOME/dev/dotfiles/rcrc rcup
 ```
 
-Any updates to dotfiles can be done by simply running
+If any files are removed or created, you can propagate these changes using:
 
 ```
 rcup
