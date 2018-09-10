@@ -144,6 +144,9 @@ mode "$mode_system" {
 }
 bindsym $mod+Delete mode "$mode_system"
 
+# Capture to inbox
+bindsym --release $mod+i exec --no-startup-id capture
+
 # Capture
 bindsym --release $mod+c exec scrot -se 'mv $f ~/Pictures/captures/.'
 bindsym --release $mod+Shift+c exec record-gif
@@ -165,8 +168,8 @@ bindsym XF86Display exec xrandr --auto
 bindsym F7 exec xrandr --auto && xrandr --output eDP1 --off
 
 # Assign apps to workspaces
-assign [class="Emacs"] → 1: emacs
-assign [class="emacs"] → 1: emacs
+assign [class="Emacs" instance="[^capture]"] → 1: emacs
+assign [class="emacs" instance="[^capture]"] → 1: emacs
 assign [class="(?i)term"] → 2: terminal
 assign [class="Firefox"] → 3: browser
 assign [class="Iceweasel"] → 3: browser
@@ -174,7 +177,7 @@ assign [class="google-chrome"] → 9
 assign [class="Steam"] → 10: play
 
 # Launch software
-exec --no-startup-id redshift
+exec --no-startup-id fixed_redshift
 exec --no-startup-id dropbox start
 exec --no-startup-id emacs
 exec --no-startup-id firefox
@@ -194,3 +197,4 @@ exec feh --bg-center ~/wallpaper/gnu_not_unix.jpg
 # Window configs
 for_window [instance="StopRSI"] sticky enable
 for_window [instance="Slack Call Minipanel"] floating enable, sticky enable
+for_window [class="Emacs" instance="capture"] floating enable
