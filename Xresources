@@ -2,7 +2,6 @@ UXTerm*faceName: DejaVu Sans Mono Book
 UXTerm*faceSize: 11
 UXTerm*metaSendsEscape: true
 UXTerm*rightScrollBar: true
-UXTerm*scrollBar: true
-UXTerm*scrollbar.width: 8
+UXTerm*scrollBar: false
 UXTerm*selectToClipboard: true
 Xft.dpi: 133
