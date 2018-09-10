@@ -1,0 +1,50 @@
+#!/bin/bash
+
+LAPTOP_SCREENS=$(xrandr -q | grep "[^dis]connected" | cut -d" " -f1 | grep -E '^eDP1')
+NONLAPTOP_SCREENS=$(xrandr -q | grep "[^dis]connected" | cut -d" " -f1 | grep -E '[^eDP1]')
+ON_NONLAPTOP_SCREENS=$(xrandr -q | grep "[^dis]connected [0-9]\{3,4\}x[0-9]\{3,4\}+[0-9]+[0-9]")
+
+
+function manage_screens() {
+  screens=$1
+  action=$2
+
+  for screen in $screens; do
+    xrandr --output $screen --$action
+  done
+}
+
+turnoff_nonlaptop_screens() {
+  manage_screens $NONLAPTOP_SCREENS "off"
+}
+
+turnon_nonlaptop_screens() {
+  manage_screens $NONLAPTOP_SCREENS "auto"
+}
+
+turnoff_laptop_screen() {
+  manage_screens $LAPTOP_SCREENS "off"
+}
+
+turnon_laptop_screen() {
+  manage_screens $LAPTOP_SCREENS "auto"
+}
+
+while getopts ":ml" opt; do
+  case $opt in
+    m)
+      if [ -n "$ON_NONLAPTOP_SCREENS" ]; then
+        turnoff_nonlaptop_screens
+      fi
+      turnon_nonlaptop_screens
+      turnoff_laptop_screen
+      ;;
+    l)
+      turnon_laptop_screen
+      turnoff_nonlaptop_screens
+      ;;
+    \?)
+      echo "Invalid option -%OPTARG" >&2
+      ;;
+  esac
+done
