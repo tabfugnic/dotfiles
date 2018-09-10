@@ -1,12 +1,12 @@
 {
-  "border": "normal",
+  "border": "pixel",
   "floating": "auto_off",
   "layout": "splitv",
   "percent": 0.3,
   "type": "con",
   "nodes": [
     {
-      "border": "normal",
+      "border": "pixel",
       "current_border_width": 2,
       "floating": "auto_off",
       "geometry": {
@@ -23,14 +23,14 @@
       "type": "con"
     },
     {
-      "border": "normal",
+      "border": "pixel",
       "floating": "auto_off",
       "layout": "splitv",
       "percent": 0.5,
       "type": "con",
       "nodes": [
         {
-          "border": "normal",
+          "border": "pixel",
           "current_border_width": 2,
           "floating": "auto_off",
           "geometry": {
@@ -52,14 +52,14 @@
 }
 
 {
-  "border": "normal",
+  "border": "pixel",
   "floating": "auto_off",
   "layout": "splith",
   "percent": 0.7,
   "type": "con",
   "nodes": [
     {
-      "border": "normal",
+      "border": "pixel",
       "current_border_width": 2,
       "floating": "auto_off",
       "geometry": {
