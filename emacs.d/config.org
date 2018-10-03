@@ -560,6 +560,12 @@ Add imports to java file quickly and easily
 (use-package rjsx-mode)
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+  (use-package vue-mode
+    :init
+    (setq mmm-submode-decoration-level 0))
+#+END_SRC
+
 ** JSON
 Basic json parsing
 
