@@ -462,7 +462,9 @@ Use a better dired, now with extras
   (use-package projectile
     :diminish projectile-mode
     :config
-    (projectile-global-mode))
+    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+    (projectile-global-mode)
+)
 #+END_SRC
 
 ** Global and GGTags
