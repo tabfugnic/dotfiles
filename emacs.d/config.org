@@ -474,6 +474,15 @@ Use a better dired, now with extras
   (add-hook 'ruby-mode-hook ( lambda() ( ggtags-mode 1 ))))
 #+END_SRC
 
+** Important Files
+  #+BEGIN_SRC emacs-lisp
+    (defun tabfugnic/open-inbox ()
+    (interactive)
+     (find-file (expand-file-name "~/cloud/org/inbox.org")))
+
+    (global-set-key (kbd "C-c i") 'tabfugnic/open-inbox)
+#+END_SRC
+
 * Language/Programming
 ** Android
 
