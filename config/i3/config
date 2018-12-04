@@ -2,7 +2,7 @@
 set $mod Mod4
 
 # Font for window titles
-font pango: DejaVu Sans Mono Book 9
+font pango: DejaVu Sans Mono Book 10
 
 new_window 1pixel
 
