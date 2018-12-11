@@ -72,7 +72,7 @@ bindsym $mod+a focus parent
 bindsym $mod+1 workspace 1: emacs
 bindsym $mod+2 workspace 2: terminal
 bindsym $mod+3 workspace 3: browser
-bindsym $mod+4 workspace 4
+bindsym $mod+4 workspace 4: chat
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -84,7 +84,7 @@ bindsym $mod+0 workspace 10: play
 bindsym $mod+Shift+1 move container to workspace 1: emacs
 bindsym $mod+Shift+2 move container to workspace 2: terminal
 bindsym $mod+Shift+3 move container to workspace 3: browser
-bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+4 move container to workspace 4: chat
 bindsym $mod+Shift+5 move container to workspace number 5
 bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
@@ -173,6 +173,7 @@ assign [class="emacs" instance="[^capture]"] → 1: emacs
 assign [class="(?i)term"] → 2: terminal
 assign [class="Firefox"] → 3: browser
 assign [class="Iceweasel"] → 3: browser
+assign [class="Signal"] → 4: chat
 assign [class="google-chrome"] → 9
 assign [class="Steam"] → 10: play
 
