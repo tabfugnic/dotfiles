@@ -20,7 +20,7 @@ wireless _first_ {
   format_down = "W: Down"
 }
 
-ethernet eth0 {
+ethernet _first_ {
   # sudo setcap cap_net_admin=ep $(which i3status)
   format_up = "E: %ip (%speed)"
   format_down = ""
