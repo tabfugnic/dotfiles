@@ -963,15 +963,15 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
           `(("i" "inbox"
              entry
              (file ,(tabfugnic/org-file "inbox.org"))
-             "* %?\nSCHEDULED: %t\n%x\n")
+             "* %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n%x\n")
+            ("m" "Mail inbox"
+             entry
+             (file ,(tabfugnic/org-file "inbox.org"))
+             "* TODO %?\n%a\n:PROPERTIES:\n:CREATED: %U\n:END:\n%x\n")
             ("t" "TODO"
              entry
              (file ,(tabfugnic/org-file "todos.org"))
              "* TODO %?\n")
-            ("m" "Mail TODO"
-             entry
-             (file ,(tabfugnic/org-file "todos.org"))
-             "* TODO %?\nSCHEDULED: %t\n%a\n")
             ("h" "House"
              entry
              (file ,(tabfugnic/org-file "house.org"))
