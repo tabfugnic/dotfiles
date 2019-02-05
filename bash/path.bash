@@ -6,10 +6,9 @@ export PATH="$PATH:$GOPATH/bin"
 export ARDUINO_DIR="/usr/share/arduino"
 
 # Android
-export ARDMK_DIR="/usr"
-export AVR_TOOLS_DIR="/usr"
-export ANDROID_HOME="$HOME/opt/android"
+export ANDROID_HOME=$HOME/opt/android
 export PATH=$PATH:$HOME/opt/android/tools
+export PATH=$PATH:$HOME/opt/android/platform-tools
 
 # Parity
 export PATH="$PATH:$HOME/parity/bin"
