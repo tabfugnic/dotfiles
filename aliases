@@ -24,7 +24,7 @@ export sag="sudo apt-get"
 
 alias blog='cd $blog'
 alias dev='cd $dev'
-alias dot='cd $dotfiles'
+alias dotfiles='cd $dotfiles'
 alias tbot='cd $thoughtbot_dev'
 alias tab='cd $tabfugnic_dev'
 alias cur='cd $CURRENT_PROJECT_DIR'
