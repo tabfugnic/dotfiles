@@ -885,7 +885,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
                       (user-mail-address . "eric@thoughtbot.com")
                       (mu4e-compose-signature . (concat
                                                  "Eric J. Collins\n"
-                                                 "Software Developer\n"
+                                                 "Developer and Development Director\n"
                                                  "thoughtbot\n")
                                               )))))
 
