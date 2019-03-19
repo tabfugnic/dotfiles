@@ -237,6 +237,11 @@ Use ISO date standard
   (setq calendar-date-style 'iso)
 #+END_SRC
 
+* Env
+#+BEGIN_SRC emacs-lisp
+  (let ((go-path (shell-command-to-string ". ~/.bashrc; echo -n $GOPATH")))
+    (setenv "GOPATH" go-path))
+#+END_SRC
 * Edit Text
 ** Evil Mode
 
@@ -518,6 +523,34 @@ Auto compile elisp files on load/save.
   (setq load-prefer-newer t)
 #+END_SRC
 
+** Go
+#+BEGIN_SRC emacs-lisp
+  (use-package go-mode
+    :init
+    (use-package gotest
+      :bind
+      (:map go-mode-map
+            ("C-c , v" . go-test-current-test)
+            ("C-c , a" . go-test-current-project)
+            ("C-c , b" . go-test-current-benchmark)
+            ("C-c , x" . go-run))))
+
+  (use-package lsp-go
+    :commands lsp-go-mode
+    :init
+    (setq lsp-clients-clangd-executable "path to clangd")
+    (require 'lsp-clients)
+    (require 'company-lsp)
+    :config
+    (lsp-ui-sideline-mode nil)
+    (push 'company-lsp company-backends)
+    :hook
+    ((go-mode . lsp)
+     (go-mode . (lambda ()
+                  (setq company-idle-delay .2
+                        company-tooltip-limit 20)
+                  (set(make-local-variable 'company-backends) '(company-lsp))))))
+#+END_SRC
 ** Haskell
 #+BEGIN_SRC emacs-lisp
 (use-package haskell-mode
@@ -582,6 +615,25 @@ Basic json parsing
 
 #+BEGIN_SRC emacs-lisp
   (use-package json-mode)
+#+END_SRC
+
+** LSP
+Setup the language server protocol
+
+#+BEGIN_SRC emacs-lisp
+  (use-package lsp-mode
+    :ensure t
+    :commands lsp
+    :init
+    (require 'lsp-clients))
+
+  (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode)
+
+  (use-package company-lsp
+    :ensure t
+    :commands company-lsp)
 #+END_SRC
 
 ** Lua
@@ -662,6 +714,16 @@ Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
         (let ((root (directory-file-name (rspec-project-root))))
           (message "setting testing environment database")
           (shell-command (format "%s/bin/rails db:environment:set RAILS_ENV=test" root)))))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(use-package lsp-ruby
+  :ensure t
+  :config
+  (require 'company-lsp)
+  (push 'company-lsp company-backends)
+  :hook
+  ((ruby-mode . lsp)))
 #+END_SRC
 
 ** SCSS Mode
