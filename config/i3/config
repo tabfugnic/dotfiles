@@ -177,6 +177,8 @@ assign [class="Signal"] → 4: chat
 assign [class="google-chrome"] → 9
 assign [class="Steam"] → 10: play
 
+bindsym $mod+p workspace back_and_forth
+
 # Launch software
 exec --no-startup-id fixed_redshift
 exec --no-startup-id dropbox start
