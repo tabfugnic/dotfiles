@@ -462,6 +462,33 @@ Use a better dired, now with extras
 (require 'dired-x)
 #+END_SRC
 
+** Directory
+#+BEGIN_SRC emacs-lisp
+  (defun tabfugnic/next-file-in-directory(&optional number)
+    (interactive)
+    (or number (setq number 1))
+    (let
+        ((filename (file-name-nondirectory (buffer-file-name)))
+         (files (remove-if
+                 'file-directory-p
+                 (directory-files
+                  (file-name-directory (buffer-file-name))
+                  nil
+                  directory-files-no-dot-files-regexp))))
+      (find-file
+       (nth (mod (+ (position filename files :test 'equal) number)
+         (length files))
+        files))))
+
+  (defun tabfugnic/previous-file-in-directory()
+    (interactive)
+    (tabfugnic/next-file-in-directory -1))
+
+
+  (global-set-key (kbd "C-{") 'tabfugnic/previous-file-in-directory)
+  (global-set-key (kbd "C-}") 'tabfugnic/next-file-in-directory)
+#+END_SRC
+
 ** Projectile
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
