@@ -1,5 +1,5 @@
 # Go
-export GOPATH="$HOME/golang"
+export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
 
 # Arduino
