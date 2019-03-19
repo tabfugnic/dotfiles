@@ -23,7 +23,6 @@ wireless _first_ {
 ethernet _first_ {
   # sudo setcap cap_net_admin=ep $(which i3status)
   format_up = "E: %ip (%speed)"
-  format_down = ""
 }
 
 battery 0 {

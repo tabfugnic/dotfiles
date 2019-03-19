@@ -153,7 +153,7 @@ bindsym --release $mod+Shift+c exec record-gif
 
 # Volume
 bindsym XF86AudioLowerVolume exec /usr/bin/amixer set Master 5%- && /usr/bin/amixer set Master unmute
-bindsym XF86AudioRaiseVolume exec /usr/bin/amixer set Master 5%+ && /usr/bin/amixer set Master unmute
+bindsym XF86AudioRaiseVolume exec /usr/bin/amixer set Master 5%+ && /usr/bin/amixer set Master unmute; exec /usr/bin/amixer set Speaker unmute; exec /usr/bin/amixer set Headphone unmute
 bindsym XF86AudioMute exec /usr/bin/amixer set Master toggle; exec /usr/bin/amixer set Speaker unmute; exec /usr/bin/amixer set Headphone unmute
 bindsym XF86AudioMicMute exec /usr/bin/amixer set Capture toggle
 
