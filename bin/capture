@@ -1,17 +1,22 @@
 #!/bin/bash
 
 binary_name="$(cat /proc/$(xdotool getwindowpid $(xdotool getwindowfocus))/comm)"
-firefox_json="$HOME/.mozilla/firefox/*.default/sessionstore-backups/recovery.js"
+firefox_json="$HOME/.mozilla/firefox/*.default/sessionstore-backups/recovery.jsonlz4"
 
 copy_relavant_information_to_clipboard() {
   if [[ "$binary_name" == "firefox-esr" ]]; then
-    tab_index=$(($(jq '.windows[0].selected' $firefox_json)-1))
-    jq -r ".windows[0].tabs[$tab_index].entries[0].url" $firefox_json | xclip
+    json=$(lz4jsoncat $firefox_json)
+    tab_index=$(($(echo $json | jq '.windows[0].selected')-1))
+    echo $json | jq -r ".windows[0].tabs[$tab_index].entries[-1].url" | xclip
   fi
 }
 
 main() {
-  emacsclient -e "(make-capture-frame)"
+  if [[ "$binary_name" == "firefox-esr" ]]; then
+    emacsclient -e "(make-capture-frame \"c\")"
+  else
+    emacsclient -e "(make-capture-frame)"
+  fi
 }
 
 while getopts ":x" opt; do

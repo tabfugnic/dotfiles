@@ -145,7 +145,7 @@ mode "$mode_system" {
 bindsym $mod+Delete mode "$mode_system"
 
 # Capture to inbox
-bindsym --release $mod+i exec --no-startup-id capture
+bindsym --release $mod+i exec --no-startup-id capture -x
 
 # Capture
 bindsym --release $mod+c exec scrot -se 'mv $f ~/Pictures/captures/.'
