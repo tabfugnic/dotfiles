@@ -1,4 +1,5 @@
+COPY_ALWAYS="msmtprc"
 EXCLUDES="README.md"
 SYMLINK_DIRS="emacs.d bash"
 UNDOTTED="bin"
-DOTFILES_DIRS="$HOME/dev/dotfiles $HOME/dev/thoughtbot/dotfiles"
+DOTFILES_DIRS="~/dev/dotfiles ~/dev/thoughtbot/dotfiles"
