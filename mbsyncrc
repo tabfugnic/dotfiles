@@ -5,7 +5,7 @@ SyncState *
 IMAPAccount personal
 Host imap.fastmail.com
 User me@ericj.co
-PassCmd "pass mail/fastmail_laptop"
+PassCmd "pass fastmail.com/laptop"
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
@@ -42,7 +42,7 @@ Channel personal-sent
 IMAPAccount thoughtbot
 Host imap.gmail.com
 User eric@thoughtbot.com
-PassCmd "pass thoughtbot/gmail"
+PassCmd "pass mail.google.com/thoughtbot_laptop"
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
