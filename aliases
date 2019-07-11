@@ -19,6 +19,7 @@ export dotfiles="$dev/dotfiles"
 export thoughtbot_dev="$dev/thoughtbot"
 export tabfugnic_dev="$dev/tabfugnic"
 export sag="sudo apt-get"
+export sapt="sudo apt"
 
 ##### Directory Aliases #####
 
@@ -50,14 +51,15 @@ alias ldspoff='xrandr --output LVD1 -off'
 ##### Aptitude Shortcuts #####
 
 alias sag='$sag'
-alias sai='$sag install'
-alias saud='$sag update'
-alias saug='$sag upgrade'
-alias sadu='$sag dist-upgrade'
-alias saar='$sag autoremove'
-alias sar='$sag remove'
-alias sac='$sag clean'
-alias saac='$sag autoclean'
+alias sapt='$sapt'
+alias sai='$sapt install'
+alias saud='$sapt update'
+alias saug='$sapt upgrade'
+alias sadu='$sapt dist-upgrade'
+alias saar='$sapt autoremove'
+alias sar='$sapt remove'
+alias sac='$sapt clean'
+alias saac='$sapt autoclean'
 alias cleanup='saar -y && saac && sac'
 alias update='saud && saug -y && cleanup'
 alias full-update='saud && sadu -y && cleanup'
