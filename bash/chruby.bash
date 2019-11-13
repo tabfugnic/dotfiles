@@ -1,2 +1,6 @@
-. /usr/local/share/chruby/chruby.sh
-. /usr/local/share/chruby/auto.sh
+chruby_directory="/usr/local/share/chruby"
+
+if [ -d "$chruby_directory" ]; then
+   . $chruby_directory/chruby.sh
+   . $chruby_directory/auto.sh
+fi
