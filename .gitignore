@@ -4,6 +4,7 @@ session*
 projectile-bookmarks.eld
 xkcd/
 bookmarks
+*.cache
 
 /emacs.d/abbrev_defs
 /emacs.d/config.el
