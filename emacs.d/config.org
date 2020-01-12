@@ -968,8 +968,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 
   (require 'erc-join)
   (setq erc-autojoin-channels-alist
-        '(("thoughtbot" "#general")
-          ("freenode.net" "#thoughtbot" "#emacs")))
+        '(("freenode.net" "#thoughtbot" "#emacs" "#emacsnyc")))
   (erc-autojoin-enable))
 
 (defun tabfugnic/erc-start-or-switch ()
@@ -978,10 +977,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
   (cond
     ((get-buffer "irc.freenode.net:6667")
      (erc-track-switch-buffer 1))
-    (t
-     (erc :server "irc.freenode.net" :port 6667 :nick "tabfugnic")
-     (erc-ssl :server "thoughtbot.irc.slack.com" :port 6667 :nick "eric")
-     )))
+    (t (erc :server "irc.freenode.net" :port 6667 :nick "tabfugnic"))))
 
 (defun tabfugnic/reset-erc-track-mode ()
   (interactive)
