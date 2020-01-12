@@ -557,22 +557,6 @@ Auto compile elisp files on load/save.
             ("C-c , a" . go-test-current-project)
             ("C-c , b" . go-test-current-benchmark)
             ("C-c , x" . go-run))))
-
-  (use-package lsp-go
-    :commands lsp-go-mode
-    :init
-    (setq lsp-clients-clangd-executable "path to clangd")
-    (require 'lsp-clients)
-    (require 'company-lsp)
-    :config
-    (lsp-ui-sideline-mode nil)
-    (push 'company-lsp company-backends)
-    :hook
-    ((go-mode . lsp)
-     (go-mode . (lambda ()
-                  (setq company-idle-delay .2
-                        company-tooltip-limit 20)
-                  (set(make-local-variable 'company-backends) '(company-lsp))))))
 #+END_SRC
 ** Haskell
 #+BEGIN_SRC emacs-lisp
@@ -644,19 +628,19 @@ Basic json parsing
 Setup the language server protocol
 
 #+BEGIN_SRC emacs-lisp
-  (use-package lsp-mode
-    :ensure t
-    :commands lsp
-    :init
-    (require 'lsp-clients))
+    (use-package lsp-mode
+      :hook ((rust-mode . lsp)
+             (ruby-mode . lsp)
+             (go-mode . lsp))
+      :commands lsp)
 
-  (use-package lsp-ui
-    :ensure t
-    :commands lsp-ui-mode)
-
-  (use-package company-lsp
-    :ensure t
-    :commands company-lsp)
+    (use-package lsp-ui
+      :commands lsp-ui-mode
+      :config
+      (setq lsp-prefer-flymake nil))
+    (use-package company-lsp :commands company-lsp)
+    (use-package helm-lsp :commands helm-lsp-workspace-symbol)
+    (use-package dap-mode)
 #+END_SRC
 
 ** Lua
@@ -698,9 +682,6 @@ Setup the language server protocol
       :init (add-hook 'after-init-hook 'inf-ruby-switch-setup))
     (use-package ruby-end
       :diminish ruby-end-mode)
-    (use-package ruby-block
-      :diminish ruby-block-mode
-      :config (ruby-block-mode t))
     (use-package ruby-hash-syntax
       :bind ("C-c r h" . ruby-toggle-hash-syntax))
     (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
@@ -746,9 +727,27 @@ Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
   (require 'company-lsp)
   (push 'company-lsp company-backends)
   :hook
-  ((ruby-mode . lsp)))
+  ((ruby-mode . lsp)
+  (ruby-mode . (lambda ()
+                  (setq company-idle-delay .2
+                        company-tooltip-limit 20)
+                  (set(make-local-variable 'company-backends) '(company-lsp))))))
 #+END_SRC
 
+** Rust
+#+BEGIN_SRC emacs-lisp
+  (use-package rust-mode
+    :init
+    (setq rust-format-on-save 1))
+  (use-package cargo
+    :ensure t
+    :init
+    (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
+    (setq exec-path (append exec-path '("~/.cargo/bin"))))
+  (use-package flycheck-rust
+    :init
+    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+#+END_SRC
 ** SCSS Mode
 #+BEGIN_SRC emacs-lisp
 (use-package scss-mode
