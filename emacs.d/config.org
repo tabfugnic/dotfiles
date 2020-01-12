@@ -917,7 +917,8 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
                      (let ((email (cdar (mu4e-message-field msg :from))))
                        (or (string-match "\\@nytimes.com" email)
                            (string-match "\\@trello.com" email)
-                           (string-match "\\@github.com" email))))))
+                           (string-match "\\@github.com" email)
+                           (string-match "\\@notifications.heroku.com" email))))))
 
     (add-to-list 'mu4e-view-actions
                  '("xViewXWidget" . mu4e-action-view-with-xwidget) t)
