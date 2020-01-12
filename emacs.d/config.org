@@ -1021,9 +1021,10 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
       (add-hook 'org-journal-mode-hook 'auto-fill-mode))
     (use-package org-caldav
       :init
-      (setq org-caldav-url "https://cloud.ericj.co/remote.php/dav/addressbooks/users/tabfugnic")
-      (setq org-caldav-calendar-id "Contacts")
-      (setq org-caldev-inbox "~/contacts.org"))
+      (setq org-caldav-url "https://cloud.ericj.co/remote.php/dav/calendars/tabfugnic")
+      (setq org-caldav-calendar-id "calendar")
+      (setq org-caldev-inbox "/home/eric/calendar.org")
+      (setq org-icalendar-timezone "America/New_York"))
 
     (org-babel-do-load-languages
      'org-babel-load-languages
