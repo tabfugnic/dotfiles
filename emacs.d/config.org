@@ -45,6 +45,12 @@ Finally require use-package
   (eval-when-compile (require 'use-package))
 #+END_SRC
 
+** Diminish
+Diminish is used to simplify the modebar
+#+BEGIN_SRC emacs-lisp
+(use-package diminish)
+#+END_SRC
+
 * Visuals
 ** Interface
 Build interface to look how I want it to look
