@@ -431,13 +431,22 @@ Helm for most things involving input
     :bind
     ("M-x" . helm-M-x)
     ("C-S-s" . helm-do-ag-project-root)
+    ("C-x C-f" . helm-find-files)
     :init
     (use-package helm-ag
       :init
       (setq helm-M-x-fuzzy-match t))
     (progn
       (require 'helm-config)
-      (helm-mode)))
+      (helm-mode))
+    (use-package helm-tramp
+      :config
+      (add-hook 'helm-tramp-pre-command-hook
+                '(lambda ()
+                   (projectile-mode 0)))
+      (add-hook 'helm-tramp-quit-hook
+                '(lambda ()
+                   (projectile-mode 1)))))
 #+END_SRC
 
 ** Dired
