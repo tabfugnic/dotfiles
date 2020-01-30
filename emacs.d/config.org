@@ -44,7 +44,7 @@ bootstrap use-package, so I can use it to manage everything else
 ** Diminish
 Diminish is used to simplify the modebar
 #+BEGIN_SRC emacs-lisp
-  (use-package diminish)
+  (use-package diminish :defer t)
 #+END_SRC
 
 * Visuals
@@ -199,7 +199,7 @@ Use a color theme
     :init
     (use-package solarized-theme :defer t)
     (defun circular (items) (setf (cdr (last items)) items) items)
-    (setq tabfugnic/theme-list (circular '(solarized-light solarized-dark)))
+    (setq tabfugnic/theme-list (circular '(solarized-dark solarized-light)))
     (defun tabfugnic/cycle-theme()
       (interactive)
       (load-theme (pop tabfugnic/theme-list) t))
