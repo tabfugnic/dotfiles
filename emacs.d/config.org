@@ -31,23 +31,20 @@ Manage packages and sources
 
 bootstrap use-package, so I can use it to manage everything else
 #+BEGIN_SRC emacs-lisp
+  (setq use-package-verbose t)
+  (setq use-package-always-ensure t)
+
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
     (package-install 'use-package))
 
-  (setq use-package-verbose t)
-  (setq use-package-always-ensure t)
-#+END_SRC
-
-Finally require use-package
-#+BEGIN_SRC emacs-lisp
-  (eval-when-compile (require 'use-package))
+    (eval-when-compile (require 'use-package))
 #+END_SRC
 
 ** Diminish
 Diminish is used to simplify the modebar
 #+BEGIN_SRC emacs-lisp
-(use-package diminish)
+  (use-package diminish)
 #+END_SRC
 
 * Visuals
@@ -267,7 +264,7 @@ Use evil mode for most editing
       :config
       (global-evil-surround-mode 1))
     :config
-    (evil-mode t))
+    (evil-mode 1))
 #+END_SRC
 
 ** Editing
