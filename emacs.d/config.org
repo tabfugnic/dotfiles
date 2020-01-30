@@ -16,8 +16,7 @@ Rather than having custom change configurations in my emacs file
 point it to a local file that is not saved in version control.
 
 #+BEGIN_SRC emacs-lisp
-  (setq custom-file "~/.emacs.local")
-  (load custom-file :noerror)
+  (load "~/.emacs.local" :noerror)
 #+END_SRC
 
 ** Package Management(use-package)
@@ -101,6 +100,7 @@ Visual cue for when lines are too long
 
 #+BEGIN_SRC emacs-lisp
   (use-package whitespace
+    :defer t
     :diminish whitespace-mode
     :init
     (setq whitespace-line-column 80)
@@ -200,7 +200,7 @@ Use a color theme
     :bind
     ("C-|" . tabfugnic/cycle-theme)
     :init
-    (use-package solarized-theme)
+    (use-package solarized-theme :defer t)
     (defun circular (items) (setf (cdr (last items)) items) items)
     (setq tabfugnic/theme-list (circular '(solarized-light solarized-dark)))
     (defun tabfugnic/cycle-theme()
@@ -212,9 +212,19 @@ Use a color theme
 ** Golden ratio
 #+BEGIN_SRC emacs-lisp
   (use-package golden-ratio
+    :defer 1
     :diminish golden-ratio-mode
     :init
     (setq golden-ratio-auto-scale nil)
+    (setq golden-ratio-exclude-modes
+          '(elfeed-entry-mode
+            elfeed-search-mode
+            mu4e-headers-mode
+            mu4e-view-mode
+            mu4e-loading-mode
+            mu4e-org-mode
+            mu4e-main-mode
+            org-agenda-mode))
     (setq golden-ratio-extra-commands
           '(evil-window-left
             evil-window-right
@@ -226,14 +236,7 @@ Use a color theme
             select-window-4
             select-window-5))
     :config
-    (golden-ratio-mode 1))
-#+END_SRC
-
-** Wrap region
-#+BEGIN_SRC emacs-lisp
-(use-package wrap-region
-  :config
-  (wrap-region-mode t))
+    (golden-ratio-mode t))
 #+END_SRC
 
 ** Date
@@ -258,12 +261,13 @@ Use evil mode for most editing
     :diminish undo-tree-mode
     :init
     (setq evil-toggle-key "C-`")
-    (use-package linum-relative)
+    (use-package linum-relative :defer t)
     (use-package evil-surround
+      :defer t
       :config
       (global-evil-surround-mode 1))
     :config
-    (evil-mode 1))
+    (evil-mode t))
 #+END_SRC
 
 ** Editing
@@ -390,16 +394,11 @@ Use electric pair to automatically match surrounding characters
   (show-paren-mode 1)
 #+END_SRC
 
-** Move shit
-#+BEGIN_SRC emacs-lisp
-(use-package move-text
-  :config
-  (move-text-default-bindings))
-#+END_SRC
 * Support
 ** Company
 #+BEGIN_SRC emacs-lisp
   (use-package company
+    :defer t
     :diminish company-mode
     :init
     (add-hook 'after-init-hook 'global-company-mode))
@@ -408,14 +407,16 @@ Use electric pair to automatically match surrounding characters
 ** Yasnippet
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
+    :defer 1
     :diminish yas-minor-mode
     :config
-    (yas-global-mode 1))
+    (yas-global-mode t))
 #+END_SRC
 
 ** flycheck
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
+  :defer t
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode))
 #+END_SRC
@@ -434,12 +435,14 @@ Helm for most things involving input
     ("C-x C-f" . helm-find-files)
     :init
     (use-package helm-ag
+      :defer t
       :init
       (setq helm-M-x-fuzzy-match t))
     (progn
       (require 'helm-config)
       (helm-mode))
     (use-package helm-tramp
+      :defer t
       :config
       (add-hook 'helm-tramp-pre-command-hook
                 '(lambda ()
@@ -487,9 +490,10 @@ Use a better dired, now with extras
 ** Projectile
 #+BEGIN_SRC emacs-lisp
     (use-package projectile
+      :defer 3
       :diminish projectile-mode
       :init
-      (use-package helm-projectile)
+      (use-package helm-projectile :defer t)
       :config
       (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
       (projectile-global-mode))
@@ -498,7 +502,8 @@ Use a better dired, now with extras
 ** Global and GGTags
   #+BEGIN_SRC emacs-lisp
 (use-package ggtags
-  :config
+  :defer t
+  :init
   (add-hook 'ruby-mode-hook ( lambda() ( ggtags-mode 1 ))))
 #+END_SRC
 
@@ -518,7 +523,8 @@ Use android major mode
 
 #+BEGIN_SRC emacs-lisp
   (use-package android-mode
-    :config
+    :defer t
+    :init
     (custom-set-variables '(android-mode-sdk-dir "~/opt/android")))
 #+END_SRC
 
@@ -540,15 +546,18 @@ Auto compile elisp files on load/save.
 
 #+BEGIN_SRC emacs-lisp
   (use-package auto-compile
+    :defer t
+    :init
+    (setq load-prefer-newer t)
     :config
     (auto-compile-on-load-mode)
     (auto-compile-on-save-mode))
-  (setq load-prefer-newer t)
 #+END_SRC
 
 ** Go
 #+BEGIN_SRC emacs-lisp
   (use-package go-mode
+    :mode "\\.go$"
     :init
     (use-package gotest
       :bind
@@ -561,6 +570,7 @@ Auto compile elisp files on load/save.
 ** Haskell
 #+BEGIN_SRC emacs-lisp
 (use-package haskell-mode
+  :defer t
   :init
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
   (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
@@ -574,19 +584,21 @@ Auto compile elisp files on load/save.
 ** HTML/CSS
 #+BEGIN_SRC emacs-lisp
 (use-package emmet-mode
+  :defer t
   :init
-  (add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2))))
+  (setq emmet-indentation 2))
 #+END_SRC
 
 ** Java
 
 Add imports to java file quickly and easily
 #+BEGIN_SRC emacs-lisp
-  (use-package java-imports)
+  (use-package java-imports :defer t)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
 (use-package eclim
+  :defer t
   :config
   (global-eclim-mode))
 #+END_SRC
@@ -601,18 +613,19 @@ Add imports to java file quickly and easily
 
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
+  :mode ("\\.js$")
   :init
-  (setq auto-mode-alist (cons '("\\.js$" . javascript-mode) auto-mode-alist))
   (setq js-indent-level 2))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
 ;; JSX mode
-(use-package rjsx-mode)
+(use-package rjsx-mode :defer t)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
   (use-package vue-mode
+    :defer t
     :init
     (setq mmm-submode-decoration-level 0))
 #+END_SRC
@@ -621,7 +634,7 @@ Add imports to java file quickly and easily
 Basic json parsing
 
 #+BEGIN_SRC emacs-lisp
-  (use-package json-mode)
+  (use-package json-mode :defer t)
 #+END_SRC
 
 ** LSP
@@ -640,84 +653,60 @@ Setup the language server protocol
       (setq lsp-prefer-flymake nil))
     (use-package company-lsp :commands company-lsp)
     (use-package helm-lsp :commands helm-lsp-workspace-symbol)
-    (use-package dap-mode)
+    (use-package dap-mode :defer t)
 #+END_SRC
 
 ** Lua
 #+BEGIN_SRC emacs-lisp
-  (use-package lua-mode)
+  (use-package lua-mode :defer t)
 #+END_SRC
 ** Markdown
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
-  :init
-  (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+  :mode ("\\.markdown$" "\\.md$"))
 #+END_SRC
 ** PHP
 #+BEGIN_SRC emacs-lisp
 (use-package php-mode
-  :init
-  (setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("\\.module$" . php-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("\\.install$" . php-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("\\.inc$" . php-mode) auto-mode-alist))
-
-  (setq interpreter-mode-alist (cons '("php" . php-mode) interpreter-mode-alist))
-  (setq auto-mode-alist (cons '("\\.phtml$" . php-mode) auto-mode-alist))
-  (setq interpreter-mode-alist (cons '("phtml" . php-mode) interpreter-mode-alist)))
+  :mode ("\\.php$" "\\.phtml")
+  :interpreter "php")
 #+END_SRC
 
 ** Ruby/Rails
 #+BEGIN_SRC emacs-lisp
 (use-package chruby
+  :hook (ruby-mode-hook . chruby-use-corresponding)
   :config (chruby "2.5.0"))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
   (use-package ruby-mode
+    :mode ("\\.rb$" "\\.rake$" "Gemfile" "Guardfile" "RakeFile")
+    :interpreter "ruby"
     :init
     (use-package inf-ruby
+      :defer t
       :init (add-hook 'after-init-hook 'inf-ruby-switch-setup))
     (use-package ruby-end
+      :defer t
       :diminish ruby-end-mode)
     (use-package ruby-hash-syntax
-      :bind ("C-c r h" . ruby-toggle-hash-syntax))
-    (setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
-    (setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))
-    (setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
-    (setq auto-mode-alist (cons '("Guardfile" . ruby-mode) auto-mode-alist))
-    (setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
-    (setq interpreter-mode-alist (append '(("ruby" . ruby-mode)) interpreter-mode-alist)))
+      :bind ("C-c r h" . ruby-toggle-hash-syntax)))
 #+END_SRC
 
 Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
 
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
-  :init
-  (add-to-list 'auto-mode-alist '("\\.html\\.erb$" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.liquid$" . web-mode)))
+  :mode ("\\.html\\.erb$" "\\.liquid$"))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
   (use-package rspec-mode
     :bind (:map rspec-mode ("C-c , u" . tabfugnic/rspec-set-test-env))
+    :hook (haml-mode html-mode slim-mode web-mode coffee-mode ruby-mode)
     :init
-    (add-hook 'haml-mode-hook 'rspec-mode)
-    (add-hook 'html-mode-hook 'rspec-mode)
-    (add-hook 'slim-mode-hook 'rspec-mode)
-    (add-hook 'web-mode-hook 'rspec-mode)
-    (add-hook 'coffee-mode-hook 'rspec-mode)
-    (add-hook 'ruby-mode-hook 'chruby-use-corresponding)
-    (setq rspec-command-options "--format progress")
-    :config
-    (defun tabfugnic/rspec-set-test-env()
-        (interactive)
-        (let ((root (directory-file-name (rspec-project-root))))
-          (message "setting testing environment database")
-          (shell-command (format "%s/bin/rails db:environment:set RAILS_ENV=test" root)))))
+    (setq rspec-command-options "--format progress"))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -737,25 +726,23 @@ Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
 ** Rust
 #+BEGIN_SRC emacs-lisp
   (use-package rust-mode
+    :defer t
     :init
-    (setq rust-format-on-save 1))
+    (setq rust-format-on-save t))
   (use-package cargo
-    :ensure t
+    :defer t
     :init
     (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
     (setq exec-path (append exec-path '("~/.cargo/bin"))))
   (use-package flycheck-rust
-    :init
-    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+    :hook (flycheck-mode . flycheck-rust-setup))
 #+END_SRC
 ** SCSS Mode
 #+BEGIN_SRC emacs-lisp
 (use-package scss-mode
+  :mode ("\\.scss$" "\\.scss\\.erb$")
+  :interpreter "scss"
   :init
-  (setq auto-mode-alist (cons '("\\.scss$" . scss-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("\\.scss.erb$" . scss-mode) auto-mode-alist))
-  (setq interpreter-mode-alist (cons '("scss" . scss-mode) interpreter-mode-alist))
-  (setq interpreter-mode-alist (cons '("scss.erb" . scss-mode) interpreter-mode-alist))
   (setq scss-compile-at-save nil)
   (setq css-indent-offset 2))
 #+END_SRC
@@ -764,16 +751,15 @@ Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
 Definitely need Slim and HAML mode
 
 #+BEGIN_SRC emacs-lisp
-  (use-package slim-mode)
-  (use-package haml-mode)
+  (use-package slim-mode :defer t)
+  (use-package haml-mode :defer t)
 #+END_SRC
 
 ** Yaml
 #+BEGIN_SRC emacs-lisp
 (use-package yaml-mode
-  :init
-  (setq auto-mode-alist (cons '("\\.yml$" . yaml-mode) auto-mode-alist))
-  (setq interpreter-mode-alist (cons '("yaml" . yaml-mode) interpreter-mode-alist)))
+  :mode ("\\.yml$" "\\.yaml$")
+  :interpreter "yaml")
 #+END_SRC
 
 * Applications
@@ -785,8 +771,10 @@ Newsticker for RSS feeds
     :bind ("C-x w" . elfeed)
     :init
     (use-package elfeed-org
+      :defer t
       :init (setq rmh-elfeed-org-files (list "~/cloud/org/rss.org"))
       :config (elfeed-org))
+    :config
     (evil-set-initial-state 'elfeed-search-mode 'emacs)
     (evil-set-initial-state 'elfeed-show-mode 'emacs))
 #+END_SRC
@@ -822,8 +810,8 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 
 #+BEGIN_SRC emacs-lisp
   (use-package mu4e
+    :defer t
     :load-path "/usr/local/share/emacs/site-lisp/mu4e"
-    :ensure f
     :bind ("C-x m" . mu4e)
     :init
     (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
@@ -835,15 +823,17 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
               (defun my-view-mode-hook ()
                 (epa-mail-mode)))
     (use-package mu4e-alert
+      :defer t
       :init
       (setq mu4e-maildir-shortcuts
             '( ("/INBOX"               . ?i)
                ("/sent"                . ?s)
                ("/archive"             . ?a)))
 
-      (mu4e-alert-set-default-style 'libnotify)
       (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
       (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display))
+      :config
+      (mu4e-alert-set-default-style 'libnotify)
 
 
     :config
@@ -939,8 +929,8 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 (use-package erc
   :bind ("C-c e r" . tabfugnic/reset-erc-track-mode)
   :init
-
   (use-package erc-image
+    :defer t
     :config
     (add-to-list 'erc-modules 'image))
 
@@ -1005,6 +995,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 * Org mode
 #+BEGIN_SRC emacs-lisp
   (use-package org
+    :defer t
     :bind (("C-c l" . org-store-link)
            ("C-c c" . org-capture)
            ("C-c a" . org-agenda)
@@ -1015,11 +1006,13 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
            ("C-c f" . tabfugnic/org-agenda-complete-and-archive))
     :init
     (use-package org-journal
+      :defer t
       :init
       (setq org-journal-dir "~/cloud/journal")
       (setq org-journal-date-format "%A %Y/%m/%d")
       (add-hook 'org-journal-mode-hook 'auto-fill-mode))
     (use-package org-caldav
+      :defer t
       :init
       (setq org-caldav-url "https://cloud.ericj.co/remote.php/dav/calendars/tabfugnic")
       (setq org-caldav-calendar-id "calendar")
@@ -1110,7 +1103,6 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 #+END_SRC
 
 * Utils
-
   #+BEGIN_SRC emacs-lisp
     ;; (setq tabfugnic/previous-commands '())
     (set-face-attribute 'comint-highlight-prompt nil
