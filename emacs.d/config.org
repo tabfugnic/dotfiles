@@ -213,6 +213,7 @@ Use a color theme
 ** Golden ratio
 #+BEGIN_SRC emacs-lisp
   (use-package golden-ratio
+    :bind ("C-:" . golden-ratio)
     :defer 1
     :diminish golden-ratio-mode
     :init
@@ -235,9 +236,7 @@ Use a color theme
             select-window-2
             select-window-3
             select-window-4
-            select-window-5))
-    :config
-    (golden-ratio-mode t))
+            select-window-5)))
 #+END_SRC
 
 ** Date
