@@ -403,15 +403,6 @@ Use electric pair to automatically match surrounding characters
     (add-hook 'after-init-hook 'global-company-mode))
 #+END_SRC
 
-** Yasnippet
-#+BEGIN_SRC emacs-lisp
-  (use-package yasnippet
-    :defer 1
-    :diminish yas-minor-mode
-    :config
-    (yas-global-mode t))
-#+END_SRC
-
 ** flycheck
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
