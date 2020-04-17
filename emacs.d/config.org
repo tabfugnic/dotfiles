@@ -19,6 +19,10 @@ point it to a local file that is not saved in version control.
   (load "~/.emacs.local" :noerror)
 #+END_SRC
 
+** Fix TLS
+#+BEGIN_SRC emacs-lisp
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+#+END_SRC
 ** Package Management(use-package)
 use-package will manage our all of our packages. It requires no
 external dependencies and takes advantage of emacs' package library
