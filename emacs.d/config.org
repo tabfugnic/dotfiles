@@ -479,14 +479,16 @@ Use a better dired, now with extras
 
 ** Projectile
 #+BEGIN_SRC emacs-lisp
-    (use-package projectile
-      :defer 3
-      :diminish projectile-mode
-      :init
-      (use-package helm-projectile :defer t)
+  (use-package projectile
+    :defer 3
+    :diminish projectile-mode
+    :init
+    (use-package helm-projectile
       :config
-      (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-      (projectile-global-mode))
+      (helm-projectile-on))
+    :config
+    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+    (projectile-global-mode))
 #+END_SRC
 
 ** Global and GGTags
