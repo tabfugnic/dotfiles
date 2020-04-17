@@ -501,7 +501,7 @@ Use a better dired, now with extras
 (use-package ggtags
   :defer t
   :init
-  (add-hook 'ruby-mode-hook ( lambda() ( ggtags-mode 1 ))))
+  (add-hook 'enh-ruby-mode-hook ( lambda() ( ggtags-mode 1 ))))
 #+END_SRC
 
 ** Important Files
@@ -640,7 +640,7 @@ Setup the language server protocol
 #+BEGIN_SRC emacs-lisp
     (use-package lsp-mode
       :hook ((rust-mode . lsp)
-             (ruby-mode . lsp)
+             (enh-ruby-mode . lsp)
              (go-mode . lsp))
       :commands lsp)
 
@@ -672,12 +672,12 @@ Setup the language server protocol
 ** Ruby/Rails
 #+BEGIN_SRC emacs-lisp
 (use-package chruby
-  :hook (ruby-mode-hook . chruby-use-corresponding)
+  :hook (enh-ruby-mode-hook . chruby-use-corresponding)
   :config (chruby "2.5.0"))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-  (use-package ruby-mode
+  (use-package enh-ruby-mode
     :mode ("\\.rb$" "\\.rake$" "Gemfile" "Guardfile" "RakeFile")
     :interpreter "ruby"
     :init
@@ -701,7 +701,7 @@ Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
 #+BEGIN_SRC emacs-lisp
   (use-package rspec-mode
     :bind (:map rspec-mode ("C-c , u" . tabfugnic/rspec-set-test-env))
-    :hook (haml-mode html-mode slim-mode web-mode coffee-mode ruby-mode)
+    :hook (haml-mode html-mode slim-mode web-mode coffee-mode enh-ruby-mode)
     :init
     (setq rspec-command-options "--format progress"))
 #+END_SRC
@@ -713,8 +713,8 @@ Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
   (require 'company-lsp)
   (push 'company-lsp company-backends)
   :hook
-  ((ruby-mode . lsp)
-  (ruby-mode . (lambda ()
+  ((enh-ruby-mode . lsp)
+  (enh-ruby-mode . (lambda ()
                   (setq company-idle-delay .2
                         company-tooltip-limit 20)
                   (set(make-local-variable 'company-backends) '(company-lsp))))))
