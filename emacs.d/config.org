@@ -701,20 +701,6 @@ Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
     (setq rspec-command-options "--format progress"))
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
-(use-package lsp-ruby
-  :ensure t
-  :config
-  (require 'company-lsp)
-  (push 'company-lsp company-backends)
-  :hook
-  ((enh-ruby-mode . lsp)
-  (enh-ruby-mode . (lambda ()
-                  (setq company-idle-delay .2
-                        company-tooltip-limit 20)
-                  (set(make-local-variable 'company-backends) '(company-lsp))))))
-#+END_SRC
-
 ** Rust
 #+BEGIN_SRC emacs-lisp
   (use-package rust-mode
