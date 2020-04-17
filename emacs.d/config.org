@@ -974,11 +974,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
     :bind (("C-c l" . org-store-link)
            ("C-c c" . org-capture)
            ("C-c a" . org-agenda)
-           ("C-c b" . org-iswitchb)
-           :map org-agenda-mode-map
-           ("C-c f" . tabfugnic/org-agenda-complete-and-archive)
-           :map org-mode-map
-           ("C-c f" . tabfugnic/org-agenda-complete-and-archive))
+           ("C-c b" . org-iswitchb))
     :init
     (use-package org-journal
       :defer t
@@ -1038,16 +1034,6 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
              entry
              (file+headline ,(tabfugnic/org-file "rss.org") "Unsorted Feeds")
              "*** [[%x][%?]]")))
-
-    (defun tabfugnic/org-agenda-complete-and-archive ()
-      (interactive)
-      (org-agenda-todo 'done)
-      (org-agenda-archive-default))
-
-    (defun tabfugnic/org-complete-and-archive ()
-      (interactive)
-      (org-todo 'done)
-      (org-archive-default))
 
     ;; Taken from
     ;; https://www.reddit.com/r/emacs/comments/6lzyg2/heres_how_to_do_emacsclient_global_orgcapture/
