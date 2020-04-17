@@ -263,7 +263,6 @@ Use evil mode for most editing
     (setq evil-toggle-key "C-`")
     (use-package linum-relative :defer t)
     (use-package evil-surround
-      :defer t
       :config
       (global-evil-surround-mode 1))
     :config
