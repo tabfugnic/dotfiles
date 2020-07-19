@@ -1,0 +1,15 @@
+#! /usr/bin/env sh
+
+# Run xidlehook
+xidlehook \
+  --not-when-fullscreen \
+  --not-when-audio \
+  --timer 600 \
+    'light -O; light -S 1' \
+    'light -I' \
+  --timer 10 \
+    'light -I; locker' \
+    '' \
+  --timer 3600 \
+    'i3exit suspend' \
+    ''

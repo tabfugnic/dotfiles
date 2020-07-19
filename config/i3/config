@@ -188,7 +188,7 @@ exec --no-startup-id setup_terminals
 exec --no-startup-id nextcloud
 
 # Auto lock screen
-exec --no-startup-id xautolock -locker "i3lock -c 171717" -notify 10 -notifier "notify-send 'LOCKING screen in 10 seconds'"
+exec --no-startup-id autolock
 
 # Remap control key
 exec setxkbmap -option ctrl:nocaps
