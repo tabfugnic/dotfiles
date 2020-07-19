@@ -746,15 +746,20 @@ Newsticker for RSS feeds
 
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed
-    :bind ("C-x w" . elfeed)
+    :bind ("C-x w" . tabfugnic/elfeed)
     :init
     (use-package elfeed-org
-      :defer t
-      :init (setq rmh-elfeed-org-files (list "~/cloud/org/rss.org"))
+      :init (setq rmh-elfeed-org-files (list "/home/eric/cloud/org/rss.org"))
       :config (elfeed-org))
     :config
     (evil-set-initial-state 'elfeed-search-mode 'emacs)
     (evil-set-initial-state 'elfeed-show-mode 'emacs))
+
+  (defun tabfugnic/elfeed()
+    "Open elfeed and force open from db."
+    (interactive)
+    (elfeed-db-load)
+    (elfeed))
 #+END_SRC
 
 ** Blog
