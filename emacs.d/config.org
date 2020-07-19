@@ -67,7 +67,7 @@ scroll bar and the toolbar
 Set font that is bit easier to read and nice and big
 
 #+BEGIN_SRC emacs-lisp
-  (set-default-font "-*-DejaVu Sans Mono-normal-normal-normal-*-22-*-*-*-m-0-iso10646-1")
+  (set-default-font "-*-DejaVu Sans Mono-normal-normal-normal-*-28-*-*-*-m-0-iso10646-1")
 #+END_SRC
 
 Give more descriptive names to buffers that have the same name. In
