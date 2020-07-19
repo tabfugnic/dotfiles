@@ -1,0 +1,4 @@
+#! /bin/sh
+
+i3lock -c 171717 -e &&
+  xrandr --auto

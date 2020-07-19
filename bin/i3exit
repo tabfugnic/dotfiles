@@ -1,20 +1,16 @@
 #!/bin/sh
-lock() {
-    i3lock -c 171717
-}
-
 case "$1" in
     lock)
-        lock
+        locker
         ;;
     logout)
         i3-msg exit
         ;;
     suspend)
-        lock && dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true
+        locker && dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true
         ;;
     hibernate)
-        lock && dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Hibernate" boolean:true
+        locker && dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Hibernate" boolean:true
         ;;
     reboot)
         dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Reboot" boolean:true
@@ -23,7 +19,7 @@ case "$1" in
         dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.PowerOff" boolean:true
         ;;
     *)
-        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        echo "Usage: $0 {locker|logout|suspend|hibernate|reboot|shutdown}"
         exit 2
 esac
 
