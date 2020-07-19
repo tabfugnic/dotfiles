@@ -158,10 +158,10 @@ bindsym XF86AudioMute exec /usr/bin/amixer set Master toggle; exec /usr/bin/amix
 bindsym XF86AudioMicMute exec /usr/bin/amixer set Capture toggle
 
 # Brightness
-bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
-bindsym Shift+XF86MonBrightnessUp exec /usr/bin/xbacklight -set 100
-bindsym Shift+XF86MonBrightnessDown exec /usr/bin/xbacklight -set 2
+bindsym XF86MonBrightnessUp exec /usr/bin/light -A 5
+bindsym XF86MonBrightnessDown exec /usr/bin/light -U 5
+bindsym Shift+XF86MonBrightnessUp exec /usr/bin/light -S 100
+bindsym Shift+XF86MonBrightnessDown exec /usr/bin/light -S 3
 
 # Display
 bindsym XF86Display exec display_monitor -l
