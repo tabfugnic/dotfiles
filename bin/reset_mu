@@ -1,0 +1,14 @@
+#! /bin/bash
+
+mu_index() {
+  namespace=$1
+
+  mu index --maildir=$HOME/mail/$namespace --muhome=$HOME/.mu/$namespace --rebuild
+}
+
+main() {
+  mu_index 'personal'
+  mu_index 'thoughtbot'
+}
+
+main
