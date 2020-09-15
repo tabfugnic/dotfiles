@@ -56,7 +56,7 @@ path_exists VPN {
 }
 
 time {
-  format = "%Y.%m.%d %H:%M"
+  format = "%Y-%m-%d %H:%M"
 }
 
 load {
