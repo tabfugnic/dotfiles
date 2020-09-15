@@ -16,7 +16,8 @@ Rather than having custom change configurations in my emacs file
 point it to a local file that is not saved in version control.
 
 #+BEGIN_SRC emacs-lisp
-  (load "~/.emacs.local" :noerror)
+  (setq custom-file "~/.emacs.local")
+  (load custom-file :noerror)
 #+END_SRC
 
 ** Fix TLS
