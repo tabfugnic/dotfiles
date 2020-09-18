@@ -1,0 +1,28 @@
+#!/bin/bash
+
+MAIN_DISPLAY="DisplayPort-1"
+SECONDARY_DISPLAY="HDMI-A-0"
+
+turnoff() {
+  echo "thing"
+  xrandr --output $SECONDARY_DISPLAY --off
+}
+
+turnon() {
+  xrandr --output $SECONDARY_DISPLAY --auto --right-of $MAIN_DISPLAY
+  i3-msg '[workspace="3: browser"]' move workspace to output right
+}
+
+while getopts ":nw" opt; do
+  case $opt in
+    n)
+      turnoff
+      ;;
+    w)
+      turnon
+      ;;
+    \?)
+      echo "Invalid option -%OPTARG" >&2
+      ;;
+  esac
+done
