@@ -1,0 +1,6 @@
+[Unit]
+Description=MSMTP Queue Service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/msmtp-runqueue.sh
