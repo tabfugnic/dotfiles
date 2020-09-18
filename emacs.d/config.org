@@ -458,14 +458,14 @@ Use a better dired, now with extras
     (or number (setq number 1))
     (let
         ((filename (file-name-nondirectory (buffer-file-name)))
-         (files (remove-if
+         (files (cl-remove-if
                  'file-directory-p
                  (directory-files
                   (file-name-directory (buffer-file-name))
                   nil
                   directory-files-no-dot-files-regexp))))
       (find-file
-       (nth (mod (+ (position filename files :test 'equal) number)
+       (nth (mod (+ (cl-position filename files :test 'equal) number)
          (length files))
         files))))
 
