@@ -252,6 +252,9 @@ Use ISO date standard
   (let ((go-path (shell-command-to-string ". ~/.bashrc; echo -n $GOPATH")))
     (setenv "GOPATH" go-path))
 #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (setq mml-secure-openpgp-signers '("771AB877"))
+#+END_SRC
 * Edit Text
 ** Evil Mode
 
