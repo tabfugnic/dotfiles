@@ -175,7 +175,7 @@ assign [class="Emacs" instance="[^capture]"] → 1: emacs
 assign [class="emacs" instance="[^capture]"] → 1: emacs
 assign [class="(?i)term"] → 2: terminal
 assign [class="Firefox"] → 3: browser
-assign [class="Iceweasel"] → 3: browser
+assign [class="qutebrowser"] → 3: browser
 assign [class="Signal"] → 4: chat
 assign [class="Slack"] → 9: slack
 assign [class="Steam"] → 10: play
@@ -190,7 +190,7 @@ bindsym $mod+Shift+less move workspace to output left
 exec --no-startup-id fixed_redshift
 exec --no-startup-id dropbox start
 exec --no-startup-id emacs
-exec --no-startup-id firefox
+exec --no-startup-id qutebrowser
 exec --no-startup-id setup_terminals
 exec --no-startup-id nextcloud
 
