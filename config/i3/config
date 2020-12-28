@@ -181,7 +181,6 @@ assign [class="Slack"] → 9: slack
 assign [class="Steam"] → 10: play
 
 bindsym $mod+p workspace back_and_forth
-bindsym $mod+Shift+p exec dmenu_pass
 
 # Move workspaces
 bindsym $mod+Shift+greater move workspace to output right
