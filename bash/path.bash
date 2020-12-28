@@ -13,9 +13,6 @@ export ANDROID_HOME=$HOME/opt/android
 export PATH=$PATH:$HOME/opt/android/tools
 export PATH=$PATH:$HOME/opt/android/platform-tools
 
-# Parity
-export PATH="$PATH:$HOME/parity/bin"
-
 # Home bin directory
 export PATH="$PATH:$HOME/bin"
 
