@@ -1,0 +1,64 @@
+#! /usr/bin/env bash
+readonly wpa_supplicant_conf="/etc/wpa_supplicant/wpa_supplicant.conf"
+
+no_password_ssid() {
+  ssid=$1
+
+  cat <<EOF
+
+network={
+  ssid="$ssid"
+  key_mgmt=NONE
+}
+EOF
+}
+
+password_ssid() {
+  ssid="$1"
+  psk="$2"
+
+  cat <<EOF
+
+network={
+  ssid="$ssid"
+  psk="$psk"
+}
+EOF
+
+}
+
+get_ssids() {
+  sudo iw dev wlp58s0 scan |
+    grep -E "SSID:[[:space:]][^[:space:]]+" |
+    sed -e 's/[[:blank:]]*SSID:[[:blank:]]//g' |
+    sort -u
+}
+
+main() {
+  mapfile -t ssids < <(get_ssids)
+  if [ -z "$ssids" ]; then
+    echo 'No networks found'
+    exit 1
+  fi
+
+  PS3="Pick an SSID: "
+  select ssid in "${ssids[@]}"; do
+    declare chosen_ssid=$ssid
+    break
+  done
+
+  printf "$chosen_ssid password: "
+  read -s psk
+
+  if [ -z "$psk" ]; then
+    echo "$(no_password_ssid "$chosen_ssid")" |
+      sudo tee -a "$wpa_supplicant_conf" > /dev/null
+  else
+    echo "$(password_ssid "$chosen_ssid" $psk)" |
+      sudo tee -a "$wpa_supplicant_conf" > /dev/null
+  fi
+  reset_wifi > /dev/null
+  echo
+}
+
+main
