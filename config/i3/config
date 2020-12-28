@@ -171,8 +171,8 @@ bindsym XF86Display exec display_monitor -l
 bindsym F7 exec display_monitor -m
 
 # Assign apps to workspaces
-assign [class="Emacs" instance="[^capture]"] → 1: emacs
-assign [class="emacs" instance="[^capture]"] → 1: emacs
+assign [class="Emacs" title="[^capture]"] → 1: emacs
+assign [class="emacs" title="[^capture]"] → 1: emacs
 assign [class="(?i)term"] → 2: terminal
 assign [class="Firefox"] → 3: browser
 assign [class="qutebrowser"] → 3: browser
@@ -181,6 +181,7 @@ assign [class="Slack"] → 9: slack
 assign [class="Steam"] → 10: play
 
 bindsym $mod+p workspace back_and_forth
+bindsym $mod+Shift+p exec dmenu_pass
 
 # Move workspaces
 bindsym $mod+Shift+greater move workspace to output right
@@ -207,4 +208,4 @@ exec feh --bg-center ~/wallpaper/gnu_not_unix.jpg
 # Window configs
 for_window [instance="StopRSI"] sticky enable
 for_window [instance="Slack Call Minipanel"] floating enable, sticky enable
-for_window [class="Emacs" instance="capture"] floating enable
+for_window [class="Emacs" title="capture"] floating enable
