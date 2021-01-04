@@ -670,12 +670,6 @@ Setup the language server protocol
 
 ** Ruby/Rails
 #+BEGIN_SRC emacs-lisp
-(use-package chruby
-  :hook (enh-ruby-mode-hook . chruby-use-corresponding)
-  :config (chruby "2.5.0"))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
   (use-package enh-ruby-mode
     :mode ("\\.rb$" "\\.rake$" "Gemfile" "Guardfile" "RakeFile")
     :interpreter "ruby"
