@@ -17,11 +17,10 @@ order += "time"
 
 wireless _first_ {
   format_up = "W: (%quality at %essid) %ip"
-  format_down = "W: Down"
+  format_down = ""
 }
 
 ethernet _first_ {
-  # sudo setcap cap_net_admin=ep $(which i3status)
   format_down = ""
   format_up = "E: %ip (%speed)"
 }
@@ -46,7 +45,7 @@ battery 1 {
 
 cpu_temperature 0 {
   format = "T: %degrees °C"
-  max_threshold = 65
+  path = "/sys/class/hwmon/hwmon2/temp1_input"
 }
 
 path_exists VPN {

@@ -8,7 +8,6 @@ mu_index() {
 
 main() {
   mu_index 'personal'
-  mu_index 'thoughtbot'
 }
 
 main

@@ -16,7 +16,6 @@ export dev="$HOME/dev"
 export blog="$HOME/blog"
 export personal_dev="$dev/tabfugnic"
 export dotfiles="$dev/dotfiles"
-export thoughtbot_dev="$dev/thoughtbot"
 export tabfugnic_dev="$dev/tabfugnic"
 export sag="sudo apt-get"
 export sapt="sudo apt"
@@ -26,10 +25,8 @@ export sapt="sudo apt"
 alias blog='cd $blog'
 alias dev='cd $dev'
 alias dotfiles='cd $dotfiles'
-alias tbot='cd $thoughtbot_dev'
 alias tab='cd $tabfugnic_dev'
 alias cur='cd $CURRENT_PROJECT_DIR'
-alias ft='cd $thoughtbot_dev/french_toast'
 alias enyc='cd $dev/emacsnyc/emacsnyc.github.io'
 
 ##### tar Shortcuts #####
