@@ -18,7 +18,7 @@ get_filename() {
 }
 
 main() {
-  byzanz-record -c --duration=$(get_duration) $(grab_screen_region) ~/Pictures/captures/$(get_filename)
+  byzanz-record -c --duration=$(get_duration) $(grab_screen_region) ~/pictures/captures/$(get_filename)
 }
 
 main
