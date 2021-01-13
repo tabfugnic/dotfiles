@@ -513,6 +513,17 @@ Use a better dired, now with extras
 #+END_SRC
 
 * Language/Programming
+** Version Management
+Manage versions of different tools using asdf(https://asdf-vm.com)
+simplifying workflows and limiting tools
+
+#+BEGIN_SRC emacs-lisp
+  (load-file "~/dev/tabfugnic/asdf.el/asdf.el")
+  (require 'asdf)
+
+  (asdf-enable)
+#+END_SRC
+
 ** Android
 
 Use android major mode
