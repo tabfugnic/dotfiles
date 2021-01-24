@@ -3,23 +3,38 @@
 MAIN_DISPLAY="DisplayPort-1"
 SECONDARY_DISPLAY="HDMI-A-0"
 
-turnoff() {
-  echo "thing"
+primary() {
   xrandr --output $SECONDARY_DISPLAY --off
 }
 
-turnon() {
+extend() {
   xrandr --output $SECONDARY_DISPLAY --auto --right-of $MAIN_DISPLAY
   i3-msg '[workspace="3: browser"]' move workspace to output right
 }
 
+toggle() {
+  if is_display_on $SECONDARY_DISPLAY; then
+    primary
+  else
+    extend
+  fi
+}
+
+is_display_on() {
+  xrandr --listactivemonitors | grep $1 > /dev/null
+}
+
+if [ -n $1 ]; then
+  toggle
+fi
+
 while getopts ":nw" opt; do
   case $opt in
     n)
-      turnoff
+      primary
       ;;
     w)
-      turnon
+      extend
       ;;
     \?)
       echo "Invalid option -%OPTARG" >&2
