@@ -717,7 +717,7 @@ Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
     (add-hook 'web-mode
               (lambda() (pcase (file-name-extension buffer-file-name)
                   ("tsx" (tabfugnic/tide-setup))
-                  (_ ()))))))
+                  (_ ())))))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
