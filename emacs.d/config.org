@@ -693,7 +693,7 @@ Setup the language server protocol
 ** Ruby/Rails
 #+BEGIN_SRC emacs-lisp
   (use-package enh-ruby-mode
-    :mode ("\\.rb$" "\\.rake$" "Gemfile" "Guardfile" "RakeFile")
+    :mode ("\\.rb$" "\\.rake$" "Gemfile" "Guardfile" "RakeFile" "Fastfile")
     :interpreter "ruby"
     :init
     (use-package inf-ruby
