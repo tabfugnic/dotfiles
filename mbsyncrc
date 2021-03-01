@@ -1,5 +1,4 @@
 Create Both
-Expunge Both
 SyncState *
 
 IMAPAccount personal
@@ -7,7 +6,6 @@ Host imap.fastmail.com
 User me@ericj.co
 PassCmd "pass fastmail.com/laptop"
 SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore personal-remote
 Account personal
@@ -33,8 +31,13 @@ Channel personal-sent
 Master :personal-remote:Sent
 Slave :personal-local:sent
 
+Channel personal-trash
+Master :personal-remote:Trash
+Slave :personal-local:trash
+
 Group personal
 Channel personal-default
 Channel personal-draft
 Channel personal-archive
 Channel personal-sent
+Channel personal-trash
