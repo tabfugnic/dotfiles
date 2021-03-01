@@ -16,6 +16,8 @@
   prune = true
 [github]
   user = tabfugnic
+[init]
+  defaultBranch = main
 [merge]
   ff = only
 [pull]
