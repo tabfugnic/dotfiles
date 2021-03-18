@@ -650,6 +650,11 @@ Add imports to java file quickly and easily
     (setq typescript-indent-level 2))
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+  (use-package prettier
+    :defer t)
+#+END_SRC
+
 ** JSON
 Basic json parsing
 
