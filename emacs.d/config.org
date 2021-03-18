@@ -662,9 +662,14 @@ Setup the language server protocol
 
 #+BEGIN_SRC emacs-lisp
     (use-package lsp-mode
-      :hook ((rust-mode . lsp)
-             (enh-ruby-mode . lsp)
-             (go-mode . lsp))
+      :init
+      (setq lsp-keymap-prefix "M-p")
+      :hook
+      ((rust-mode . lsp)
+       (enh-ruby-mode . lsp)
+       (go-mode . lsp)
+       (web-mode . lsp)
+       (typescript-mode . lsp))
       :commands lsp)
 
     (use-package lsp-ui
@@ -708,28 +713,30 @@ Setup the language server protocol
       :bind ("C-c r h" . ruby-toggle-hash-syntax)))
 #+END_SRC
 
-Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
-
-#+BEGIN_SRC emacs-lisp
-  (use-package web-mode
-    :mode ("\\.html\\.erb$" "\\.liquid$" "\\.tsx$")
-    :init
-    (add-hook 'web-mode
-              (lambda() (pcase (file-name-extension buffer-file-name)
-                  ("tsx" (tabfugnic/tide-setup))
-                  (_ ())))))
-#+END_SRC
-
 #+BEGIN_SRC emacs-lisp
   (use-package rspec-mode
-    :bind (:map rspec-mode ("C-c , u" . tabfugnic/rspec-set-test-env))
-    :hook (haml-mode html-mode slim-mode web-mode coffee-mode enh-ruby-mode)
+    :hook (haml-mode html-mode slim-mode coffee-mode enh-ruby-mode)
     :init
     (setq rspec-command-options "--format progress"))
 #+END_SRC
 
-** Rust
+Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
+
 #+BEGIN_SRC emacs-lisp
+    (use-package web-mode
+      :mode ("\\.erb$" "\\.liquid$" "\\.tsx$")
+      :init
+      (defun tabfugnic/web-mode-hook()
+        (pcase (file-name-extension buffer-file-name)
+          ("tsx" (tabfugnic/tide-setup))
+          ("erb" (rspec-mode 1))
+          (_ (lambda() (message buffer-file-name))))
+        )
+      (add-hook 'web-mode-hook 'tabfugnic/web-mode-hook))
+    #+END_SRC
+
+** Rust
+   #+BEGIN_SRC emacs-lisp
   (use-package rust-mode
     :defer t
     :init
