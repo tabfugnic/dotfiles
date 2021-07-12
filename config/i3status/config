@@ -13,6 +13,7 @@ order += "battery 1"
 order += "volume master"
 order += "load"
 order += "cpu_temperature 0"
+order += "pomodoro"
 order += "time"
 
 wireless _first_ {
@@ -75,4 +76,12 @@ volume master {
   device = "default"
   mixer = "Master"
   mixer_idx = 0
+}
+
+pomodoro {
+  format = "{mmss}"
+  format_active = "P: {format}"
+  format_stopped = "P: --"
+  format_break = "P: #{breakno} {format}"
+  format_break_stopped = "P: #{breakno} {format}"
 }
