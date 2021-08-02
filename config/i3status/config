@@ -81,7 +81,7 @@ volume master {
 pomodoro {
   format = "{mmss}"
   format_active = "P: {format}"
-  format_stopped = "P: --"
+  format_stopped = "P: {format}"
   format_break = "P: #{breakno} {format}"
   format_break_stopped = "P: #{breakno} {format}"
 }
