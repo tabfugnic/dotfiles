@@ -78,8 +78,8 @@ bindsym $mod+3 workspace 3: browser
 bindsym $mod+4 workspace 4: chat
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
+bindsym $mod+7 workspace 7: call
+bindsym $mod+8 workspace 8: chrome
 bindsym $mod+9 workspace 9: slack
 bindsym $mod+0 workspace 10: play
 
@@ -182,6 +182,10 @@ assign [class="(?i)term"] → 2: terminal
 assign [class="Firefox"] → 3: browser
 assign [class="qutebrowser"] → 3: browser
 assign [class="Signal"] → 4: chat
+assign [class="pop"] → 7: call
+assign [class="zoom"] → 7: call
+assign [class="google-chrome"] → 8: chrome
+assign [class="chromium"] → 8: chrome
 assign [class="Slack"] → 9: slack
 assign [class="Steam"] → 10: play
 
