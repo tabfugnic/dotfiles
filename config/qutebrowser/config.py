@@ -3,9 +3,9 @@ config.load_autoconfig(False)
 config.set('downloads.location.directory', '~/downloads')
 
 config.set('content.geolocation', False)
-config.set('content.notifications', False)
+config.set('content.notifications.enabled', False)
 config.set('content.pdfjs', True)
-config.set('content.ssl_strict', True)
+config.set('content.tls.certificate_errors', 'ask-block-thirdparty')
 
 config.set(
     'qt.environ',
