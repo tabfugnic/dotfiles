@@ -184,8 +184,8 @@ assign [class="qutebrowser"] → 3: browser
 assign [class="Signal"] → 4: chat
 assign [class="pop"] → 7: call
 assign [class="zoom"] → 7: call
-assign [class="google-chrome"] → 8: chrome
-assign [class="chromium"] → 8: chrome
+assign [class="Google-chrome"] → 8: chrome
+assign [class="Chromium"] → 8: chrome
 assign [class="Slack"] → 9: slack
 assign [class="Steam"] → 10: play
 
