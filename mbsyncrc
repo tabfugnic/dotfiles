@@ -1,5 +1,6 @@
 Create Both
 SyncState *
+Expunge Both
 
 IMAPAccount personal
 Host imap.fastmail.com

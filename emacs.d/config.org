@@ -916,6 +916,12 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 
     (add-to-list 'mu4e-view-actions
                  '("xViewXWidget" . mu4e-action-view-with-xwidget) t)
+    (add-to-list 'mu4e-marks `(trash
+     :char ("d" . "▼")
+     :prompt "dtrash"
+     :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
+     :action (lambda (docid msg target) (mu4e~proc-move docid
+                                                        (mu4e~mark-check-target target) "-N"))))
 
     (defun tabfugnic/mu4e-headers-mark-stale-for-delete()
       (interactive)
