@@ -16,25 +16,25 @@ Path ~/mail/personal/
 Inbox ~/mail/personal/inbox
 
 Channel personal-default
-Master :personal-remote:
-Slave :personal-local:
+Far :personal-remote:
+Near :personal-local:
 Patterns "INBOX"
 
 Channel personal-archive
-Master :personal-remote:Archive
-Slave :personal-local:archive
+Far :personal-remote:Archive
+Near :personal-local:archive
 
 Channel personal-draft
-Master :personal-remote:Drafts
-Slave :personal-local:drafts
+Far :personal-remote:Drafts
+Near :personal-local:drafts
 
 Channel personal-sent
-Master :personal-remote:Sent
-Slave :personal-local:sent
+Far :personal-remote:Sent
+Near :personal-local:sent
 
 Channel personal-trash
-Master :personal-remote:Trash
-Slave :personal-local:trash
+Far :personal-remote:Trash
+Near :personal-local:trash
 
 Group personal
 Channel personal-default
