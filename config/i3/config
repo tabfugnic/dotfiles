@@ -217,3 +217,6 @@ exec feh --bg-center ~/wallpaper/gnu_not_unix.jpg
 for_window [instance="StopRSI"] sticky enable
 for_window [instance="Slack Call Minipanel"] floating enable, sticky enable
 for_window [class="Emacs" title="capture"] floating enable
+for_window [class="zoom"] floating enable
+for_window [class="zoom" title="Zoom Meeting"] floating disable
+for_window [class="zoom" title="Zoom -*"] floating disable
