@@ -1,9 +1,10 @@
 #!/bin/bash
 
-LAPTOP_SCREENS=$(xrandr -q | grep "[^dis]connected" | cut -d" " -f1 | grep -E '^eDP1')
-NONLAPTOP_SCREENS=$(xrandr -q | grep "[^dis]connected" | cut -d" " -f1 | grep -Ev '^eDP1')
-ON_NONLAPTOP_SCREENS=$(xrandr -q | grep "[^dis]connected [0-9]\{3,4\}x[0-9]\{3,4\}+[0-9]+[0-9]")
-
+laptop_screens=($(xrandr -q | grep "[^dis]connected" | cut -d" " -f1 | grep -E '^eDP-1'))
+nonlaptop_screens=($(xrandr -q | grep "[^dis]connected" | cut -d" " -f1 | grep -Ev '^eDP-1'))
+on_screens=$(xrandr -q | grep "[^dis]connected.*[0-9]\{3,4\}x[0-9]\{3,4\}+[0-9]+[0-9]")
+on_nonlaptop_screens=$(echo $on_screens | grep -v '^eDP-1')
+on_laptop_screens=$(echo $on_screens | grep '^eDP-1')
 
 function manage_screens() {
   screens=$1
@@ -15,32 +16,32 @@ function manage_screens() {
 }
 
 turnoff_nonlaptop_screens() {
-  manage_screens $NONLAPTOP_SCREENS "off"
+  manage_screens $nonlaptop_screens "off"
 }
 
 turnon_nonlaptop_screens() {
-  manage_screens $NONLAPTOP_SCREENS "auto"
+  manage_screens $nonlaptop_screens "auto"
 }
 
 turnoff_laptop_screen() {
-  manage_screens $LAPTOP_SCREENS "off"
+  manage_screens $laptop_screens "off"
 }
 
 turnon_laptop_screen() {
-  manage_screens $LAPTOP_SCREENS "auto"
+  manage_screens $laptop_screens "auto"
 }
 
 while getopts ":ml" opt; do
   case $opt in
     m)
-      if [ -n "$ON_NONLAPTOP_SCREENS" ]; then
-        turnoff_nonlaptop_screens
-      fi
       turnon_nonlaptop_screens
-      turnoff_laptop_screen
+      if [ -n "$on_laptop_screens" ]; then
+        turnoff_laptop_screen
+      fi
       ;;
     l)
       turnon_laptop_screen
+      sleep 1
       turnoff_nonlaptop_screens
       ;;
     \?)
