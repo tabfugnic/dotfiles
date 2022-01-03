@@ -253,7 +253,7 @@ Use ISO date standard
     (setenv "GOPATH" go-path))
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
-  (setq mml-secure-openpgp-signers '("771AB877"))
+  (setq mml-secure-openpgp-signers '("786F8224"))
 #+END_SRC
 * Edit Text
 ** Evil Mode
