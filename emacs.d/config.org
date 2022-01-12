@@ -254,6 +254,8 @@ Use ISO date standard
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
   (setq mml-secure-openpgp-signers '("786F8224"))
+  (setq epa-file-encrypt-to '("786F8224"))
+  (setq epa-file-select-keys 1)
 #+END_SRC
 * Edit Text
 ** Evil Mode
