@@ -154,7 +154,7 @@ bindsym $mod+Shift+s exec "py3-cmd click 2 pomodoro"
 bindsym --release $mod+i exec --no-startup-id capture -x
 
 # Capture
-bindsym --release $mod+c exec scrot -se 'mv $f ~/pictures/captures/.'
+bindsym --release $mod+c exec scrot -s -e 'mv $f ~/pictures/captures/.'
 bindsym --release $mod+Shift+c exec record-gif
 
 # Volume
