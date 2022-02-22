@@ -1,9 +1,5 @@
 #! /bin/bash
 
-########################
-#######  System  #######
-########################
-
 ##### Show Colors ls #####
 
 if [[ `uname` == 'Linux' ]]; then
@@ -17,7 +13,6 @@ export blog="$HOME/blog"
 export personal_dev="$dev/tabfugnic"
 export dotfiles="$dev/dotfiles"
 export tabfugnic_dev="$dev/tabfugnic"
-export sag="sudo apt-get"
 export sapt="sudo apt"
 
 ##### Directory Aliases #####
@@ -35,66 +30,18 @@ alias tbunzip='tar xvjf'
 alias tgunzip='tar xvzf'
 alias tun='tar xvf'
 
-##### Headless Browser #####
-
-alias headless='xvfb-run --server-args="-screen 0, 1920x1080x24"'
-
-##### Display Shortcuts #####
-
-alias adsp='xrandr --auto'
-alias edspoff='xrandr --output eDP1 --off'
-alias ldspoff='xrandr --output LVD1 -off'
-
 ##### Aptitude Shortcuts #####
 
-alias sag='$sag'
-alias sapt='$sapt'
 alias sai='$sapt install'
 alias saud='$sapt update'
-alias saug='$sapt upgrade'
 alias sadu='$sapt dist-upgrade'
 alias saar='$sapt autoremove'
 alias sar='$sapt remove'
 alias sac='$sapt clean'
 alias saac='$sapt autoclean'
 alias cleanup='saar -y && saac && sac'
-alias update='saud && saug -y && cleanup'
-alias full-update='saud && sadu -y && cleanup'
-
-##### Flash Updating #####
-
-alias update-flash='sudo update-flashplugin-nonfree --install'
-
-##### Git aliases ######
-
-alias gwin="git shortlog -n -s"
-alias gcb="git symbolic-ref HEAD 2>/dev/null | cut -d'/' -f 3"
-
-##### Removal Script #####
-
-alias rmorig='find . -type f -name *.orig -exec rm -f {} \;'
-
-##### Elasticsearch / Kafka #####
-
-alias start_es='sudo -i service elasticsearch start'
-alias start_kafka='nohup ~/kafka/bin/kafka-server-start.sh ~/kafka/config/server.properties > ~/kafka/kafka.log 2>&1 &
-'
-alias restart_es='sudo -i service elasticsearch restart'
+alias full_update='saud && sadu -y && cleanup'
 
 # Misc Aliases
 alias resp=". ~/.bash_profile"
 alias ls="ls ${LS_OPTS}"
-alias gpg="gpg2"
-
-######################
-#######  Ruby  #######
-######################
-
-##### Bundle Exec Stuff #####
-
-alias bx='bundle exec'
-alias bspec='bundle exec rspec'
-
-##### Chruby #####
-
-alias chsudo='sudo chruby-exec `ruby --version | grep "ruby [^ ]"` --'
