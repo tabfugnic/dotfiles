@@ -1,40 +1,21 @@
 * Initialize
-Define the very basics of things needed to run this configuration and
-emacs
+Prioritize the most important things that are needed to run everything
+else. This includes navigation since anything that break can become
+very disorienting.
 
-** Start Emacs Server
-Use emacs server so that loading any subsequent emacs instances will
-boot immediately. In practice I use that for the occasion I use git on
-the command line
-
-#+BEGIN_SRC emacs-lisp
-  (server-start)
-#+END_SRC
-
-** Local configs
-Rather than having custom change configurations in my emacs file
-point it to a local file that is not saved in version control.
-
-#+BEGIN_SRC emacs-lisp
-  (setq custom-file "~/.emacs.local")
-  (load custom-file :noerror)
-#+END_SRC
-
-** Fix TLS
-#+BEGIN_SRC emacs-lisp
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-#+END_SRC
 ** Package Management(use-package)
-use-package will manage our all of our packages. It requires no
-external dependencies and takes advantage of emacs' package library
+Manage all packages with use-package. It is required to be
+bootstrapped in order to use it.
 
-Manage packages and sources
+Setup package archives to pull from. We add MELPA to the list as Gnu
+and ELPA are already provided.
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'package-archives
                '("melpa" . "https://melpa.org/packages/") t)
 #+END_SRC
 
-bootstrap use-package, so I can use it to manage everything else
+Use bootstrap to setup use-package so everything else can be managed
+through that.
 #+BEGIN_SRC emacs-lisp
   (setq use-package-verbose t)
   (setq use-package-always-ensure t)
@@ -46,60 +27,100 @@ bootstrap use-package, so I can use it to manage everything else
     (eval-when-compile (require 'use-package))
 #+END_SRC
 
-** Diminish
-Diminish is used to simplify the modebar
-#+BEGIN_SRC emacs-lisp
-  (use-package diminish :defer t)
-#+END_SRC
-
-* Visuals
+* Configure
 ** Interface
-Build interface to look how I want it to look
+Setup the interface to look the way I expect it to look. Prioritize
+things that need to go into effect earlier to make it feel less janky.
 
-Remove all that excess crap I don't need, remove the menu bar the
-scroll bar and the toolbar
-
+Remove unusused interface artifacts. Making the interface as barebones
+as possible. Remove the whole startup message.
 #+BEGIN_SRC emacs-lisp
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
+  (setq inhibit-startup-message t)
 #+END_SRC
 
-Set font that is bit easier to read and nice and big
+#+END_SRC
 
+Setup font using [[https://sourcefoundry.org/hack][Hack]], it is a derivative of DeJa Vu with an emphasis
+on readability for code. Make the font bigger for less strain on my
+eyes.
 #+BEGIN_SRC emacs-lisp
   (set-frame-font "-*-Hack-normal-normal-normal-*-22-*-*-*-m-0-iso10646-1")
 #+END_SRC
 
+Establish theme defaulting to solarized dark. Use system that allows
+me to cycle through the themes easily.
+#+BEGIN_SRC emacs-lisp
+  (use-package color-theme
+    :bind
+    ("C-|" . tabfugnic/cycle-theme)
+    :init
+    (use-package solarized-theme :defer t)
+    (defun circular (items) (setf (cdr (last items)) items) items)
+    (setq tabfugnic/theme-list (circular '(solarized-dark solarized-light)))
+    (defun tabfugnic/cycle-theme()
+      (interactive)
+      (load-theme (pop tabfugnic/theme-list) t))
+    (tabfugnic/cycle-theme))
+#+END_SRC
+
 Give more descriptive names to buffers that have the same name. In
 this case it uses the folder it's in
-
 #+BEGIN_SRC emacs-lisp
   (require 'uniquify)
   (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 #+END_SRC
 
-Why write out yes or no every single time when y and n will suffice
-
-#+BEGIN_SRC emacs-lisp
-  (fset 'yes-or-no-p 'y-or-n-p)
-#+END_SRC
-
-Always require a new line
-
-#+BEGIN_SRC emacs-lisp
-  (setq require-final-newline t)
-#+END_SRC
-
-I like my lines highlighted and numbered
-
+Make lines easier to read and use. Using linum and highlighting the
+current line.
 #+BEGIN_SRC emacs-lisp
   (global-hl-line-mode t)
   (global-linum-mode t)
 #+END_SRC
 
-Visual cue for when lines are too long
+Show visible bell, good for when the sound is muted
+#+BEGIN_SRC emacs-lisp
+  (setq visible-bell t)
+#+END_SRC
 
+Use ISO date standard date for everything.
+#+BEGIN_SRC emacs-lisp
+  (setq calendar-date-style 'iso)
+#+END_SRC
+
+Diminish is used to simplify the modebar
+#+BEGIN_SRC emacs-lisp
+  (use-package diminish :defer t)
+#+END_SRC
+** Editing
+Standardize some concepts when editing text. Create expected behaviors
+throughout the editing experience. This includes visual cues as
+well. These are specific to things that would help make better editing
+decisions.
+
+Easily one of the most important things. Use Evil mode. While Emacs is
+the ultimate software. Vi had some good ideas on how to edit text.
+#+BEGIN_SRC emacs-lisp
+  (use-package evil
+    :diminish undo-tree-mode
+    :init
+    (setq evil-toggle-key "C-`")
+    (use-package evil-surround
+      :config
+      (global-evil-surround-mode 1))
+    :config
+    (evil-mode 1))
+#+END_SRC
+
+Always require a new line, this is most important when managing files
+in get and prevents bad diffs.
+#+BEGIN_SRC emacs-lisp
+  (setq require-final-newline t)
+#+END_SRC
+
+Visual cue for when lines are too long.
 #+BEGIN_SRC emacs-lisp
   (use-package whitespace
     :defer t
@@ -110,23 +131,53 @@ Visual cue for when lines are too long
     (add-hook 'prog-mode-hook 'whitespace-mode))
 #+END_SRC
 
-Never use tabs and by default lets use two spaces. We can change it
-depending on the language
+Remove trailing whitespace in a file after save. This prevents
+unnecessary changes in diffs.
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+END_SRC
 
+Use two spaces by default for all indenting. Change this depending
+upon the language being used.
 #+BEGIN_SRC emacs-lisp
   (setq-default indent-tabs-mode nil)
   (setq-default standard-indent 2)
+  (setq default-tab-width 2)
+  (setq sh-basic-offset 2)
+  (setq sh-indentation 2)
 #+END_SRC
 
-When searching make to highlight things I search for
+#+END_SRC
 
+Rather than having things break on space take advantage of
+subwords. This means individual words will be recognized when using
+snake_case and camelCase.
+#+BEGIN_SRC emacs-lisp
+  (global-subword-mode t)
+  (diminish 'subword-mode)
+#+END_SRC
+
+Automatically add the closing character to an opening character.
+#+BEGIN_SRC emacs-lisp
+  (electric-pair-mode 1)
+  (show-paren-mode 1)
+#+END_SRC
+** Interactions
+This section defines ways to interact with Emacs outside of a specific major mode.
+
+Shortcut need to write out yes or no and instead allow a simple y or n
+response.
+#+BEGIN_SRC emacs-lisp
+  (fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+Highlight any instance of the text within a document when searching for it.
 #+BEGIN_SRC emacs-lisp
   (setq query-replace-highlight t)
 #+END_SRC
 
-Backups are more trouble than they are worth. That's why God (Linus
-Torvald) created git
-
+Remove the use of backup files. This is more trouble than it's
+worth. Also prevent automatically saving.
 #+BEGIN_SRC emacs-lisp
   (setq make-backup-files nil)
   (setq auto-save-list-file-name  nil)
@@ -134,29 +185,10 @@ Torvald) created git
 #+END_SRC
 
 Automatically revert buffers to new content if unchanged
-
 #+BEGIN_SRC emacs-lisp
   (put 'erase-buffer 'disabled nil)
   (global-auto-revert-mode t)
   (diminish 'auto-revert-mode)
-#+END_SRC
-
-Remove the whole start up screen and show a visible bell
-
-#+BEGIN_SRC emacs-lisp
-  (setq inhibit-startup-message t)
-#+END_SRC
-
-Show visible bell, good for when the sound is muted
-
-#+BEGIN_SRC emacs-lisp
-  (setq visible-bell t)
-#+END_SRC
-
-Make dired more verbose
-
-#+BEGIN_SRC emacs-lisp
-  (setq-default dired-listing-switches "-alhv")
 #+END_SRC
 
 When splitting buffers move to that new buffer immediately
@@ -179,7 +211,6 @@ When splitting buffers move to that new buffer immediately
 #+END_SRC
 
 Ask before closing Emacs
-
 #+BEGIN_SRC emacs-lisp
 (defun ask-before-closing ()
   "Ask whether or not to close, and then close if y was pressed"
@@ -193,61 +224,7 @@ Ask before closing Emacs
 (when window-system
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
 #+END_SRC
-
-** Theme
-Use a color theme
-
-#+BEGIN_SRC emacs-lisp
-  (use-package color-theme
-    :bind
-    ("C-|" . tabfugnic/cycle-theme)
-    :init
-    (use-package solarized-theme :defer t)
-    (defun circular (items) (setf (cdr (last items)) items) items)
-    (setq tabfugnic/theme-list (circular '(solarized-dark solarized-light)))
-    (defun tabfugnic/cycle-theme()
-      (interactive)
-      (load-theme (pop tabfugnic/theme-list) t))
-    (tabfugnic/cycle-theme))
-#+END_SRC
-
-** Golden ratio
-#+BEGIN_SRC emacs-lisp
-  (use-package golden-ratio
-    :bind ("C-:" . golden-ratio)
-    :defer 1
-    :diminish golden-ratio-mode
-    :init
-    (setq golden-ratio-auto-scale nil)
-    (setq golden-ratio-exclude-modes
-          '(elfeed-entry-mode
-            elfeed-search-mode
-            mu4e-headers-mode
-            mu4e-view-mode
-            mu4e-loading-mode
-            mu4e-org-mode
-            mu4e-main-mode
-            org-agenda-mode))
-    (setq golden-ratio-extra-commands
-          '(evil-window-left
-            evil-window-right
-            evil-window-up
-            evil-window-down
-            select-window-1
-            select-window-2
-            select-window-3
-            select-window-4
-            select-window-5)))
-#+END_SRC
-
-** Date
-Use ISO date standard
-
-#+BEGIN_SRC emacs-lisp
-  (setq calendar-date-style 'iso)
-#+END_SRC
-
-* Env
+** Environment
 #+BEGIN_SRC emacs-lisp
   (let ((go-path (shell-command-to-string ". ~/.bashrc; echo -n $GOPATH")))
     (setenv "GOPATH" go-path))
@@ -257,150 +234,10 @@ Use ISO date standard
   (setq epa-file-encrypt-to '("786F8224"))
   (setq epa-file-select-keys 1)
 #+END_SRC
-* Edit Text
-** Evil Mode
-
-Use evil mode for most editing
-
-#+BEGIN_SRC emacs-lisp
-  (use-package evil
-    :diminish undo-tree-mode
-    :init
-    (setq evil-toggle-key "C-`")
-    (use-package linum-relative :defer t)
-    (use-package evil-surround
-      :config
-      (global-evil-surround-mode 1))
-    :config
-    (evil-mode 1))
-#+END_SRC
-
-** Editing
-No need to have trailing whitespace
-
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'before-save-hook 'delete-trailing-whitespace)
-#+END_SRC
-
-Use CUA for block editing
-
-#+BEGIN_SRC emacs-lisp
-  (setq cua-enable-cua-keys nil)
-  (cua-mode t)
-#+END_SRC
-
-Use Hippie Expand to expand things
-
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "M-SPC") 'hippie-expand)
-#+END_SRC
-
-Move by subwords ie treat underscore as space
-
-#+BEGIN_SRC emacs-lisp
-  (global-subword-mode t)
-  (diminish 'subword-mode)
-#+END_SRC
-
-Set default spacing for all documents
-#+BEGIN_SRC emacs-lisp
-  (setq default-tab-width 2)
-  (setq sh-basic-offset 2)
-  (setq sh-indentation 2)
-#+END_SRC
-
-Break on commas
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-,") 'tabfugnic/break-on-comma)
-  (global-set-key (kbd "C-;") 'tabfugnic/toggle-single-or-multiline-list)
-
-  (defun tabfugnic/break-on-comma()
-    (interactive)
-    (while (not (looking-at ","))
-      (forward-char))
-    (forward-char)
-    (if (not (looking-at "^J"))
-        (newline-and-indent)))
-
-  (defun tabfugnic/toggle-single-or-multiline-list()
-    (interactive)
-    (if (not (tabfugnic/singleline-p))
-        (tabfugnic/singleline-list)
-      (tabfugnic/multiline-list)))
-
-  (defun tabfugnic/multiline-list()
-    (interactive)
-    (let ((beg (point)))
-      (forward-char)
-      (newline-and-indent)
-      (end-of-line 0)
-      (backward-char)
-      (forward-list)
-      (backward-char)
-      (if (not (looking-at ","))
-          (insert ","))
-      (while (<= beg (point))
-        (backward-char)
-        (when (and (looking-at ",") (tabfugnic/in-parent-list-p beg))
-          (forward-char)
-          (newline-and-indent)
-          (previous-line)
-          (end-of-line)
-          (backward-char))
-        )
-      (forward-char)))
-
-  (defun tabfugnic/singleline-list()
-    (interactive)
-    (let ((beg (line-number-at-pos)))
-      (forward-list)
-      (while (< beg (line-number-at-pos))
-        (join-line))
-      (backward-char)
-      (forward-list)
-      (backward-char 2)
-      (if (looking-at ",")
-          (delete-forward-char 1))
-      (forward-char)
-      (backward-list)))
-
-  (defun tabfugnic/singleline-p()
-    (let ((beg-line (line-number-at-pos)) (start (point)))
-      (forward-list)
-      (let ((end-line (line-number-at-pos)))
-        (goto-char start)
-        (eq beg-line end-line))))
-
-  (defun tabfugnic/in-parent-list-p(parent-beg)
-    (let ((start (point)))
-      (backward-up-list)
-      (when (eq parent-beg (point))
-        (goto-char start)
-        t)))
-
-#+END_SRC
-
-** Multiple Cursor
-#+BEGIN_SRC emacs-lisp
-  (use-package multiple-cursors
-    :bind
-    ("C-S-c C-S-c" . mc/edit-lines)
-    ("C->" . mc/mark-next-like-this)
-    ("C-<" . mc/mark-previous-like-this)
-    ("C-c C-<" . mc/mark-all-like-this))
-#+END_SRC
-
-** Electric pair
-
-Use electric pair to automatically match surrounding characters
-
-#+BEGIN_SRC emacs-lisp
-  (electric-pair-mode 1)
-  (show-paren-mode 1)
-#+END_SRC
-
-* Support
+* Modes
 ** Company
+Use company for in application context. This needs to be defined early
+as many other things use this
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :defer t
@@ -410,18 +247,15 @@ Use electric pair to automatically match surrounding characters
 #+END_SRC
 
 ** flycheck
+Use flycheck for automatic in application linting. Setup early for other modes
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
   :defer t
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode))
 #+END_SRC
-
-* Navigation
 ** Helm
-
-Helm for most things involving input
-
+Use helm for anything involving input. This might be changed to ivy as an experiment initially
 #+BEGIN_SRC emacs-lisp
   (use-package helm
     :diminish helm-mode
@@ -450,40 +284,19 @@ Helm for most things involving input
 
 ** Dired
 
-Use a better dired, now with extras
+Use a better dired, now with extras. Make dired listings are more
+verbose
 
 #+BEGIN_SRC emacs-lisp
-(require 'dired-x)
-#+END_SRC
-
-** Directory
-#+BEGIN_SRC emacs-lisp
-  (defun tabfugnic/next-file-in-directory(&optional number)
-    (interactive)
-    (or number (setq number 1))
-    (let
-        ((filename (file-name-nondirectory (buffer-file-name)))
-         (files (cl-remove-if
-                 'file-directory-p
-                 (directory-files
-                  (file-name-directory (buffer-file-name))
-                  nil
-                  directory-files-no-dot-files-regexp))))
-      (find-file
-       (nth (mod (+ (cl-position filename files :test 'equal) number)
-         (length files))
-        files))))
-
-  (defun tabfugnic/previous-file-in-directory()
-    (interactive)
-    (tabfugnic/next-file-in-directory -1))
-
-
-  (global-set-key (kbd "C-{") 'tabfugnic/previous-file-in-directory)
-  (global-set-key (kbd "C-}") 'tabfugnic/next-file-in-directory)
+  (require 'dired-x)
+  (setq-default dired-listing-switches "-alhv")
 #+END_SRC
 
 ** Projectile
+Use projectile for searching through project files mostly. Projectil
+immediately is able to determine the project root in order to do a
+number of different things. Ensure this interface takes advantage of
+helm.
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
     :defer 3
@@ -497,25 +310,7 @@ Use a better dired, now with extras
     (projectile-global-mode))
 #+END_SRC
 
-** Global and GGTags
-  #+BEGIN_SRC emacs-lisp
-(use-package ggtags
-  :defer t
-  :init
-  (add-hook 'enh-ruby-mode-hook ( lambda() ( ggtags-mode 1 ))))
-#+END_SRC
-
-** Important Files
-  #+BEGIN_SRC emacs-lisp
-    (defun tabfugnic/open-inbox ()
-    (interactive)
-     (find-file (expand-file-name "~/cloud/org/inbox.org")))
-
-    (global-set-key (kbd "C-c i") 'tabfugnic/open-inbox)
-#+END_SRC
-
-* Language/Programming
-** Version Management
+** asdf(version management)
 Manage versions of different tools using asdf(https://asdf-vm.com)
 simplifying workflows and limiting tools
 
@@ -529,7 +324,6 @@ simplifying workflows and limiting tools
 ** Android
 
 Use android major mode
-
 #+BEGIN_SRC emacs-lisp
   (use-package android-mode
     :defer t
@@ -543,15 +337,10 @@ Use android major mode
   (c-set-offset 'arglist-intro '+)
 #+END_SRC
 
-** Cucumber
-#+BEGIN_SRC emacs-lisp
-(use-package feature-mode
-  :mode "\\.feature$")
-#+END_SRC
-
 ** Emacs Lisp
 
-Auto compile elisp files on load/save.
+Immediately compile an emacs lisp file on load/save. This makes it
+easier to run these files and test them.
 
 #+BEGIN_SRC emacs-lisp
   (use-package auto-compile
@@ -576,43 +365,8 @@ Auto compile elisp files on load/save.
             ("C-c , b" . go-test-current-benchmark)
             ("C-c , x" . go-run))))
 #+END_SRC
-** Haskell
-#+BEGIN_SRC emacs-lisp
-(use-package haskell-mode
-  :defer t
-  :init
-  (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-  (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
-  :bind
-  (:map haskell-mode-map
-        ("C-," . haskell-move-nested-left)
-        ("C-." . haskell-move-nested-right)
-        ("C-c C-c" . haskell-compile)))
-#+END_SRC
-
-** HTML/CSS
-#+BEGIN_SRC emacs-lisp
-(use-package emmet-mode
-  :defer t
-  :init
-  (setq emmet-indentation 2))
-#+END_SRC
-
-** Java
-
-Add imports to java file quickly and easily
-#+BEGIN_SRC emacs-lisp
-  (use-package java-imports :defer t)
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(use-package eclim
-  :defer t
-  :config
-  (global-eclim-mode))
-#+END_SRC
-
 ** Javascript/Typescript
+Use js2 mode for javascript. It's a bit more full featured.
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
   :mode ("\\.js$")
@@ -620,11 +374,13 @@ Add imports to java file quickly and easily
   (setq js-indent-level 2))
 #+END_SRC
 
+Use RJSX. Consider webmode instead.
 #+BEGIN_SRC emacs-lisp
-;; JSX mode
-(use-package rjsx-mode :defer t)
+  (use-package rjsx-mode :defer t)
 #+END_SRC
 
+Setup a vue mode and let it speak to mmm. This might be something to
+use web mode for.
 #+BEGIN_SRC emacs-lisp
   (use-package vue-mode
     :defer t
@@ -632,6 +388,8 @@ Add imports to java file quickly and easily
     (setq mmm-submode-decoration-level 0))
 #+END_SRC
 
+Tide is a special setup that uses the Language Server Protocol among
+many other things.
 #+BEGIN_SRC emacs-lisp
   (use-package tide
     :defer t
@@ -704,7 +462,16 @@ Setup the language server protocol
   :interpreter "php")
 #+END_SRC
 
-** Ruby/Rails
+** Ruby/Rails/RSpec
+Setup ruby mode using enhanced ruby mode. Attach this mode to an
+nonexhaustive list of files. inferior ruby allows the use of ruby
+terminals within emacs making binding pry possible.
+
+Ruby end is just a nice-to-have so that when writing `do` or `def` it
+immediately creates an accompanying `end`.
+
+Make toggling between ruby hash syntaxes easier to deal with any time
+someone accidentally uses hash rockets
 #+BEGIN_SRC emacs-lisp
   (use-package enh-ruby-mode
     :mode ("\\.rb$" "\\.rake$" "Gemfile" "Guardfile" "RakeFile" "Fastfile")
@@ -720,27 +487,26 @@ Setup the language server protocol
       :bind ("C-c r h" . ruby-toggle-hash-syntax)))
 #+END_SRC
 
+Add rspec mode so that it can be toggled between. Ensure that the
+formatting always uses progress.
 #+BEGIN_SRC emacs-lisp
   (use-package rspec-mode
-    :hook (haml-mode html-mode slim-mode coffee-mode enh-ruby-mode)
+    :hook (haml-mode html-mode slim-mode enh-ruby-mode)
     :init
     (setq rspec-command-options "--format progress"))
 #+END_SRC
 
-Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
-
+For the rare times that I would open a cucumber file
 #+BEGIN_SRC emacs-lisp
-    (use-package web-mode
-      :mode ("\\.erb$" "\\.liquid$" "\\.tsx$")
-      :init
-      (defun tabfugnic/web-mode-hook()
-        (pcase (file-name-extension buffer-file-name)
-          ("tsx" (tabfugnic/tide-setup))
-          ("erb" (rspec-mode 1))
-          (_ (lambda() (message buffer-file-name))))
-        )
-      (add-hook 'web-mode-hook 'tabfugnic/web-mode-hook))
-    #+END_SRC
+(use-package feature-mode
+  :mode "\\.feature$")
+#+END_SRC
+
+Provide slim and haml mode for the times that I use those within a project
+#+BEGIN_SRC emacs-lisp
+  (use-package slim-mode :defer t)
+  (use-package haml-mode :defer t)
+#+END_SRC
 
 ** Rust
    #+BEGIN_SRC emacs-lisp
@@ -766,14 +532,22 @@ Use web dev for ERB and html. Makes life so much easier than Multi Major Mode
   (setq css-indent-offset 2))
 #+END_SRC
 
-** Slim/Haml
-Definitely need Slim and HAML mode
-
+** Web
+Use web mode for most web related files. It has an extensive library
+it supports, it's not perfect, but makes things significantly simpler
+than using something like multi major mode.
 #+BEGIN_SRC emacs-lisp
-  (use-package slim-mode :defer t)
-  (use-package haml-mode :defer t)
+  (use-package web-mode
+    :mode ("\\.erb$" "\\.liquid$" "\\.tsx$")
+    :init
+    (defun tabfugnic/web-mode-hook()
+      (pcase (file-name-extension buffer-file-name)
+        ("tsx" (tabfugnic/tide-setup))
+        ("erb" (rspec-mode 1))
+        (_ (lambda() (message buffer-file-name))))
+      )
+    (add-hook 'web-mode-hook 'tabfugnic/web-mode-hook))
 #+END_SRC
-
 ** Yaml
 #+BEGIN_SRC emacs-lisp
 (use-package yaml-mode
@@ -1112,3 +886,129 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
     (let ((sort-fold-case t))
       (call-interactively 'sort-lines)))
   #+END_SRC
+* Post Setup
+** Manage local configurations in non version controlled file
+Configurations from the interface and ones that happen without code
+are by default placed in .emacs file. This redirects that to a non
+version controlled file so I don't have to manage that every time. I
+want to make changes. This then loads it so that this file is also
+used.
+
+#+BEGIN_SRC emacs-lisp
+  (setq custom-file "~/.emacs.local")
+  (load custom-file :noerror)
+#+END_SRC
+
+** Start Emacs Server
+Use emacs server so that loading any subsequent emacs instances will
+boot immediately. In practice I use that for the occasion I use git on
+the command line
+
+#+BEGIN_SRC emacs-lisp
+  (server-start)
+#+END_SRC
+** Break on comma
+Break on commas
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-,") 'tabfugnic/break-on-comma)
+  (global-set-key (kbd "C-;") 'tabfugnic/toggle-single-or-multiline-list)
+
+  (defun tabfugnic/break-on-comma()
+    (interactive)
+    (while (not (looking-at ","))
+      (forward-char))
+    (forward-char)
+    (if (not (looking-at "^J"))
+        (newline-and-indent)))
+
+  (defun tabfugnic/toggle-single-or-multiline-list()
+    (interactive)
+    (if (not (tabfugnic/singleline-p))
+        (tabfugnic/singleline-list)
+      (tabfugnic/multiline-list)))
+
+  (defun tabfugnic/multiline-list()
+    (interactive)
+    (let ((beg (point)))
+      (forward-char)
+      (newline-and-indent)
+      (end-of-line 0)
+      (backward-char)
+      (forward-list)
+      (backward-char)
+      (if (not (looking-at ","))
+          (insert ","))
+      (while (<= beg (point))
+        (backward-char)
+        (when (and (looking-at ",") (tabfugnic/in-parent-list-p beg))
+          (forward-char)
+          (newline-and-indent)
+          (previous-line)
+          (end-of-line)
+          (backward-char))
+        )
+      (forward-char)))
+
+  (defun tabfugnic/singleline-list()
+    (interactive)
+    (let ((beg (line-number-at-pos)))
+      (forward-list)
+      (while (< beg (line-number-at-pos))
+        (join-line))
+      (backward-char)
+      (forward-list)
+      (backward-char 2)
+      (if (looking-at ",")
+          (delete-forward-char 1))
+      (forward-char)
+      (backward-list)))
+
+  (defun tabfugnic/singleline-p()
+    (let ((beg-line (line-number-at-pos)) (start (point)))
+      (forward-list)
+      (let ((end-line (line-number-at-pos)))
+        (goto-char start)
+        (eq beg-line end-line))))
+
+  (defun tabfugnic/in-parent-list-p(parent-beg)
+    (let ((start (point)))
+      (backward-up-list)
+      (when (eq parent-beg (point))
+        (goto-char start)
+        t)))
+
+#+END_SRC
+** Directory
+#+BEGIN_SRC emacs-lisp
+  (defun tabfugnic/next-file-in-directory(&optional number)
+    (interactive)
+    (or number (setq number 1))
+    (let
+        ((filename (file-name-nondirectory (buffer-file-name)))
+         (files (cl-remove-if
+                 'file-directory-p
+                 (directory-files
+                  (file-name-directory (buffer-file-name))
+                  nil
+                  directory-files-no-dot-files-regexp))))
+      (find-file
+       (nth (mod (+ (cl-position filename files :test 'equal) number)
+         (length files))
+        files))))
+
+  (defun tabfugnic/previous-file-in-directory()
+    (interactive)
+    (tabfugnic/next-file-in-directory -1))
+
+
+  (global-set-key (kbd "C-{") 'tabfugnic/previous-file-in-directory)
+  (global-set-key (kbd "C-}") 'tabfugnic/next-file-in-directory)
+#+END_SRC
+** Important Files
+  #+BEGIN_SRC emacs-lisp
+    (defun tabfugnic/open-inbox ()
+    (interactive)
+     (find-file (expand-file-name "~/cloud/org/inbox.org")))
+
+    (global-set-key (kbd "C-c i") 'tabfugnic/open-inbox)
+#+END_SRC
