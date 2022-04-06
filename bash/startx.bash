@@ -2,4 +2,4 @@
 command -v startx &> /dev/null &&
   [[ -z $DISPLAY ]] &&
   [[ $(tty) = /dev/tty1 ]] &&
-  exec startx
+  exec startx /usr/bin/i3 -- -keeptty
