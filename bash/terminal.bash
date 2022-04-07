@@ -1,7 +1,7 @@
 . /etc/bash_completion.d/git-prompt
 
-export TERMINAL="kitty"
-export TERM="kitty"
+export TERMINAL=kitty
+export TERM=kitty
 
 red="\[\e[0;31m\]"
 green="\[\e[0;32m\]"
