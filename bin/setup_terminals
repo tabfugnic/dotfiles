@@ -5,5 +5,5 @@ i3-msg "workspace 2: terminal; append_layout ~/.config/i3/workspace-generic-term
 
 # Get fill layout
 for i in {1..3}; do
-  i3-sensible-terminal &
+  kitty &
 done;
