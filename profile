@@ -1,5 +1,11 @@
 #! /usr/bin/env sh
 
+TERMINAL=kitty
+TERM=kitty
+
+export TERMINAL
+export TERM
+
 if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ]; then
   . "$HOME/.bashrc"
 fi
