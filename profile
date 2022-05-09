@@ -18,4 +18,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
+
 . "$HOME/.env"
