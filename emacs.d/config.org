@@ -787,12 +787,14 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
     (load-file "~/dev/tabfugnic/org-retro/org-retro.el")
     (require 'org-retro)
     (use-package org-journal
-      :defer 3
+      :defer 1
       :init
       (setq org-journal-dir "~/cloud/journal")
       (setq org-journal-date-format "%A %Y/%m/%d")
       (setq org-journal-file-type 'monthly)
+      (setq org-journal-file-format "%Y%m")
       (setq org-journal-encrypt-journal t)
+      (setq org-journal-carryover-items nil)
       (add-hook 'org-journal-mode-hook 'auto-fill-mode))
     (use-package org-caldav
       :defer t
