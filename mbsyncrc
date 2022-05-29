@@ -12,8 +12,8 @@ IMAPStore personal-remote
 Account personal
 
 MaildirStore personal-local
-Path ~/mail/personal/
-Inbox ~/mail/personal/inbox
+Path ~/.mail/personal/
+Inbox ~/.mail/personal/inbox
 
 Channel personal-default
 Far :personal-remote:
