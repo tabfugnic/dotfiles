@@ -42,3 +42,49 @@ Channel personal-draft
 Channel personal-archive
 Channel personal-sent
 Channel personal-trash
+
+IMAPAccount work
+Host imap.gmail.com
+User "eric@versatrial.io"
+PassCmd "pass mail.google.com/versatrial_mail_client"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore work-remote
+Account work
+
+MaildirStore work-local
+Path ~/.mail/work/
+Inbox ~/.mail/work/inbox
+
+Channel work
+Far :work-remote:
+Near :work-local:
+
+Channel work-default
+Far :work-remote:
+Near :work-local:
+Patterns "INBOX"
+
+Channel work-archive
+Far :work-remote:"\[Gmail\]/All Mail"
+Near :work-local:archive
+
+Channel work-draft
+Far :work-remote:"\[Gmail\]/Drafts"
+Near :work-local:drafts
+
+Channel work-sent
+Far :work-remote:"\[Gmail\]/Sent Mail"
+Near :work-local:sent
+
+Channel work-trash
+Far :work-remote:"\[Gmail\]/Trash"
+Near :work-local:trash
+
+Group work
+Channel work-default
+Channel work-draft
+Channel work-archive
+Channel work-sent
+Channel work-trash
