@@ -1,20 +1,10 @@
 #! /bin/bash
 
-mu_index() {
-  namespace=$1
-
-  mu init --maildir=$HOME/.mail/$namespace \
-     --muhome=$HOME/.mu/$namespace \
-     --my-address=me@ericj.co \
-     --my-address='/me@.*\.ericj\.co/' \
-     --my-address=hello@ericcollins.me \
-     --my-address=admin@emacsnyc.org \
-     --my-address=eric@tabfugni.cc
-  mu index --muhome=$HOME/.mu/$namespace
-}
-
-main() {
-  mu_index 'personal'
-}
-
-main
+mu init --maildir=$HOME/.mail/ \
+   --my-address=me@ericj.co \
+   --my-address='/me@.*\.ericj\.co/' \
+   --my-address=hello@ericcollins.me \
+   --my-address=admin@emacsnyc.org \
+   --my-address=eric@tabfugni.cc \
+   --my-address=eric@versatrial.io
+mu index --verbose
