@@ -609,29 +609,34 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 #+BEGIN_SRC emacs-lisp
   (use-package mu4e
     :defer t
-    :load-path "/usr/local/share/emacs/site-lisp/mu4e"
+    :load-path "/usr/share/emacs/site-lisp/mu4e"
     :bind ("C-x m" . mu4e)
     :init
     (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
     (add-hook 'mu4e-compose-mode-hook 'mml-secure-message-sign)
-    (add-hook 'mu4e-compose-mode-hook
-              (defun my-setup-epa-hook ()
-                (epa-mail-mode)))
-    (add-hook 'mu4e-view-mode-hook
-              (defun my-view-mode-hook ()
-                (epa-mail-mode)))
+    (add-hook 'mu4e-compose-mode-hook (defun my-setup-epa-hook () (epa-mail-mode)))
+    (add-hook 'mu4e-view-mode-hook (defun my-view-mode-hook () (epa-mail-mode)))
+    (add-hook
+     'mu4e-compose-pre-hook
+     (defun my-set-from-address ()
+       "Set the From address based on the To address of the original."
+       (let ((msg mu4e-compose-parent-message))
+         (when msg
+           (cond
+            ((mu4e-message-contact-field-matches msg :to "/me@.*\\.ericj\\.co/")
+             (setq user-mail-address (cdar (mu4e-message-field msg :to)))))))))
     (use-package mu4e-alert
       :defer t
       :init
       (setq mu4e-maildir-shortcuts
-            '( ("/INBOX"               . ?i)
-               ("/sent"                . ?s)
-               ("/archive"             . ?a)))
+            '( (:maildir "/inbox/" :key ?i)
+               (:maildir "/sent/" :key ?s)
+               (:maildir "/archive/" :key ?a)))
 
       (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
       (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display))
-      :config
-      (mu4e-alert-set-default-style 'libnotify)
+    :config
+    (mu4e-alert-set-default-style 'libnotify)
 
 
     :config
@@ -641,31 +646,35 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
               :name "personal"
               :match-func (lambda (msg)
                             (when msg
-                              (mu4e-message-contact-field-matches
-                               msg
-                               :to "me@ericj.co")))
-              :enter-func '()
-              :leave-func (lambda () (mu4e-clear-caches))
-              :vars '((mu4e-maildir . "~/mail/personal")
-                      (mu4e-mu-home . "~/.mu/personal")
-                      (user-mail-address . "me@ericj.co")
+                              (string-match-p "^/personal" (mu4e-message-field msg :maildir))))
+              :vars '((user-mail-address . "me@ericj.co")
+                      (mu4e-drafts-folder . "/personal/drafts")
+                      (mu4e-sent-folder . "/personal/sent")
+                      (mu4e-trash-folder . "/personal/trash")
+                      (mu4e-refile-folder . "/personal/archive")
                       (mu4e-compose-signature . (concat
                                                  "Eric J. Collins\n"
-                                                 "Software Developer\n")
-                                              )))))
-
-    (setq mu4e-drafts-folder "/drafts")
-    (setq mu4e-sent-folder   "/sent")
-    (setq mu4e-trash-folder  "/trash")
-    (setq mu4e-refile-folder "/archive")
+                                                 "Software Developer\n"))))
+            ,(make-mu4e-context
+              :name "work"
+              :match-func (lambda (msg)
+                            (when msg
+                              (string-match-p "^/work" (mu4e-message-field msg :maildir))))
+              :vars '((user-mail-address . "eric@versatrial.io")
+                      (mu4e-drafts-folder . "/work/drafts")
+                      (mu4e-sent-folder . "/work/sent")
+                      (mu4e-trash-folder . "/work/trash")
+                      (mu4e-refile-folder . "/work/archive")
+                      (mu4e-compose-signature . (concat
+                                                 "Eric J. Collins\n"
+                                                 "Software Developer\n"))))))
     (setq mu4e-action-tags-header "X-Keywords")
     (setq mu4e-attachment-dir  "~/Downloads")
     (setq mu4e-compose-dont-reply-to-self t)
     (setq user-full-name  "Eric J Collins")
     (setq mu4e-update-interval 180)
-    (setq mu4e-user-mail-address-list '("me@ericj.co" "hello@ericcollins.me"))
+    (setq mu4e-user-mail-address-list '("me@ericj.co" "hello@ericcollins.me" "/me@.*\\.ericj\\\.co/" "eric@versatrial.io"))
     (setq mu4e-change-filenames-when-moving t)
-
     (setq message-send-mail-function 'message-send-mail-with-sendmail)
     (setq sendmail-program "/usr/local/bin/msmtp-enqueue.sh")
     (setq message-sendmail-extra-arguments '("--read-envelope-from"))
@@ -691,12 +700,13 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 
     (add-to-list 'mu4e-view-actions
                  '("xViewXWidget" . mu4e-action-view-with-xwidget) t)
-    (add-to-list 'mu4e-marks `(trash
-     :char ("d" . "▼")
-     :prompt "dtrash"
-     :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
-     :action (lambda (docid msg target) (mu4e~proc-move docid
-                                                        (mu4e~mark-check-target target) "-N"))))
+    (add-to-list 'mu4e-marks
+                 `(trash
+                   :char ("d" . "▼")
+                   :prompt "dtrash"
+                   :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
+                   :action (lambda (docid msg target) (mu4e--server-move docid
+                                                                         (mu4e--mark-check-target target) "-N"))))
 
     (defun tabfugnic/mu4e-headers-mark-stale-for-delete()
       (interactive)
@@ -707,10 +717,10 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
                (one-day-ago (subtract-time (current-time) 86400)))
            (when (and (member "temporary" tags) (time-less-p date one-day-ago))
              (mu4e-mark-at-point 'trash msg)))))))
-#+END_SRC
+    #+END_SRC
 
 ** ERC
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (use-package erc
   :bind ("C-c e r" . tabfugnic/reset-erc-track-mode)
   :init
