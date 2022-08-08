@@ -493,7 +493,9 @@ formatting always uses progress.
   (use-package rspec-mode
     :hook (haml-mode html-mode slim-mode enh-ruby-mode)
     :init
-    (setq rspec-command-options "--format progress"))
+    (setq rspec-command-options "--format progress")
+    :config
+    (evil-set-initial-state 'rspec-compilation-mode 'emacs))
 #+END_SRC
 
 For the rare times that I would open a cucumber file
