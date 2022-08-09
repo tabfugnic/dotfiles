@@ -202,6 +202,7 @@ exec --no-startup-id emacs
 exec --no-startup-id qutebrowser
 exec --no-startup-id setup_terminals
 exec --no-startup-id nextcloud
+exec --no-startup-id dunst
 
 # Auto lock screen
 exec --no-startup-id autolock
