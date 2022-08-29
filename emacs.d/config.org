@@ -433,7 +433,6 @@ Setup the language server protocol
       ((rust-mode . lsp)
        (enh-ruby-mode . lsp)
        (go-mode . lsp)
-       (web-mode . lsp)
        (typescript-mode . lsp))
       :commands lsp)
 
