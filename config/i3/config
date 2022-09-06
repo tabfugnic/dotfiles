@@ -221,4 +221,4 @@ for_window [class="Emacs" title="capture"] floating enable
 for_window [class="zoom"] floating enable
 for_window [class="zoom" title="Zoom Meeting"] floating disable
 for_window [class="zoom" title="Zoom -*"] floating disable
-for_window [class="Slack" title="Slack | mini panel"] floating disable, sticky enable
+for_window [class="Slack" instance="Slack | mini panel*"] floating enable, sticky enable
