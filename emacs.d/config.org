@@ -652,10 +652,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
                       (mu4e-drafts-folder . "/personal/drafts")
                       (mu4e-sent-folder . "/personal/sent")
                       (mu4e-trash-folder . "/personal/trash")
-                      (mu4e-refile-folder . "/personal/archive")
-                      (mu4e-compose-signature . (concat
-                                                 "Eric J. Collins\n"
-                                                 "Software Developer\n"))))
+                      (mu4e-refile-folder . "/personal/archive")))
             ,(make-mu4e-context
               :name "work"
               :match-func (lambda (msg)
@@ -665,14 +662,13 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
                       (mu4e-drafts-folder . "/work/drafts")
                       (mu4e-sent-folder . "/work/sent")
                       (mu4e-trash-folder . "/work/trash")
-                      (mu4e-refile-folder . "/work/archive")
-                      (mu4e-compose-signature . (concat
-                                                 "Eric J. Collins\n"
-                                                 "Software Developer\n"))))))
+                      (mu4e-refile-folder . "/work/archive")))))
+
     (setq mu4e-action-tags-header "X-Keywords")
     (setq mu4e-attachment-dir  "~/Downloads")
     (setq mu4e-compose-dont-reply-to-self t)
     (setq user-full-name  "Eric J Collins")
+    (setq mu4e-compose-signature (concat "Eric J. Collins\n" "VP of Engineering\n" "https://versatrial.io"))
     (setq mu4e-update-interval 180)
     (setq mu4e-user-mail-address-list '("me@ericj.co" "hello@ericcollins.me" "/me@.*\\.ericj\\\.co/" "eric@versatrial.io"))
     (setq mu4e-change-filenames-when-moving t)
