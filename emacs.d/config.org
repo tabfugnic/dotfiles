@@ -447,7 +447,6 @@ Setup the language server protocol
       :commands lsp-ui-mode
       :config
       (setq lsp-prefer-flymake nil))
-    (use-package company-lsp :commands company-lsp)
     (use-package helm-lsp :commands helm-lsp-workspace-symbol)
     (use-package dap-mode :defer t)
 #+END_SRC
