@@ -1,1 +1,1 @@
-sudo wpa_cli -i wlp58s0 reconfigure
+sudo wpa_cli reconfigure

@@ -28,7 +28,7 @@ EOF
 }
 
 get_ssids() {
-  sudo iw dev wlp58s0 scan |
+  sudo iw wdev 1 scan |
     grep -E "SSID:[[:space:]][^[:space:]]+" |
     sed -e 's/[[:blank:]]*SSID:[[:blank:]]//g' |
     sort -u
