@@ -21,8 +21,8 @@ alias blog='cd $blog'
 alias dev='cd $dev'
 alias dotfiles='cd $dotfiles'
 alias tab='cd $tabfugnic_dev'
-alias cur='cd $CURRENT_PROJECT_DIR'
-alias other='cd $OTHER_PROJECT_DIR'
+alias web='cd $WEB_PROJECT_DIR'
+alias ext='cd $EXT_PROJECT_DIR'
 alias enyc='cd $dev/emacsnyc/emacsnyc.github.io'
 
 ##### tar Shortcuts #####
