@@ -246,20 +246,17 @@ as many other things use this
     (add-hook 'after-init-hook 'global-company-mode))
 #+END_SRC
 
-** Grammarly
-   Add grammarly cause I can't write things good
-#+BEGIN_SRC emacs-lisp
-  (use-package flycheck-grammarly)
-#+END_SRC
 ** flycheck
 Use flycheck for automatic in application linting. Setup early for other modes
 #+BEGIN_SRC emacs-lisp
-(use-package flycheck
-  :defer t
-  :init
-  (add-hook 'after-init-hook #'global-flycheck-mode)
-  :config
-  (flycheck-grammarly-setup))
+  (use-package flycheck
+    :defer t
+    :init
+    (add-hook 'after-init-hook #'global-flycheck-mode)
+    (use-package flycheck-grammarly
+      :defer t
+      :init
+      (flycheck-grammarly-setup)))
 #+END_SRC
 ** Helm
 Use helm for anything involving input. This might be changed to ivy as an experiment initially
