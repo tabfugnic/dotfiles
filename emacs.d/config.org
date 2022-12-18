@@ -168,7 +168,7 @@ This section defines ways to interact with Emacs outside of a specific major mod
 Shortcut need to write out yes or no and instead allow a simple y or n
 response.
 #+BEGIN_SRC emacs-lisp
-  (fset 'yes-or-no-p 'y-or-n-p)
+  (setq use-short-answers t)
 #+END_SRC
 
 Highlight any instance of the text within a document when searching for it.
