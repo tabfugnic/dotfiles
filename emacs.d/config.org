@@ -371,7 +371,7 @@ easier to run these files and test them.
 Use js2 mode for javascript. It's a bit more full featured.
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
-  :mode ("\\.js$")
+  :mode ("\\.js$" "\\.mjs$")
   :init
   (setq js-indent-level 2))
 #+END_SRC
