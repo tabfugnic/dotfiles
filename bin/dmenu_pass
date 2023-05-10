@@ -1,5 +1,5 @@
 #!/bin/sh
 
 password=$(find ~/.password-store/ -type f -name '*.gpg' |
-	sed 's/.*\/\(.*\/.*\)\.gpg$/\1/' | dmenu -i -p "Pass:")
+	sed 's/.*\.password-store\/\(.*\)\.gpg$/\1/' | rofi -dmenu -p "Pass")
 [ -n "$password" ] && pass show -c "$password"

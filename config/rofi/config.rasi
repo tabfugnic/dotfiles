@@ -1,0 +1,21 @@
+configuration {
+  dpi: 1;
+  font: "hack 12";
+  matching: "fuzzy";
+  show-icons: true;
+  sort: true;
+  terminal: "kitty";
+  filebrowser {
+    directories-first: true;
+    sorting-method:    "name";
+  }
+  run {
+    display-name: "";
+  }
+  timeout {
+    action: "kb-cancel";
+    delay:  0;
+  }
+}
+
+@theme "android_notification"
