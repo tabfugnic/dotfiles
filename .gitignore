@@ -23,3 +23,5 @@ bookmarks
 /emacs.d/transient
 /emacs.d/url
 /emacs.d/var/pcache/cache
+/emacs.d/eln-cache
+/emacs.d/projects
