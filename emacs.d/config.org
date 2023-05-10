@@ -789,6 +789,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
     :bind (("C-c l" . org-store-link)
            ("C-c c" . org-capture)
            ("C-c a" . org-agenda)
+           ("C-c C-j" . org-journal-new-entry)
            ("C-c b" . org-iswitchb))
     :init
     (setq org-crypt-key "786F8224")
