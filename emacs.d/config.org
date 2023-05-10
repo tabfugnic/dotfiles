@@ -268,13 +268,11 @@ Use helm for anything involving input. This might be changed to ivy as an experi
     ("C-S-s" . helm-do-ag-project-root)
     ("C-x C-f" . helm-find-files)
     :init
+    (helm-mode)
     (use-package helm-ag
       :defer t
       :init
       (setq helm-M-x-fuzzy-match t))
-    (progn
-      (require 'helm-config)
-      (helm-mode))
     (use-package helm-tramp
       :defer t
       :config
