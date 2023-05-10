@@ -158,10 +158,10 @@ bindsym --release $mod+c exec scrot -s -e 'mv $f ~/pictures/captures/.'
 bindsym --release $mod+Shift+c exec record-gif
 
 # Volume
-bindsym XF86AudioLowerVolume exec /usr/bin/amixer set Master 5%- && /usr/bin/amixer set Master unmute
-bindsym XF86AudioRaiseVolume exec /usr/bin/amixer set Master 5%+ && /usr/bin/amixer set Master unmute; exec /usr/bin/amixer set Speaker unmute; exec /usr/bin/amixer set Headphone unmute
-bindsym XF86AudioMute exec /usr/bin/amixer set Master toggle; exec /usr/bin/amixer set Speaker unmute; exec /usr/bin/amixer set Headphone unmute
-bindsym XF86AudioMicMute exec /usr/bin/amixer set Capture toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Brightness
 bindsym XF86MonBrightnessUp exec /usr/bin/light -A 5
