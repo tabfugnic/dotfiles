@@ -771,6 +771,12 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
   (with-temp-buffer
     (shell-command (format "notify-send '%s: %s' -t 5000" nickname message) t)))
 #+END_SRC
+** AI
+   #+BEGIN_SRC emacs-lisp
+     (use-package org-ai
+       :init
+       (setq org-ai-openai-api-token (getenv "OPENAI_API_TOKEN")))
+   #+END_SRC
 * Git(Magit)
 #+BEGIN_SRC emacs-lisp
   (use-package magit
