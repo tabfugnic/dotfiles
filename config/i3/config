@@ -16,7 +16,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -modi drun -show drun
 
 # copy password (a program launcher)
 bindsym $mod+Shift+p exec dmenu_pass
