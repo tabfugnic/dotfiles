@@ -2,9 +2,9 @@
 set $mod Mod4
 
 # Font for window titles
-font pango: Hack 10
+font pango: Hack 14
 
-new_window 1pixel
+default_border pixel 1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
