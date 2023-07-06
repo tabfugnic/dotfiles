@@ -206,6 +206,7 @@ exec --no-startup-id dunst
 exec --no-startup-id slack
 exec --no-startup-id signal-desktop
 exec --no-startup-id google-chrome
+exec --no-startup-id picom
 
 # Auto lock screen
 exec --no-startup-id autolock
