@@ -73,9 +73,9 @@ bindsym $mod+a focus parent
 
 # switch to workspace
 bindsym $mod+1 workspace 1: emacs
-bindsym $mod+2 workspace 2: terminal
-bindsym $mod+3 workspace 3: browser
-bindsym $mod+4 workspace 4: chat
+bindsym $mod+2 workspace 2: term
+bindsym $mod+3 workspace 3: web
+bindsym $mod+4 workspace 4: sig
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7: call
@@ -85,9 +85,9 @@ bindsym $mod+0 workspace 10: play
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1: emacs
-bindsym $mod+Shift+2 move container to workspace 2: terminal
-bindsym $mod+Shift+3 move container to workspace 3: browser
-bindsym $mod+Shift+4 move container to workspace 4: chat
+bindsym $mod+Shift+2 move container to workspace 2: term
+bindsym $mod+Shift+3 move container to workspace 3: web
+bindsym $mod+Shift+4 move container to workspace 4: sig
 bindsym $mod+Shift+5 move container to workspace number 5
 bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace 7: call
@@ -178,10 +178,10 @@ bindsym F9 exec toggle_display
 # Assign apps to workspaces
 assign [class="Emacs" title="[^capture]"] → 1: emacs
 assign [class="emacs" title="[^capture]"] → 1: emacs
-assign [class="(?i)term"] → 2: terminal
-assign [class="Firefox"] → 3: browser
-assign [class="qutebrowser"] → 3: browser
-assign [class="Signal"] → 4: chat
+assign [class="kitty"] → 2: term
+assign [class="Firefox"] → 3: web
+assign [class="qutebrowser"] → 3: web
+assign [class="Signal"] → 4: sig
 assign [class="pop"] → 7: call
 assign [class="zoom"] → 7: call
 assign [class="Google-chrome"] → 8: chrome
