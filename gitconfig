@@ -9,7 +9,7 @@
 [color]
   ui = auto
 [commit]
-  gpgsign = true
+  gpgSign = true
 [core]
   excludesfile = ~/.gitignore
 [diff]
@@ -32,4 +32,4 @@
 [user]
   name = Eric Collins
   email = eric@tabfugni.cc
-  signingkey = 786F8224
+  signingkey = 09638B3E786F8224
