@@ -24,7 +24,7 @@ through that.
     (package-refresh-contents)
     (package-install 'use-package))
 
-    (eval-when-compile (require 'use-package))
+  (eval-when-compile (require 'use-package))
 #+END_SRC
 
 * Configure
@@ -42,7 +42,7 @@ unhelpful, ignore them.
 Setup the interface to look the way I expect it to look. Prioritize
 things that need to go into effect earlier to make it feel less janky.
 
-Remove unusused interface artifacts. Making the interface as barebones
+Remove unused interface artifacts. Making the interface as barebones
 as possible. Remove the whole startup message.
 #+BEGIN_SRC emacs-lisp
   (menu-bar-mode -1)
