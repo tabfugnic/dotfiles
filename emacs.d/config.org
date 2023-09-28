@@ -487,6 +487,13 @@ Setup python along with the ability to use jupyter notebook
     (use-package ruby-hash-syntax
       :bind ("C-c r h" . ruby-toggle-hash-syntax)))
 #+END_SRC
+
+** PlantUML
+#+BEGIN_SRC emacs-lisp
+  (use-package plantuml-mode
+    :mode ("\\.pu$" "\\.puml"  "\\.plantuml"))
+#+END_SRC
+
 ** Ruby/Rails/RSpec
 Setup ruby mode using enhanced ruby mode. Attach this mode to an
 nonexhaustive list of files. inferior ruby allows the use of ruby
