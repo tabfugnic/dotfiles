@@ -76,8 +76,8 @@ this case it uses the folder it's in
 Make lines easier to read and use. Using linum and highlighting the
 current line.
 #+BEGIN_SRC emacs-lisp
+  (add-hook 'prog-mode-hook #'display-line-numbers-mode)
   (global-hl-line-mode t)
-  (global-linum-mode t)
 #+END_SRC
 
 Show visible bell, good for when the sound is muted
