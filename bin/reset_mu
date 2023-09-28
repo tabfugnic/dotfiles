@@ -6,5 +6,6 @@ mu init --maildir=$HOME/.mail/ \
    --my-address=hello@ericcollins.me \
    --my-address=admin@emacsnyc.org \
    --my-address=eric@tabfugni.cc \
+   --my-address=eric.collins@florencehc.com \
    --my-address=eric@versatrial.io
 mu index --verbose
