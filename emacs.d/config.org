@@ -28,6 +28,16 @@ through that.
 #+END_SRC
 
 * Configure
+** Logging
+For all things related to logging. Including warning, messages, or any
+other helpful outputs.
+
+Instead reporting any native compilation warnings, that are mostly
+unhelpful, ignore them.
+#+BEGIN_SRC emacs-lisp
+  (setq native-comp-async-report-warnings-errors nil)
+#+END_SRC
+
 ** Interface
 Setup the interface to look the way I expect it to look. Prioritize
 things that need to go into effect earlier to make it feel less janky.
