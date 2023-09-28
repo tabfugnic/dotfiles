@@ -51,13 +51,11 @@ as possible. Remove the whole startup message.
   (setq inhibit-startup-message t)
 #+END_SRC
 
-#+END_SRC
-
 Setup font using [[https://sourcefoundry.org/hack][Hack]], it is a derivative of DeJa Vu with an emphasis
 on readability for code. Make the font bigger for less strain on my
 eyes.
 #+BEGIN_SRC emacs-lisp
-  (set-frame-font "-*-Hack-normal-normal-normal-*-22-*-*-*-m-0-iso10646-1")
+  (set-frame-font "-*-Hack-normal-normal-normal-*-44-*-*-*-m-0-iso10646-1")
 #+END_SRC
 
 Establish theme defaulting to solarized dark. Use system that allows
