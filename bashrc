@@ -10,3 +10,4 @@ source "$HOME/.aliases"
 [ -s "$HOME/.bashrc.local" ] && source "$HOME/.bashrc.local"
 
 [ -s "$HOME/.env" ] && source "$HOME/.env"
+. "$HOME/.cargo/env"
