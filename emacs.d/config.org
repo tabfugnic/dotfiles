@@ -463,6 +463,22 @@ Setup the language server protocol
   :interpreter "php")
 #+END_SRC
 
+** Python
+Setup python along with the ability to use jupyter notebook
+#+BEGIN_SRC emacs-lisp
+  (use-package python
+    :mode ("\\.py$")
+    :interpreter "python"
+    :init
+    (use-package python-black
+      :defer t)
+    (use-package ein
+      :defer t
+      :init
+      (setq ein:jupyter-server-command "pipenv run jupyter"))
+    (use-package ruby-hash-syntax
+      :bind ("C-c r h" . ruby-toggle-hash-syntax)))
+#+END_SRC
 ** Ruby/Rails/RSpec
 Setup ruby mode using enhanced ruby mode. Attach this mode to an
 nonexhaustive list of files. inferior ruby allows the use of ruby
