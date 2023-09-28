@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+get_issue_count() {
+  curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -H "Authorization: $LINEAR_API_KEY" \
+    --data '{ "query": "{ workflowState(id: \"$LINEAR_WORKFLOW_ID\") { issues(first: 250) { nodes { id } } } }" }' \
+    https://api.linear.app/graphql | jq ".data .workflowState .issues .nodes[] .id" | wc -l
+}
+
+echo $(get_issue_count)

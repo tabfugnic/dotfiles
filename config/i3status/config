@@ -3,6 +3,7 @@ general {
   interval = 5
 }
 
+order += "external_script linear"
 order += "github primary"
 order += "github secondary"
 order += "disk /home"
@@ -100,4 +101,10 @@ github secondary {
   username = "tabfugnic"
   repo = env(GITHUB_REPO_SECONDARY)
   format = "{repo} PRs:{pull_requests}"
+}
+
+external_script linear {
+  format = "Ready For Acceptance: {output}"
+  script_path = "/home/eric/bin/linear_issues"
+  cache_timeout = 60
 }
