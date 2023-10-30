@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+
+# Set timer to restart mbsync timer immediately stop if command successful
+at now + $# -f systemctl --user start mbsync.timer
+systemctl --user stop mbsync.timer
