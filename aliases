@@ -13,6 +13,7 @@ export blog="$HOME/blog"
 export personal_dev="$dev/tabfugnic"
 export dotfiles="$dev/dotfiles"
 export tabfugnic_dev="$dev/tabfugnic"
+export flo_dev="$dev/FlorenceHC"
 export sapt="sudo apt"
 
 ##### Directory Aliases #####
@@ -23,6 +24,7 @@ alias dotfiles='cd $dotfiles'
 alias tab='cd $tabfugnic_dev'
 alias web='cd $WEB_PROJECT_DIR'
 alias ext='cd $EXT_PROJECT_DIR'
+alias flo='cd $flo_dev'
 alias enyc='cd $dev/emacsnyc/emacsnyc.github.io'
 
 ##### tar Shortcuts #####
