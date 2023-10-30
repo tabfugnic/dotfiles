@@ -14,7 +14,7 @@ export PATH=$PATH:$HOME/opt/android/tools
 export PATH=$PATH:$HOME/opt/android/platform-tools
 
 # Home bin directory
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.bin"
 
 # Local bin path
 export PATH="$PATH:$HOME/.local/bin"
