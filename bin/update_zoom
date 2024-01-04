@@ -1,0 +1,17 @@
+#! /usr/bin/env bash
+
+tmp_directory=$HOME/tmp
+zoom_file=zoom_amd64.deb
+
+echo "Downloading zoom"
+wget -P $tmp_directory https://us06web.zoom.us/client/latest/$zoom_file
+
+echo "Updating zoom"
+sudo dpkg -i $tmp_directory/$zoom_file
+
+echo "Removing download"
+rm $tmp_directory/$zoom_file
+
+echo "Restarting zoom"
+killall zoom
+zoom &
