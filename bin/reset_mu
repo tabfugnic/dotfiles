@@ -1,5 +1,12 @@
 #! /bin/bash
 
+if [ ! -d $HOME/.mail/personal || ! -d $HOME/.mail/work  ]; then
+  mkdir -p $HOME/.mail/personal
+  mkdir -p $HOME/.mail/work
+
+  mbsync --all
+fi
+
 mu init --maildir=$HOME/.mail/ \
    --my-address=me@ericj.co \
    --my-address='/me@.*\.ericj\.co/' \
