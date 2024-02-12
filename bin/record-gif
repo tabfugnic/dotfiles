@@ -14,7 +14,7 @@ grab_screen_region() {
 
 get_filename() {
   local timestamp=$(date +%s)
-  echo "capture-$timestamp.gif"
+  echo "capture-$timestamp.webm"
 }
 
 main() {
