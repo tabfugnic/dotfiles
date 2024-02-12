@@ -4,6 +4,7 @@ repository=$1
 
 user_repo=$(echo $repository | awk -F':' '{print $2}' | awk '{gsub(/\.git$/, ""); print}')
 
+echo "Cloning $repository into $HOME/dev/$user_repo"
 git clone -q $repository $HOME/dev/$user_repo || true
 
 cd $HOME/dev/$user_repo
