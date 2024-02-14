@@ -27,6 +27,25 @@ through that.
   (eval-when-compile (require 'use-package))
 #+END_SRC
 
+Use straight as a way to manage packages that aren't installed via package archives
+#+BEGIN_SRC emacs-lisp
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name
+          "straight/repos/straight.el/bootstrap.el"
+          (or (bound-and-true-p straight-base-dir)
+              user-emacs-directory)))
+        (bootstrap-version 7))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+#+END_SRC
+
 * Configure
 ** Logging
 For all things related to logging. Including warning, messages, or any
@@ -807,8 +826,8 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 ** AI
    #+BEGIN_SRC emacs-lisp
      (use-package whisper
-       :load-path "path/to/whisper.el"
-       :bind ("M-s-r" . whisper-run))
+       :straight (whisper :type git :host github :repo "natrys/whisper.el")
+       :bind ("C-:" . whisper-run))
 
      (use-package org-ai
        :ensure t
