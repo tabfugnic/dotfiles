@@ -4,7 +4,7 @@ case "$1" in
         swaylock
         ;;
     logout)
-        sway-msg exit
+        swaymsg exit
         ;;
     suspend)
         swaylock && dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true
