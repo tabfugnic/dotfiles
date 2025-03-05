@@ -1,6 +1,6 @@
 #! /bin/bash
 
-if [ ! -d $HOME/.mail/personal || ! -d $HOME/.mail/work  ]; then
+if [ ! -d $HOME/.mail/personal ] || [ ! -d $HOME/.mail/work  ]; then
   mkdir -p $HOME/.mail/personal
   mkdir -p $HOME/.mail/work
 
@@ -13,6 +13,5 @@ mu init --maildir=$HOME/.mail/ \
    --my-address=hello@ericcollins.me \
    --my-address=admin@emacsnyc.org \
    --my-address=eric@tabfugni.cc \
-   --my-address=eric.collins@florencehc.com \
-   --my-address=eric@versatrial.io
+   --my-address=eric.collins@curatedforyou.io
 mu index --verbose

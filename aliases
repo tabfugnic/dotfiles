@@ -13,7 +13,7 @@ export blog="$HOME/blog"
 export personal_dev="$dev/tabfugnic"
 export dotfiles="$dev/dotfiles"
 export tabfugnic_dev="$dev/tabfugnic"
-export flo_dev="$dev/FlorenceHC"
+export cfy_dev="$dev/Curated-For-You"
 export sapt="sudo apt"
 
 ##### Directory Aliases #####

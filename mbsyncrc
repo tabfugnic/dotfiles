@@ -45,8 +45,8 @@ Channel personal-trash
 
 IMAPAccount work
 Host imap.gmail.com
-User "eric.collins@florencehc.com"
-PassCmd "pass mail.google.com/florence_laptop_email"
+User "eric.collins@curatedforyou.io"
+PassCmd "pass mail.google.com/cfy_emacs_email"
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
