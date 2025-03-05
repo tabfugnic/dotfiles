@@ -177,15 +177,12 @@ bindsym F8 exec cycle_displays
 bindsym F9 exec toggle_display
 
 # Assign apps to workspaces
-assign [class="Emacs" title="[^capture]"] → 1: emacs
-assign [class="emacs" title="[^capture]"] → 1: emacs
-assign [class="kitty"] → 2: term
-assign [class="Firefox"] → 3: web
+assign [app_id="emacs"] → 1: emacs
+assign [app_id="kitty"] → 2: term
 assign [class="qutebrowser"] → 3: web
 assign [class="Signal"] → 4: sig
-assign [class="pop"] → 7: call
 assign [class="zoom"] → 7: call
-assign [class="Google-chrome"] → 8: chrome
+assign [app_id="google-chrome"] → 8: chrome
 assign [class="Chromium"] → 8: chrome
 assign [class="Slack"] → 9: slack
 assign [class="Steam"] → 10: play
@@ -198,17 +195,15 @@ bindsym $mod+Shift+less move workspace to output left
 
 # Launch software
 exec --no-startup-id emacs
-exec --no-startup-id qutebrowser
 exec --no-startup-id setup_terminals
 exec --no-startup-id nextcloud
 exec --no-startup-id dunst
 exec --no-startup-id slack
 exec --no-startup-id signal-desktop
 exec --no-startup-id google-chrome
-exec --no-startup-id picom
 
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
+         timeout 300 'swaylock' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
 
