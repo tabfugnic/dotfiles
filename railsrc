@@ -1,0 +1,5 @@
+--database=postgresql
+--javascript=esbuild
+--skip-rubocop
+--skip-test
+--template=~/.config/rails/template.rb
