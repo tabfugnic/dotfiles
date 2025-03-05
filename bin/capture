@@ -1,33 +1,5 @@
 #!/bin/bash
 
-binary_name="$(cat /proc/$(xdotool getwindowpid $(xdotool getwindowfocus))/comm)"
-firefox_json="$HOME/.mozilla/firefox/*.default/sessionstore-backups/recovery.jsonlz4"
+inbox_item=$(cat "$HOME/cloud/org/inbox.org" | rofi -dmenu -p "Insert to inbox")
 
-copy_relavant_information_to_clipboard() {
-  if [[ "$binary_name" == "firefox-esr" ]]; then
-    json=$(lz4jsoncat $firefox_json)
-    tab_index=$(($(echo $json | jq '.windows[0].selected')-1))
-    echo $json | jq -r ".windows[0].tabs[$tab_index].entries[-1].url" | xclip
-  fi
-}
-
-main() {
-  if [[ "$binary_name" == "firefox-esr" ]]; then
-    emacsclient -e "(make-capture-frame \"c\")"
-  else
-    emacsclient -e "(make-capture-frame)"
-  fi
-}
-
-while getopts ":x" opt; do
-  case $opt in
-    x)
-      copy_relavant_information_to_clipboard
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      ;;
-  esac
-done
-
-main
+emacsclient -e "(progn (org-capture-string \"$inbox_item\" \"di\") (org-capture-finalize))"

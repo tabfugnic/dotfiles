@@ -909,6 +909,10 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
              entry
              (file ,(tabfugnic/org-file "inbox.org"))
              "* %?\n")
+            ("di" "dmenu Inbox"
+             entry
+             (file ,(tabfugnic/org-file "inbox.org"))
+             "* %i\n")
             ("m" "Mail Inbox"
              entry
              (file ,(tabfugnic/org-file "inbox.org"))
