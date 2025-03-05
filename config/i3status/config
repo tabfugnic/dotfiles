@@ -3,9 +3,8 @@ general {
   interval = 5
 }
 
-order += "external_script linear"
-order += "github primary"
-order += "github secondary"
+# order += "github primary"
+# order += "github secondary"
 order += "disk /home"
 order += "disk /"
 order += "wireless _first_"
@@ -89,22 +88,22 @@ pomodoro {
   format_break_stopped = "P: #{breakno} {format}"
 }
 
-github primary {
-  auth_token = env(GITHUB_TOKEN)
-  username = "tabfugnic"
-  repo = env(GITHUB_REPO_PRIMARY)
-  format = "{repo} PRs:{pull_requests}"
-}
+# github primary {
+#   auth_token = env(GITHUB_TOKEN)
+#   username = "tabfugnic"
+#   repo = env(GITHUB_REPO_PRIMARY)
+#   format = "{repo} PRs:{pull_requests}"
+# }
 
-github secondary {
-  auth_token = env(GITHUB_TOKEN)
-  username = "tabfugnic"
-  repo = env(GITHUB_REPO_SECONDARY)
-  format = "{repo} PRs:{pull_requests}"
-}
+# github secondary {
+#   auth_token = env(GITHUB_TOKEN)
+#   username = "tabfugnic"
+#   repo = env(GITHUB_REPO_SECONDARY)
+#   format = "{repo} PRs:{pull_requests}"
+# }
 
-external_script linear {
-  format = "Ready For Acceptance: {output}"
-  script_path = "/home/eric/.bin/linear_issues"
-  cache_timeout = 60
-}
+# external_script linear {
+#   format = "Ready For Acceptance: {output}"
+#   script_path = "/home/eric/.bin/linear_issues"
+#   cache_timeout = 60
+# }

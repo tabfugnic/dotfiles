@@ -1,16 +1,13 @@
 #!/bin/sh
 case "$1" in
     lock)
-        locker
+        swaylock
         ;;
     logout)
-        i3-msg exit
+        sway-msg exit
         ;;
     suspend)
-        locker && dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true
-        ;;
-    hibernate)
-        locker && dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Hibernate" boolean:true
+        swaylock && dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true
         ;;
     reboot)
         dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Reboot" boolean:true
@@ -19,7 +16,7 @@ case "$1" in
         dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.PowerOff" boolean:true
         ;;
     *)
-        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        echo "Usage: $0 {lock|logout|suspend|reboot|shutdown}"
         exit 2
 esac
 
