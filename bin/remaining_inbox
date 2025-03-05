@@ -1,0 +1,5 @@
+#! /bin/bash
+
+lines=$(grep -c . $HOME/cloud/org/inbox.org)
+
+echo -e "$lines\n#FF0000 urgent\n#FF0000 urgent\n#FF0000 urgent"

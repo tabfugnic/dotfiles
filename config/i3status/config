@@ -1,10 +1,10 @@
 general {
-  colors = true
   interval = 5
 }
 
 # order += "github primary"
 # order += "github secondary"
+order += "external_script"
 order += "disk /home"
 order += "disk /"
 order += "wireless _first_"
@@ -107,3 +107,8 @@ pomodoro {
 #   script_path = "/home/eric/.bin/linear_issues"
 #   cache_timeout = 60
 # }
+
+external_script {
+    format = "Inbox: {output}"
+    script_path = "/home/eric/.bin/remaining_inbox"
+}
