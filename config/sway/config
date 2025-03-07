@@ -213,6 +213,7 @@ exec xmodmap ~/.i3/xmodmap
 
 # Set background
 exec feh --bg-center ~/wallpaper/gnu_not_unix.jpg
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # Window configs
 for_window [instance="StopRSI"] sticky enable
