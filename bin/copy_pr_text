@@ -1,4 +1,8 @@
 #! /usr/bin/env bash
 
-git fetch origin main:main
-git pr | fmt --width=2500 | xclip -selection clipboard
+branch=${1:-main}
+
+git fetch origin $branch:$branch
+git log $branch.. --reverse --pretty="## %s%n%n%b" |
+  fmt -w2500 |
+  wl-copy
