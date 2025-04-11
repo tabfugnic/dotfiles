@@ -13,7 +13,7 @@ export blog="$HOME/blog"
 export personal_dev="$dev/tabfugnic"
 export dotfiles="$dev/dotfiles"
 export tabfugnic_dev="$dev/tabfugnic"
-export cfy_dev="$dev/Curated-For-You"
+export cfy="$dev/Curated-For-You"
 export sapt="sudo apt"
 
 ##### Directory Aliases #####
@@ -22,8 +22,8 @@ alias blog='cd $blog'
 alias dev='cd $dev'
 alias dotfiles='cd $dotfiles'
 alias tab='cd $tabfugnic_dev'
-alias web='cd $WEB_PROJECT_DIR'
-alias ext='cd $EXT_PROJECT_DIR'
+alias backend='cd $BACKEND_PROJECT_DIR'
+alias frontend='cd $FRONTEND_PROJECT_DIR'
 alias flo='cd $flo_dev'
 alias enyc='cd $dev/emacsnyc/emacsnyc.github.io'
 
