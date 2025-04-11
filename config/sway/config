@@ -99,8 +99,6 @@ bindsym $mod+Shift+8 move container to workspace 8: chrome
 bindsym $mod+Shift+9 move container to workspace 9: slack
 bindsym $mod+Shift+0 move container to workspace 10: play
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
@@ -155,8 +153,10 @@ bindsym $mod+Shift+s exec "py3-cmd click 2 pomodoro"
 bindsym --release $mod+i exec --no-startup-id capture -x
 
 # Capture
-bindsym --release $mod+c exec scrot -s -e 'mv $f ~/pictures/captures/.'
-bindsym --release $mod+Shift+c exec record-gif
+bindsym $mod+c exec grimshot --notify --wait 1 save anything
+bindsym $mod+Shift+c exec wf-recorder -g "$(slurp)" -f "$HOME/pictures/captures/$(date +'%Y-%m-%d-%H%M%S').mp4"
+bindsym $mod+Shift+Escape exec killall -s SIGINT wf-recorder
+
 
 # Volume
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
