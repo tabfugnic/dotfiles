@@ -3,4 +3,6 @@
 password=$(find ~/.password-store/ -type f -name '*.gpg' |
 	sed 's/.*\.password-store\/\(.*\)\.gpg$/\1/' | rofi -dmenu -p "Pass")
 [ -n "$password" ] && pass show -c "$password"
-notify-send "Password copied!" "$password" --expire-time 2000
+if [ -n "$password" ]; then
+  notify-send "Password copied!" "$password" --expire-time 2000
+fi
