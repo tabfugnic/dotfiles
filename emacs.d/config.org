@@ -562,8 +562,7 @@ Provide slim and haml mode for the times that I use those within a project
   (use-package rustic
     :defer t
     :init
-    (setq rustic-format-on-save t)
-    (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
+    (setq rustic-format-on-save t))
   (use-package cargo
     :defer t
     :init
