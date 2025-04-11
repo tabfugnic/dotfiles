@@ -220,7 +220,6 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 for_window [instance="StopRSI"] sticky enable
 for_window [instance="Slack Call Minipanel"] floating enable, sticky enable
 for_window [class="Emacs" title="capture"] floating enable
-for_window [class="zoom"] floating enable
-for_window [class="zoom" title="Zoom Meeting"] floating disable
-for_window [class="zoom" title="Zoom -*"] floating disable
+for_window [app_id="Zoom Workplace"] floating enable, move position cursor
+for_window [app_id="Zoom Workplace" title="Zoom Workplace -*"] floating disable
 for_window [class="Slack" instance="Slack | mini panel*"] floating enable, sticky enable
