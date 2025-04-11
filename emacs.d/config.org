@@ -463,7 +463,8 @@ Setup the language server protocol
     ((rust-mode . lsp)
      (enh-ruby-mode . lsp)
      (go-mode . lsp)
-     (typescript-mode . lsp))
+     (typescript-mode . lsp)
+     (python-mode . lsp))
     :commands lsp
     :custom
     (lsp-rust-analyzer-cargo-watch-command "clippy"))
