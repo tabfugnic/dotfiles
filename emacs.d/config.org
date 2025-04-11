@@ -822,6 +822,18 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 #+END_SRC
 ** AI
    #+BEGIN_SRC emacs-lisp
+     (use-package copilot
+       :vc (:url "https://github.com/copilot-emacs/copilot.el.git"
+                 :rev :newest
+                 :branch "main")
+       :defer t
+       :init
+       (add-hook 'prog-mode-hook 'copilot-mode)
+       :config
+       (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+       (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+       (add-to-list 'copilot-major-mode-alist '("enh-ruby" . "ruby")))
+
      (use-package whisper
        :straight (whisper :type git :host github :repo "natrys/whisper.el")
        :bind ("C-:" . whisper-run))
