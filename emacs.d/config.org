@@ -135,6 +135,7 @@ the ultimate software. Vi had some good ideas on how to edit text.
     :init
     (setq evil-toggle-key "C-`")
     (use-package evil-surround
+      :defer t
       :config
       (global-evil-surround-mode 1))
     :config
@@ -493,16 +494,11 @@ Setup the language server protocol
 ** Python
 Setup python along with the ability to use jupyter notebook
 #+BEGIN_SRC emacs-lisp
-  (use-package python
-    :mode ("\\.py$")
-    :interpreter "python"
+  (use-package python-mode
+    :defer t
     :init
     (use-package python-black
       :defer t)
-    (use-package ein
-      :defer t
-      :init
-      (setq ein:jupyter-server-command "pipenv run jupyter"))
     (use-package ruby-hash-syntax
       :bind ("C-c r h" . ruby-toggle-hash-syntax)))
 #+END_SRC
@@ -615,6 +611,7 @@ Newsticker for RSS feeds
 
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed
+    :defer t
     :bind ("C-x w" . tabfugnic/elfeed)
     :init
     (use-package elfeed-org
@@ -854,6 +851,7 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :bind ("C-x g" . magit-status)
+    :defer 1
     :config
     (defun tabfugnic/magit-delete-branch (branch)
       (interactive
