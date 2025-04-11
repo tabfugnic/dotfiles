@@ -206,6 +206,7 @@ exec swayidle -w \
          timeout 300 'swaylock' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
+exec wayland-pipewire-idle-inhibit
 
 # Remap control key
 exec setxkbmap -option ctrl:nocaps
