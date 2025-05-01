@@ -1,5 +1,5 @@
 #!/bin/bash
 
-inbox_item=$(cat "$HOME/cloud/org/inbox.org" | rofi -dmenu -p "Insert to inbox")
+inbox_item=$(cat "$HOME/cloud/org/inbox.org" | wofi --dmenu -p "Insert to inbox")
 
 emacsclient -e "(progn (org-capture-string \"$inbox_item\" \"di\") (org-capture-finalize))"

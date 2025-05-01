@@ -1,7 +1,7 @@
 #!/bin/sh
 
 password=$(find ~/.password-store/ -type f -name '*.gpg' |
-	sed 's/.*\.password-store\/\(.*\)\.gpg$/\1/' | rofi -dmenu -p "Pass")
+	sed 's/.*\.password-store\/\(.*\)\.gpg$/\1/' | wofi --show dmenu -p "Pass")
 [ -n "$password" ] && pass show -c "$password"
 if [ -n "$password" ]; then
   notify-send "Password copied!" "$password" --expire-time 2000
