@@ -7,7 +7,7 @@ case "$1" in
         swaymsg exit
         ;;
     suspend)
-        swaylock && dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true
+        swaylock -f && dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true
         ;;
     reboot)
         dbus-send --print-reply --system --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Reboot" boolean:true
