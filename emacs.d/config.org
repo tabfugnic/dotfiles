@@ -977,33 +977,33 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
 #+END_SRC
 
 * Utils
-  #+BEGIN_SRC emacs-lisp
-    ;; (setq tabfugnic/previous-commands '())
-    (set-face-attribute 'comint-highlight-prompt nil
-                        :inherit nil)
+#+BEGIN_SRC emacs-lisp
+  ;; (setq tabfugnic/previous-commands '())
+  (set-face-attribute 'comint-highlight-prompt nil
+                      :inherit nil)
 
-    (defun tabfugnic/repeat-shell-commandline-in-project()
-      (interactive)
-      (setq tabfugnic/previous-command)
-      ;; (setq tabfugnic/previous-commands
-      ;;       (cons '((vc-root-dir) . "thing") tabfugnic/previous-commands))
+  (defun tabfugnic/repeat-shell-commandline-in-project()
+    (interactive)
+    (setq tabfugnic/previous-command)
+    ;; (setq tabfugnic/previous-commands
+    ;;       (cons '((vc-root-dir) . "thing") tabfugnic/previous-commands))
     )
-  #+END_SRC
+#+END_SRC
 
 
-  #+BEGIN_SRC emacs-lisp
-(defun gitrep()
-  (interactive "*")
-  (find-file "~/dev"))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (defun gitrep()
+    (interactive "*")
+    (find-file "~/dev"))
+#+END_SRC
 
-  Sort lines with out case
-  #+BEGIN_SRC emacs-lisp
+Sort lines case insensitive
+#+BEGIN_SRC emacs-lisp
   (defun sort-lines-nocase ()
     (interactive)
     (let ((sort-fold-case t))
       (call-interactively 'sort-lines)))
-  #+END_SRC
+#+END_SRC
 * Post Setup
 ** Manage local configurations in non version controlled file
 Configurations from the interface and ones that happen without code
@@ -1111,8 +1111,8 @@ Break on commas
                   directory-files-no-dot-files-regexp))))
       (find-file
        (nth (mod (+ (cl-position filename files :test 'equal) number)
-         (length files))
-        files))))
+                 (length files))
+            files))))
 
   (defun tabfugnic/previous-file-in-directory()
     (interactive)
@@ -1123,10 +1123,10 @@ Break on commas
   (global-set-key (kbd "C-}") 'tabfugnic/next-file-in-directory)
 #+END_SRC
 ** Important Files
-  #+BEGIN_SRC emacs-lisp
-    (defun tabfugnic/open-inbox ()
+#+BEGIN_SRC emacs-lisp
+  (defun tabfugnic/open-inbox ()
     (interactive)
-     (find-file (expand-file-name "~/cloud/org/inbox.org")))
+    (find-file (expand-file-name "~/cloud/org/inbox.org")))
 
-    (global-set-key (kbd "C-c i") 'tabfugnic/open-inbox)
+  (global-set-key (kbd "C-c i") 'tabfugnic/open-inbox)
 #+END_SRC
