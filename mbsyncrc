@@ -6,7 +6,7 @@ IMAPAccount personal
 Host imap.fastmail.com
 User me@ericj.co
 PassCmd "pass fastmail.com/laptop"
-SSLType IMAPS
+TLSType IMAPS
 
 IMAPStore personal-remote
 Account personal
@@ -47,7 +47,7 @@ IMAPAccount work
 Host imap.gmail.com
 User "eric.collins@curatedforyou.io"
 PassCmd "pass mail.google.com/cfy_emacs_email"
-SSLType IMAPS
+TLSType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore work-remote
