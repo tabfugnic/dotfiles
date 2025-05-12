@@ -2,8 +2,10 @@
 set $mod Mod4
 set $term kitty
 set $menu wofi
+set $background "$HOME/.config/sway/wallpaper.jpg"
 
 output DP-2 scale 1.33
+output eDP-1 bg "$HOME/.config/sway/wallpaper.jpg" fill
 
 # Font for window titles
 font pango: Hack 14
