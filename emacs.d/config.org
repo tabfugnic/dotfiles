@@ -360,6 +360,7 @@ simplifying workflows and limiting tools
   (load-file "~/dev/tabfugnic/asdf.el/asdf.el")
   (require 'asdf)
 
+  (setq asdf-binary "$HOME/.bin/asdf")
   (asdf-enable)
 #+END_SRC
 
