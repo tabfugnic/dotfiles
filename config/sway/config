@@ -4,7 +4,8 @@ set $term kitty
 set $menu wofi
 set $background "$HOME/.config/sway/wallpaper.jpg"
 
-output DP-2 scale 1.33
+output DP-3 scale 1.33
+output DP-3 bg "$HOME/.config/sway/wallpaper.jpg" fill
 output eDP-1 bg "$HOME/.config/sway/wallpaper.jpg" fill
 
 # Font for window titles
@@ -204,8 +205,8 @@ exec --no-startup-id slack
 exec --no-startup-id signal-desktop
 exec --no-startup-id google-chrome
 
-exec swayidle -w \
-         timeout 300 'swaylock' \
+exec swayidle -d -w \
+         timeout 300 'swaylock -f' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
 exec wayland-pipewire-idle-inhibit
@@ -215,7 +216,6 @@ exec setxkbmap -option ctrl:nocaps
 exec xmodmap ~/.i3/xmodmap
 
 # Set background
-exec feh --bg-center ~/wallpaper/gnu_not_unix.jpg
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # Window configs
@@ -225,3 +225,5 @@ for_window [class="Emacs" title="capture"] floating enable
 for_window [app_id="Zoom Workplace"] floating enable, move position cursor
 for_window [app_id="Zoom Workplace" title="Zoom Workplace -*"] floating disable
 for_window [class="Slack" instance="Slack | mini panel*"] floating enable, sticky enable
+for_window [class="Slack" instance="Slack | mini panel*"] floating enable, sticky enable
+for_window [class="Gitify"] mouse_warping container
