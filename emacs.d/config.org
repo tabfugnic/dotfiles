@@ -891,6 +891,13 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
        (defun tabfugnic/org-ai-summarize-news()
          (interactive)
          (tabfugnic/org-ai-on-buffer "news-summary")))
+
+     (use-package claude-code :ensure t
+       :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest)
+       :config
+       (claude-code-mode)
+       (setq claude-code-term-name "kitty")
+       :bind-keymap ("C-c x" . claude-code-command-map))
    #+END_SRC
 * Git(Magit)
 #+BEGIN_SRC emacs-lisp
