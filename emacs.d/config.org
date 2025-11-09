@@ -121,6 +121,20 @@ Diminish is used to simplify the modebar
 #+BEGIN_SRC emacs-lisp
   (use-package diminish :defer t)
 #+END_SRC
+
+Setup tree sitter for better syntax highlighting
+#+BEGIN_SRC emacs-lisp
+  (use-package tree-sitter
+    :ensure t
+    :defer t
+    :init
+    (use-package tree-sitter-langs)
+    (global-tree-sitter-mode)
+    :config
+    (tree-sitter-require 'python)
+    (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+#+END_SRC
+
 ** Editing
 Standardize some concepts when editing text. Create expected behaviors
 throughout the editing experience. This includes visual cues as
