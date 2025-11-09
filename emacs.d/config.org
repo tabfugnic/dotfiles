@@ -266,6 +266,12 @@ Ask before closing Emacs
 (when window-system
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
 #+END_SRC
+
+Enable upcase region and downcase region to prevent weird disable language on first use
+#+BEGIN_SRC emacs-lisp
+  (put 'upcase-region 'disabled nil)
+  (put 'downcase-region 'disabled nil)
+#+END_SRC
 ** Environment
 #+BEGIN_SRC emacs-lisp
   (let ((go-path (shell-command-to-string ". ~/.bashrc; echo -n $GOPATH")))
