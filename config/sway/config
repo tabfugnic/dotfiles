@@ -227,3 +227,4 @@ for_window [app_id="Zoom Workplace" title="Zoom Workplace -*"] floating disable
 for_window [class="Slack" instance="Slack | mini panel*"] floating enable, sticky enable
 for_window [class="Slack" instance="Slack | mini panel*"] floating enable, sticky enable
 for_window [class="Gitify"] mouse_warping container
+for_window [class="Nextcloud"] floating enable, move position cursor
