@@ -310,14 +310,22 @@ Use helm for anything involving input. This might be changed to ivy as an experi
     :diminish helm-mode
     :bind
     ("M-x" . helm-M-x)
-    ("C-S-s" . helm-do-ag-project-root)
+    ("C-S-s" . tabfugnic/helm-do-grep-ag-project)
     ("C-x C-f" . helm-find-files)
     :init
     (helm-mode)
-    (use-package helm-ag
-      :defer t
-      :init
-      (setq helm-M-x-fuzzy-match t))
+    ;;;###autoload
+    (defun tabfugnic/helm-do-grep-ag-project (arg)
+      "Preconfigured `helm' for grepping with AG from the current project root.
+  If no project found use `default-directory'.
+  With prefix arg prompt for type if available with your AG version."
+      (interactive "P")
+      (require 'helm-files)
+      (require 'project)
+      (let ((project-root (helm-acase (project-current)
+                          ((dst* (_type . path)) path)
+                          (t default-directory))))
+        (helm-grep-ag (expand-file-name project-root) arg)))
     (use-package helm-tramp
       :defer t
       :config
