@@ -886,12 +886,15 @@ Use mu4e for all email. This takes advantage of offlineimap and msmtp
          (interactive)
          (tabfugnic/org-ai-on-buffer "news-summary")))
 
-     (use-package claude-code :ensure t
-       :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest)
+     (use-package ai-code-interface
+       :vc (:url "https://github.com/tninja/ai-code-interface.el" :branch "main")
        :config
-       (claude-code-mode)
-       (setq claude-code-term-name "kitty")
-       :bind-keymap ("C-c x" . claude-code-command-map))
+       (ai-code-set-backend  'claude-code) ;; use claude-code-ide as backend
+       ;; Enable global keybinding for the main menu
+       (global-set-key (kbd "C-c C-o") #'ai-code-menu)
+       ;; Optional: Set up Magit integration for AI commands in Magit popups
+       (with-eval-after-load 'magit
+         (ai-code-magit-setup-transients)))
    #+END_SRC
 * Git(Magit)
 #+BEGIN_SRC emacs-lisp
