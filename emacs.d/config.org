@@ -370,11 +370,14 @@ Manage versions of different tools using asdf(https://asdf-vm.com)
 simplifying workflows and limiting tools
 
 #+BEGIN_SRC emacs-lisp
-  (load-file "~/dev/tabfugnic/asdf.el/asdf.el")
-  (require 'asdf)
-
-  (setq asdf-binary "$HOME/.bin/asdf")
-  (asdf-enable)
+  (use-package asdf
+    :vc (:url "https://github.com/tabfugnic/asdf.el.git"
+              :rev :newest
+              :branch "main")
+    :defer t
+    :init
+    (setq asdf-binary "$HOME/.bin/asdf")
+    (asdf-enable))
 #+END_SRC
 
 ** Android
