@@ -286,6 +286,11 @@ as many other things use this
     (add-hook 'after-init-hook 'global-company-mode))
 #+END_SRC
 
+** Envrc
+#+BEGIN_SRC emacs-lisp
+(use-package envrc
+  :hook (after-init . envrc-global-mode))
+#+END_SRC
 ** flycheck
 Use flycheck for automatic in application linting. Setup early for other modes
 #+BEGIN_SRC emacs-lisp
