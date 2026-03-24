@@ -524,8 +524,9 @@ Setup python along with the ability to use jupyter notebook
   (use-package python-mode
     :defer t
     :init
-    (use-package python-black
-      :defer t)
+    (use-package ruff-format
+      :defer t
+      :hook (python-mode . ruff-format-on-save-mode))
     (use-package ruby-hash-syntax
       :bind ("C-c r h" . ruby-toggle-hash-syntax)))
 #+END_SRC
