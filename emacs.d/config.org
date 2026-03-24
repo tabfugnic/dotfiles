@@ -130,7 +130,6 @@ the ultimate software. Vi had some good ideas on how to edit text.
     :init
     (setq evil-toggle-key "C-`")
     (use-package evil-surround
-      :defer t
       :config
       (global-evil-surround-mode 1))
     :config
