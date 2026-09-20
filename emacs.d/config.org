@@ -14,19 +14,6 @@ and ELPA are already provided.
                '("melpa" . "https://melpa.org/packages/") t)
 #+END_SRC
 
-Use bootstrap to setup use-package so everything else can be managed
-through that.
-#+BEGIN_SRC emacs-lisp
-  (setq use-package-verbose t)
-  (setq use-package-always-ensure t)
-
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
-
-  (eval-when-compile (require 'use-package))
-#+END_SRC
-
 * Configure
 ** Logging
 For all things related to logging. Including warning, messages, or any
