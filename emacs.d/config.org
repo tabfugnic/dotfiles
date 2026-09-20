@@ -510,9 +510,7 @@ Setup python along with the ability to use jupyter notebook
     :init
     (use-package ruff-format
       :defer t
-      :hook (python-mode . ruff-format-on-save-mode))
-    (use-package ruby-hash-syntax
-      :bind ("C-c r h" . ruby-toggle-hash-syntax)))
+      :hook (python-mode . ruff-format-on-save-mode)))
 #+END_SRC
 
 ** PlantUML
