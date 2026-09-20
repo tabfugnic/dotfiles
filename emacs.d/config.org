@@ -92,15 +92,8 @@ Diminish is used to simplify the modebar
 
 Setup tree sitter for better syntax highlighting
 #+BEGIN_SRC emacs-lisp
-  (use-package tree-sitter
-    :ensure t
-    :defer t
-    :init
-    (use-package tree-sitter-langs)
-    (global-tree-sitter-mode)
-    :config
-    (tree-sitter-require 'python)
-    (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+  (use-package tree-sitter-langs
+    :after tree-sitter)
 #+END_SRC
 
 ** Editing
