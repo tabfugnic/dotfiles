@@ -136,7 +136,10 @@ Visual cue for when lines are too long.
 Remove trailing whitespace in a file after save. This prevents
 unnecessary changes in diffs.
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+  (add-hook 'prog-mode-hook
+            (lambda ()
+              (add-hook 'before-save-hook
+                        #'delete-trailing-whitespace nil t)))
 #+END_SRC
 
 Use two spaces by default for all indenting. Change this depending
