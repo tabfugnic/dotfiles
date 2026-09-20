@@ -152,8 +152,6 @@ upon the language being used.
   (setq sh-indentation 2)
 #+END_SRC
 
-#+END_SRC
-
 Rather than having things break on space take advantage of
 subwords. This means individual words will be recognized when using
 snake_case and camelCase.
