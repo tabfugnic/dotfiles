@@ -8,8 +8,6 @@
   autosetuprebase = always
 [color]
   ui = auto
-[commit]
-  gpgSign = true
 [core]
   excludesfile = ~/.gitignore
 [diff]
@@ -18,6 +16,8 @@
   prune = true
 [github]
   user = tabfugnic
+[include]
+  path = .gitconfig.local
 [init]
   defaultBranch = main
 [merge]
